@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl" class="scroll-smooth bg-[#0a0a0c] text-[#f4f4f5]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS SOVEREIGN — وكالة التسويق الرقمي والإنتاج السينمائي العالمي</title>
-    <meta name="description" content="وكالة نكسوس العالمية للتسويق الرقمي، الإنتاج السينمائي 4K، وهندسة مسارات النمو لقطاعات النخبة والكيانات الكبرى. بإشراف أحمد مرجان.">
+    <title>NEXUS | وكالة التسويق والإنتاج السينمائي الفاخر</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, IBM Plex Sans Arabic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -18,270 +17,235 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                        syne: ['Syne', 'sans-serif'],
-                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif']
+                        arabic: ['IBM Plex Sans Arabic', 'sans-serif'],
+                        editorial: ['Cormorant Garamond', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'IBM Plex Sans Arabic', 'sans-serif']
                     },
                     colors: {
-                        obsidian: {
-                            950: '#02040a',
-                            900: '#060a15',
-                            850: '#0a1022',
-                            800: '#0f172a',
-                            700: '#1e293b'
-                        }
+                        pure: '#000000',
+                        noir: '#0a0a0c',
+                        surface: '#121216',
+                        subtle: '#18181f',
+                        gold: '#d4af37',
+                        platinum: '#e4e4e7',
+                        muted: '#71717a'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #02040a; color: #f8fafc; overflow-x: hidden; }
-        .mesh-hero {
-            background-color: #02040a;
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(56, 189, 248, 0.12) 0px, transparent 55%),
-                radial-gradient(at 90% 15%, rgba(168, 85, 247, 0.1) 0px, transparent 50%),
-                radial-gradient(at 50% 60%, rgba(16, 185, 129, 0.08) 0px, transparent 65%),
-                radial-gradient(at 80% 85%, rgba(234, 179, 8, 0.08) 0px, transparent 50%);
-        }
-        .luxury-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(6, 10, 21, 0.85) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        .luxury-card:hover {
-            border-color: rgba(56, 189, 248, 0.35);
-            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-        .glass-nav {
-            background: rgba(6, 10, 21, 0.8);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .shimmer-text {
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gold-shimmer {
-            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; background-color: #0a0a0c; color: #f4f4f5; }
+        .editorial-title { font-family: 'Cormorant Garamond', serif; }
+        .thin-border { border: 1px solid rgba(255, 255, 255, 0.08); }
+        .thin-border-b { border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+        .thin-border-t { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+        .subtle-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .subtle-hover:hover { background-color: #18181f; border-color: rgba(255, 255, 255, 0.2); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0a0a0c; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 9999px; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col mesh-hero selection:bg-sky-500/30 selection:text-white">
+<body class="min-h-screen flex flex-col bg-[#0a0a0c] text-[#f4f4f5] antialiased selection:bg-white selection:text-black">
 
-    <!-- Global Navigation Bar -->
-    <header class="glass-nav sticky top-0 z-50 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <!-- Brand Logo -->
-            <a href="index.html" class="flex items-center gap-3.5 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-600 to-purple-700 flex items-center justify-center text-white shadow-xl shadow-sky-500/20 border border-white/20 group-hover:scale-105 transition">
-                    <i data-lucide="crown" class="w-5 h-5 text-amber-300"></i>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xl font-black tracking-tight text-white font-syne">NEXUS</span>
-                        <span class="text-[10px] bg-gradient-to-r from-amber-500/20 to-sky-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-0.5 rounded-full font-bold">SOVEREIGN</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400">Digital Growth & Cinema Production</p>
-                </div>
+    <!-- Minimalist Editorial Navigation -->
+    <header class="sticky top-0 z-50 bg-[#0a0a0c]/90 backdrop-blur-md thin-border-b px-6 lg:px-12 py-5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <span class="editorial-title text-2xl lg:text-3xl font-bold tracking-widest text-white uppercase">NEXUS</span>
+                <span class="text-[9px] text-[#71717a] font-sans tracking-widest border border-[#27272a] px-2 py-0.5 rounded uppercase">Studio</span>
             </a>
 
-            <!-- Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-xs font-bold text-slate-300">
-                <a href="#services" class="hover:text-sky-400 transition">الخدمات الاستراتيجية</a>
-                <a href="#sectors" class="hover:text-sky-400 transition">القطاعات المستهدفة</a>
-                <a href="#methodology" class="hover:text-sky-400 transition">منهجية العمل والذكاء الاصطناعي</a>
-                <a href="showcase.html" class="text-amber-300 hover:text-amber-200 transition flex items-center gap-1.5">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                    <span>معرض الأعمال الحية</span>
-                </a>
+            <!-- Editorial Nav Links -->
+            <nav class="hidden md:flex items-center gap-10 text-xs text-[#a1a1aa] font-medium tracking-wide">
+                <a href="#about" class="hover:text-white transition">عن الوكالة</a>
+                <a href="#expertise" class="hover:text-white transition">مجالات الخبرة</a>
+                <a href="#work" class="hover:text-white transition">الأعمال والمقارنة</a>
+                <a href="#philosophy" class="hover:text-white transition">فلسفة العمل</a>
             </nav>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-3">
-                <!-- Executive Director Login Portal Link -->
-                <a href="dashboard.html" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-obsidian-900/90 hover:bg-slate-800 text-sky-400 text-xs font-black border border-sky-500/30 shadow-lg shadow-sky-500/10 transition group">
-                    <i data-lucide="shield-check" class="w-4 h-4 text-sky-400 group-hover:scale-110 transition"></i>
-                    <span>بوابة المدير التنفيذي</span>
+            <!-- Director Portal & Contact -->
+            <div class="flex items-center gap-4">
+                <a href="dashboard.html" class="text-xs text-[#71717a] hover:text-[#e4e4e7] transition flex items-center gap-1.5 border border-[#27272a] hover:border-[#3f3f46] px-3.5 py-2 rounded-full font-mono text-[11px]">
+                    <i data-lucide="lock" class="w-3 h-3 text-[#d4af37]"></i>
+                    <span>بوابة المدير</span>
                 </a>
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D9%86%D9%83%D8%B3%D9%88%D8%B3%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%86%D8%A7" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:opacity-95 text-white font-black text-xs shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>تواصل معنا عبر واتساب</span>
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%20%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D9%86%D9%83%D8%B3%D9%88%D8%B3" target="_blank" class="text-xs font-semibold bg-white text-black hover:bg-[#e4e4e7] px-5 py-2.5 rounded-full transition flex items-center gap-2">
+                    <span>تواصل معنا</span>
+                    <i data-lucide="arrow-up-left" class="w-3.5 h-3.5"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-1 space-y-24 pb-20">
+    <!-- Main Editorial Content -->
+    <main class="flex-1 space-y-32">
 
-        <!-- Hero Section -->
-        <section class="max-w-6xl mx-auto px-6 pt-16 sm:pt-24 text-center space-y-6">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300 text-xs font-bold font-syne">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>GLOBAL MARKETING & ULTRA-LUXURY PRODUCTION</span>
+        <!-- Hero: Dramatic Typography & White Space -->
+        <section class="max-w-6xl mx-auto px-6 lg:px-12 pt-24 sm:pt-36 space-y-12 text-center sm:text-right">
+            <div class="space-y-4">
+                <div class="inline-block text-[11px] uppercase tracking-widest text-[#71717a] font-sans border-b border-[#27272a] pb-1">
+                    Creative Direction & Ultra-Luxury Growth — Riyadh · Cairo · London
+                </div>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light text-white leading-[1.15] tracking-tight">
+                    نصنع الهيبة الرقمية للعلامات التي لا تقبل <span class="editorial-title italic text-[#d4af37] font-normal">بالمألوف.</span>
+                </h1>
             </div>
 
-            <h1 class="text-3xl sm:text-6xl font-black text-white leading-tight tracking-tight max-w-4xl mx-auto font-syne">
-                نحوّل الكيانات الفاخرة إلى <span class="gold-shimmer">أيقونات رقمية عالمية</span> تُضاعف المبيعات
-            </h1>
-
-            <p class="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-                نجمع بين الإنتاج السينمائي 4K، خوارزميات الاستهداف الدقيق لكبار الشخصيات (HNWI)، وهندسة مسارات التحويل السريعة لتحقيق أعلى عائد على الإنفاق الإعلاني (ROAS).
-            </p>
-
-            <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AD%D8%AC%D8%B2%20%D8%AC%D9%84%D8%B3%D8%A9%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%85%D8%AE%D8%B5%D8%B5%D8%A9" target="_blank" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 hover:opacity-95 text-white font-black text-sm shadow-xl shadow-sky-500/25 flex items-center gap-2.5 transition active:scale-95">
-                    <i data-lucide="calendar" class="w-4 h-4"></i>
-                    <span>احجز جلسة استشارة استراتيجية مجانية</span>
-                </a>
-                <a href="showcase.html" class="px-7 py-4 rounded-2xl luxury-card hover:bg-slate-800 text-white font-bold text-sm flex items-center gap-2 transition">
-                    <i data-lucide="eye" class="w-4 h-4 text-amber-400"></i>
-                    <span>معاينة العروض التفاعلية وسلايدر المقارنة</span>
-                </a>
-            </div>
-
-            <!-- Global Credibility Counters -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-10">
-                <div class="luxury-card rounded-2xl p-5 text-center">
-                    <div class="text-2xl sm:text-3xl font-black text-white font-syne gold-shimmer">+340%</div>
-                    <div class="text-xs text-slate-400 mt-1">متوسط زيادة التفاعل والمشاهدات</div>
-                </div>
-                <div class="luxury-card rounded-2xl p-5 text-center">
-                    <div class="text-2xl sm:text-3xl font-black text-white font-syne text-emerald-400">+45%</div>
-                    <div class="text-xs text-slate-400 mt-1">رفع معدل المواعيد المؤكدة</div>
-                </div>
-                <div class="luxury-card rounded-2xl p-5 text-center">
-                    <div class="text-2xl sm:text-3xl font-black text-white font-syne text-sky-400">100/100</div>
-                    <div class="text-xs text-slate-400 mt-1">كفاءة وسرعة مسارات التحويل</div>
-                </div>
-                <div class="luxury-card rounded-2xl p-5 text-center">
-                    <div class="text-2xl sm:text-3xl font-black text-white font-syne text-purple-400">4K</div>
-                    <div class="text-xs text-slate-400 mt-1">إنتاج بصري سينمائي فائق</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="max-w-7xl mx-auto px-6 space-y-12">
-            <div class="text-center space-y-3">
-                <span class="text-xs font-bold text-sky-400 tracking-widest uppercase font-syne">SOLUTIONS & CAPABILITIES</span>
-                <h2 class="text-2xl sm:text-4xl font-black text-white">ترسانة خدمات نكسوس المتكاملة</h2>
-                <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">حلول مخصصة مدروسة تعالج تسريب العملاء في كل مرحلة من رحلة المشتري</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Service 1 -->
-                <div class="luxury-card rounded-[32px] p-8 space-y-4 border-t-2 border-t-sky-400">
-                    <div class="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
-                        <i data-lucide="film" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black text-white">الإنتاج السينمائي والريلز (4K Cinema)</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed">
-                        تصوير ماكرو سينمائي فائق الدقة، إضاءة استوديو متقدمة، ومؤثرات صوتية هوليوودية مصممة لإيقاف تخطي المشاهدين في أول ثانيتين وتحويل الانطباع إلى هيبة ومكانة.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 pt-2 border-t border-white/5">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ريلز عمودية 9:16 بإنتاج سينمائي</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> تصوير جوي وميداني بدقة 4K</li>
-                    </ul>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="luxury-card rounded-[32px] p-8 space-y-4 border-t-2 border-t-amber-400">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
-                        <i data-lucide="split-square-vertical" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black text-white">أدوات الإقناع التفاعلية (Interactive Tools)</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed">
-                        برمجة ودمج أدوات رقمية تفاعلية داخل موقعكم مثل سلايدر مقارنة النتائج (Before / After) ونماذج المسح ثلاثي الأبعاد التي تبهر العميل وتدفعه لحسم قراره فوراً.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 pt-2 border-t border-white/5">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> سلايدر تفاعلي سريع التحميل</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> صفحات هبوط مخصصة فائقة السرعة</li>
-                    </ul>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="luxury-card rounded-[32px] p-8 space-y-4 border-t-2 border-t-emerald-400">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                        <i data-lucide="zap" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black text-white">هندسة مسارات التحويل والحجز الفوري</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed">
-                        استبدال النماذج المعقدة بروابط تحويل ذكية لواتساب الاستقبال، مدعومة بروبوتات متابعة وتأكيد مواعيد تلقائية تمنع هروب العملاء وتضمن إغلاق الصفقات.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 pt-2 border-t border-white/5">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> مسارات حجز مباشرة عبر واتساب</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إدارة حملات Google Ads & Meta بذكاء اصطناعي</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Target Sectors -->
-        <section id="sectors" class="max-w-7xl mx-auto px-6 space-y-12">
-            <div class="text-center space-y-3">
-                <span class="text-xs font-bold text-amber-400 tracking-widest uppercase font-syne">PRESTIGE MARKETS</span>
-                <h2 class="text-2xl sm:text-4xl font-black text-white">القطاعات التي نقود صدارتها</h2>
-                <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">خبرة متخصصة ومصممة بدقة لتلائم طبيعة وسلوك عملاء الطبقات الراقية</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
-                <div class="luxury-card rounded-2xl p-6 space-y-3">
-                    <div class="text-sky-400"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
-                    <h4 class="text-base font-black text-white">عيادات التجميل ونحت القوام</h4>
-                    <p class="text-xs text-slate-300 leading-relaxed">مجمعات جراحة اليوم الواحد، الليزر، وعلاجات البشرة الراقية في الرياض ودبي والقاهرة.</p>
-                </div>
-                <div class="luxury-card rounded-2xl p-6 space-y-3">
-                    <div class="text-cyan-400"><i data-lucide="stethoscope" class="w-6 h-6"></i></div>
-                    <h4 class="text-base font-black text-white">طب وزراعة وابتسامة الأسنان</h4>
-                    <p class="text-xs text-slate-300 leading-relaxed">مراكز هوليوود سمايل الرقمية وزراعة الأسنان الفورية الباحثة عن حالات الدخل المرتفع.</p>
-                </div>
-                <div class="luxury-card rounded-2xl p-6 space-y-3">
-                    <div class="text-amber-400"><i data-lucide="home" class="w-6 h-6"></i></div>
-                    <h4 class="text-base font-black text-white">تصميم وتشطيب القصور الفاخرة</h4>
-                    <p class="text-xs text-slate-300 leading-relaxed">استوديوهات العمارة والديكور الداخلي للفلل الفارهة في الرياض ولندن وميامي.</p>
-                </div>
-                <div class="luxury-card rounded-2xl p-6 space-y-3">
-                    <div class="text-rose-400"><i data-lucide="utensils" class="w-6 h-6"></i></div>
-                    <h4 class="text-base font-black text-white">الضيافة الفاخرة ومطاعم ميشلان</h4>
-                    <p class="text-xs text-slate-300 leading-relaxed">مجموعات الضيافة الراقية الراغبة في تصدر حجوزات كبار الشخصيات والفعاليات الحصرية.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="max-w-5xl mx-auto px-6">
-            <div class="luxury-card rounded-[36px] p-8 sm:p-14 text-center space-y-6 border border-sky-500/30 relative overflow-hidden">
-                <div class="w-16 h-16 rounded-3xl bg-gradient-to-tr from-sky-400 to-indigo-600 mx-auto flex items-center justify-center text-white shadow-2xl shadow-sky-500/30">
-                    <i data-lucide="send" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl sm:text-4xl font-black text-white font-syne">
-                    جاهزون لمضاعفة أرباحكم وقيادة صدارة قطاعكم؟
-                </h3>
-                <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-                    يسعدنا دراسة ملفكم التسويقي وإعداد خطة إطلاق مخصصة لفروعكم تحت إشراف المستشار أحمد مرجان.
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pt-4">
+                <p class="md:col-span-8 text-sm sm:text-base text-[#a1a1aa] leading-relaxed font-light">
+                    نكسوس هي وكالة استشارية وإنتاجية متخصصة في الارتقاء بالكيانات الراقية — من كبرى مجمعات جراحة التجميل والأسنان، إلى استوديوهات العمارة وتصميم القصور. نجمع بين الإخراج السينمائي 4K، وهندسة الإقناع الرقمي التي تحوّل الفضول إلى تعاقدات مؤكدة.
                 </p>
-                <div class="pt-2">
-                    <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AD%D8%AC%D8%B2%20%D8%AC%D9%84%D8%B3%D8%A9%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%88%D8%A8%D8%AF%D8%A1%20%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF" target="_blank" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:opacity-95 text-white font-black text-sm shadow-2xl shadow-emerald-500/30 transition transform hover:-translate-y-0.5">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i>
-                        <span>تواصل المباشر عبر واتساب (+201210237652)</span>
+                <div class="md:col-span-4 flex justify-center sm:justify-start">
+                    <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85" target="_blank" class="inline-flex items-center gap-3 text-xs uppercase tracking-widest text-white border border-[#3f3f46] hover:border-white px-6 py-3.5 rounded-full transition group">
+                        <span>بدء المحادثة الاستراتيجية</span>
+                        <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition"></i>
                     </a>
                 </div>
+            </div>
+
+            <!-- Monochrome Image Hero Plate -->
+            <div class="relative w-full aspect-[21/9] sm:aspect-[24/9] rounded-2xl overflow-hidden thin-border mt-12 bg-[#121216]">
+                <img src="assets/riyadh_luxury_villa_interior_1794673873627.jpg" alt="Nexus Studio Work" class="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-90 transition duration-700">
+                <div class="absolute bottom-6 right-6 text-right">
+                    <span class="text-[10px] text-[#71717a] uppercase tracking-widest font-sans block">Featured Architecture</span>
+                    <span class="text-xs text-white font-medium">Bespoke Living Spaces & Luxury Portfolio</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats / Proof (Minimalist Data) -->
+        <section class="max-w-6xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#27272a]/40 thin-border rounded-2xl overflow-hidden">
+                <div class="bg-[#0a0a0c] p-8 text-center sm:text-right space-y-1">
+                    <div class="editorial-title text-3xl sm:text-4xl font-normal text-white">+340%</div>
+                    <div class="text-[11px] text-[#71717a]">معدل نمو التفاعل للمحتوى السينمائي</div>
+                </div>
+                <div class="bg-[#0a0a0c] p-8 text-center sm:text-right space-y-1">
+                    <div class="editorial-title text-3xl sm:text-4xl font-normal text-white">45%</div>
+                    <div class="text-[11px] text-[#71717a]">ارتفاع في تأكيد المواعيد الفورية</div>
+                </div>
+                <div class="bg-[#0a0a0c] p-8 text-center sm:text-right space-y-1">
+                    <div class="editorial-title text-3xl sm:text-4xl font-normal text-white">4K</div>
+                    <div class="text-[11px] text-[#71717a]">معيار التصوير الماكرو والإضاءة</div>
+                </div>
+                <div class="bg-[#0a0a0c] p-8 text-center sm:text-right space-y-1">
+                    <div class="editorial-title text-3xl sm:text-4xl font-normal text-white">0%</div>
+                    <div class="text-[11px] text-[#71717a]">هدر إعلاني غير موجه للشرائح الفاخرة</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disciplines & Expertise -->
+        <section id="expertise" class="max-w-6xl mx-auto px-6 lg:px-12 space-y-16">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 thin-border-b pb-6">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-[#71717a] font-sans">Our Disciplines</span>
+                    <h2 class="text-2xl sm:text-4xl font-light text-white mt-1">مجالات الخبرة المتخصصة</h2>
+                </div>
+                <p class="text-xs text-[#71717a] max-w-sm">نركز فقط على ما نجيد قيادته عالمياً دون تشتيت</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 01 -->
+                <div class="space-y-4 p-6 rounded-2xl bg-[#121216]/50 thin-border subtle-hover">
+                    <span class="font-mono text-xs text-[#d4af37]">01 / CINEMATOGRAPHY</span>
+                    <h3 class="text-lg font-medium text-white">الإنتاج البصري والريلز 4K</h3>
+                    <p class="text-xs text-[#a1a1aa] leading-relaxed font-light">
+                        تجريد المحتوى من الطابع الإعلاني المستهلك، وتقديمه كقطع فنية سينمائية بإضاءة استوديو دقيقة تبرز التفاصيل الطبية والمعمارية الراقية.
+                    </p>
+                </div>
+
+                <!-- 02 -->
+                <div class="space-y-4 p-6 rounded-2xl bg-[#121216]/50 thin-border subtle-hover">
+                    <span class="font-mono text-xs text-[#d4af37]">02 / INTERACTIVE CONVERSION</span>
+                    <h3 class="text-lg font-medium text-white">أدوات الإقناع الرقمي التفاعلية</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light">
+                        تطوير أدوات برمجية حصرية (مثل سلايدر قبل/بعد والمطابقة الفورية) تُدمج في منصاتكم لتمنح العميل الدليل البصري القاطع وتحسم تردده.
+                    </p>
+                </div>
+
+                <!-- 03 -->
+                <div class="space-y-4 p-6 rounded-2xl bg-[#121216]/50 thin-border subtle-hover">
+                    <span class="font-mono text-xs text-[#d4af37]">03 / VIP ACQUISITION</span>
+                    <h3 class="text-lg font-medium text-white">مسارات الاستحواذ المباشر</h3>
+                    <p class="text-xs text-[#a1a1aa] leading-relaxed font-light">
+                        إلغاء نماذج التسجيل المعقدة، وبناء خطوط اتصال مباشرة وسريعة عبر واتساب تضمن وصول العميل المهتم إلى الإدارة دون أي وسيط يبطئ الصفقة.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Work Showcase Preview -->
+        <section id="work" class="max-w-6xl mx-auto px-6 lg:px-12 space-y-12">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 thin-border-b pb-6">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-[#71717a] font-sans">Interactive Proof</span>
+                    <h2 class="text-2xl sm:text-4xl font-light text-white mt-1">نموذج من أدوات التحويل الحية</h2>
+                </div>
+                <a href="showcase.html" class="text-xs text-[#a1a1aa] hover:text-white transition flex items-center gap-1">
+                    <span>فتح المعرض التفاعلي الكامل</span>
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+
+            <!-- Minimalist Slider Card -->
+            <div class="p-6 sm:p-10 rounded-2xl bg-[#121216] thin-border space-y-6">
+                <div class="flex items-center justify-between text-xs text-[#71717a]">
+                    <span>تطبيق حي: سلايدر المقارنة الدقيق لابتسامة هوليوود والتجميل الرقمي</span>
+                    <span class="font-mono text-[11px] text-white">DRAG TO REVEAL</span>
+                </div>
+
+                <div class="relative w-full h-72 sm:h-96 rounded-xl overflow-hidden border border-[#27272a] select-none bg-black">
+                    <div class="absolute inset-0">
+                        <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20 text-white text-xs font-medium">
+                            ✓ بعد: إخراج ماكرو سينمائي فائق الدقة
+                        </div>
+                    </div>
+                    <div id="landing-slider-overlay" class="absolute inset-0 overflow-hidden border-l-2 border-white" style="width: 50%;">
+                        <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] max-w-none" style="width: 100%; min-width: 600px;">
+                        <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20 text-[#a1a1aa] text-xs">
+                            قبل: تصوير هاتف عشوائي
+                        </div>
+                    </div>
+                    <input type="range" min="0" max="100" value="50" oninput="document.getElementById('landing-slider-overlay').style.width = this.value + '%'" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Invitation / CTA -->
+        <section class="max-w-4xl mx-auto px-6 text-center space-y-8 pt-12 pb-16">
+            <span class="editorial-title text-4xl sm:text-6xl text-white font-normal block leading-tight">
+                هل علامتكم جاهزة للانتقال إلى المستوى التالي؟
+            </span>
+            <p class="text-xs sm:text-sm text-[#71717a] max-w-md mx-auto leading-relaxed">
+                يسعدنا مراجعة نشاطكم الحالي وتقديم دراسة جدوى استراتيجية مباشرة تحت إشراف المستشار أحمد مرجان.
+            </p>
+            <div class="pt-4">
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A8%D8%AF%D8%A1%20%D8%AC%D9%84%D8%B3%D8%A9%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%85%D8%B9%20%D9%86%D9%83%D8%B3%D9%88%D8%B3" target="_blank" class="inline-flex items-center gap-3 bg-white text-black hover:bg-[#e4e4e7] px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-widest transition shadow-2xl">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>محادثة المستشار أحمد مرجان عبر واتساب</span>
+                </a>
+            </div>
+            <div class="text-[11px] text-[#52525b] font-mono">
+                DIRECT LINE: +20 121 023 7652
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 py-10 px-6 text-center text-xs text-slate-500 space-y-2">
-        <p class="font-bold text-slate-400">NEXUS SOVEREIGN AGENCY © 2026 · Engineered with Google AI by Ahmed Morgan</p>
-        <p>الرياض · دبي · القاهرة · لندن · نيويورك</p>
+    <!-- Minimalist Monochromatic Footer -->
+    <footer class="thin-border-t py-12 px-6 lg:px-12 bg-[#000000] text-center text-xs text-[#52525b] space-y-4">
+        <div class="flex items-center justify-center gap-6 text-[#71717a]">
+            <span>الرياض</span>
+            <span>·</span>
+            <span>القاهرة</span>
+            <span>·</span>
+            <span>لندن</span>
+        </div>
+        <p>© 2026 NEXUS SOVEREIGN AGENCY. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
