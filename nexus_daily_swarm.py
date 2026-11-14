@@ -117,9 +117,10 @@ def fetch_live_market_data():
     
     return global_target_database
 
-def query_gemini_api(prompt):
+def query_gemini_with_google_search(prompt):
     """
-    Executes actual live reasoning via Google Gemini API if GEMINI_API_KEY is configured in GitHub Secrets.
+    Live real-time discovery using Google Gemini 2.5 Flash grounded with Google Search.
+    Discovers live active commercial entities, extracting their real contact details and marketing leaks.
     """
     if not GEMINI_API_KEY:
         return None
@@ -133,9 +134,12 @@ def query_gemini_api(prompt):
                 ]
             }
         ],
+        "tools": [
+            {"google_search": {}}
+        ],
         "generationConfig": {
-            "temperature": 0.4,
-            "maxOutputTokens": 1500
+            "temperature": 0.3,
+            "maxOutputTokens": 2000
         }
     }
     
@@ -146,11 +150,11 @@ def query_gemini_api(prompt):
             headers={'Content-Type': 'application/json'},
             method='POST'
         )
-        with urllib.request.urlopen(req, timeout=20) as response:
+        with urllib.request.urlopen(req, timeout=30) as response:
             result = json.loads(response.read().decode('utf-8'))
             return result['candidates'][0]['content']['parts'][0]['text']
     except Exception as e:
-        print(f"[!] Gemini API live query error: {e}")
+        print(f"[!] Gemini Live Search API error: {e}")
         return None
 
 def generate_continuous_dossier():
@@ -162,10 +166,17 @@ def generate_continuous_dossier():
     ai_insights = ""
     
     if GEMINI_API_KEY:
-        prompt = f"أنت كبير محللي التسويق لوكالة أحمد مرجان. حلل هذين الكيانين في الرياض: {json.dumps(prospects, ensure_ascii=False)}. استخرج لكل عميل: ثغرة التسريب الرئيسية، نص رسالة واتساب مقنعة للتعاقد، والسعر الشهري المناسب بالريال السعودي."
-        gemini_response = query_gemini_api(prompt)
+        prompt = """
+        ابحث حياً على محرك بحث جوجل الآن واستخرج لي 3 شركات أو عيادات أو مطاعم كبرى تنفق على الإعلانات حالياً في أسواق الخليج أو مصر أو أوروبا.
+        لكل كيان تجاري حقيقي تجده، استخرج البيانات بدقة:
+        1. الاسم التجاري الفعلي ورابط موقعهم أو إنستغرام.
+        2. رقم الواتساب أو الهاتف الحقيقي المباشر للتواصل.
+        3. الثغرة التسويقية الرئيسية في منصاتهم (مثلاً: بطء الرد، غياب الريلز، ضعف التحويل).
+        4. السعر الشهري المقترح بالعملة المناسبة لنشاطهم.
+        """
+        gemini_response = query_gemini_with_google_search(prompt)
         if gemini_response:
-            ai_status_badge = "🟢 الذكاء الاصطناعي: Google Gemini Flash متصل ويعمل حياً"
+            ai_status_badge = "🟢 الذكاء الاصطناعي: Google Gemini Flash متصل ويبحث حياً في الويب"
             ai_insights = gemini_response
 
     html_content = f"""
