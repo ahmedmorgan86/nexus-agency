@@ -293,16 +293,18 @@
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-black text-white flex items-center gap-2">
-                        <i data-lucide="clipboard-list" class="w-6 h-6 text-sky-400"></i>
-                        <span>قائمة العملاء المكتشفين واعتمادات المدير</span>
+                        <i data-lucide="globe-2" class="w-6 h-6 text-sky-400"></i>
+                        <span>الرادار العالمي للعملاء واعتمادات المدير (Global Market Radar)</span>
                     </h2>
-                    <p class="text-xs text-slate-400 mt-0.5">راجع الثغرات، عاين التصاميم، حدد السعر المعتمد، واضغط على زر الاعتماد للإطلاق</p>
+                    <p class="text-xs text-slate-400 mt-0.5">استكشاف الفرص حول العالم بكل العملات (الخليج، أمريكا، أوروبا، ومصر) مع تسعير دولي فوري</p>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <button class="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-semibold hover:bg-slate-700 transition border border-slate-700 active-filter text-sky-400 border-sky-500/40">الكل</button>
-                    <button class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">بانتظار الاعتماد</button>
-                    <button class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">معتمد</button>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="filterRegion('all')" class="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-semibold hover:bg-slate-700 transition border border-slate-700 active-filter text-sky-400 border-sky-500/40">🌍 العالم كله (Global)</button>
+                    <button onclick="filterRegion('gcc')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇸🇦 الخليج (SAR / AED)</button>
+                    <button onclick="filterRegion('europe')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇬🇧 أوروبا وبريطانيا (GBP / EUR)</button>
+                    <button onclick="filterRegion('usa')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇺🇸 أمريكا (USD)</button>
+                    <button onclick="filterRegion('egypt')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇪🇬 مصر (EGP)</button>
                 </div>
             </div>
 
@@ -681,12 +683,25 @@
                                 <p class="text-[11px] text-slate-400 mt-1">يشمل 20 ريلز سينمائي + صفحة الحجز السريعة + إدارة إعلانات استقطاب المواعيد</p>
                             </div>
 
-                            <div class="flex items-center gap-3">
+                            <div class="flex flex-wrap items-center gap-3">
                                 <div>
-                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد (بالريال):</label>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة المعتمدة:</label>
+                                    <select id="currency-select-1" onchange="updateCurrencySymbol(1)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                        <option value="SAR" selected>🇸🇦 SAR (ر.س - السعودية)</option>
+                                        <option value="USD">🇺🇸 USD ($ - أمريكا / دولي)</option>
+                                        <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
+                                        <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
+                                        <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
+                                        <option value="EGP">🇪🇬 EGP (ج.م - مصر)</option>
+                                        <option value="KWD">🇰🇼 KWD (د.ك - الكويت)</option>
+                                        <option value="QAR">🇶🇦 QAR (ر.ق - قطر)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
                                     <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
                                         <input type="number" id="price-input-1" value="22000" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
-                                        <span class="text-xs text-slate-400 mr-2">SAR</span>
+                                        <span id="currency-label-1" class="text-xs text-slate-400 mr-2 font-bold font-mono">SAR</span>
                                     </div>
                                 </div>
 
@@ -697,6 +712,100 @@
                                     </button>
                                     <button onclick="rejectLead(1)" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-700 text-xs font-bold transition">
                                         استبعاد
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Card 3: Global Luxury Hospitality & Fine Dining (London / New York / Dubai) -->
+            <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-3" data-region="europe usa gcc">
+                <div class="p-6 border-b border-brand-border/60 flex flex-wrap items-center justify-between gap-4 bg-slate-900/40">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-black text-lg">
+                            <i data-lucide="utensils-crossed" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-lg font-bold text-white">مجموعة ذا هيريتدج للمطاعم الفاخرة (The Heritage Hospitality Group)</h3>
+                                <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[11px] px-2.5 py-0.5 rounded-full font-bold">لندن · Mayfair | نيويورك · Manhattan</span>
+                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] px-2 py-0.5 rounded-full font-medium">سلسلة فاخرة دولية</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">تخصص: مطاعم ميشلان، صالات ضيافة كبار الشخصيات، وبطاقات عضوية حصرية</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <span id="badge-status-3" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                            <i data-lucide="hourglass" class="w-3.5 h-3.5"></i>
+                            <span>بانتظار قرار المدير</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Tabs Navigation -->
+                <div class="flex border-b border-brand-border text-xs font-bold px-6 bg-slate-950/40">
+                    <button onclick="switchTab(3, 'audit')" id="tab-btn-3-audit" class="py-3 px-4 text-sky-400 border-b-2 border-sky-400 flex items-center gap-1.5">
+                        <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                        <span>1. تشخيص الثغرات</span>
+                    </button>
+                    <button onclick="switchTab(3, 'pitch')" id="tab-btn-3-pitch" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
+                        <i data-lucide="message-square-text" class="w-4 h-4 text-sky-400"></i>
+                        <span>2. رسالة العرض الدولية</span>
+                    </button>
+                    <button onclick="switchTab(3, 'pricing')" id="tab-btn-3-pricing" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
+                        <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-purple-400"></i>
+                        <span>3. التسعير والعملة الدولية</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="p-6">
+                    <div id="tab-content-3-audit" class="space-y-4">
+                        <div class="p-4 rounded-xl bg-purple-950/10 border border-purple-500/20 text-xs">
+                            <div class="font-bold text-purple-400 text-sm mb-1">ثغرة حجز الطاولات VIP وتراجع تفاعل ريلز الأطباق</div>
+                            <p class="text-slate-300 leading-relaxed">مطاعم ميشلان في لندن ونيويورك تعاني من ضعف تصوير فيديو تحضير الأطباق السينمائي (Culinary Cinematography)، وبطء مسارات حجز طاولات الـ Private Dining عبر منصات السوشيال ميديا.</p>
+                        </div>
+                    </div>
+
+                    <div id="tab-content-3-pitch" class="hidden space-y-3">
+                        <textarea id="pitch-text-3" rows="4" class="w-full bg-slate-900 border border-brand-border rounded-xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">Dear Management Team at The Heritage Group,
+We reviewed your high-end dining venues across Mayfair and Manhattan. While your Michelin-grade culinary execution is exceptional, your current video content lacks the high-retention culinary cinematography required to dominate TikTok and Instagram Reels in 2026.
+We engineered an ultra-fast VIP table reservation funnel and an 8K cinematic reel concept that drives fully-booked private dining lounges every weekend.
+Would you be open to reviewing a 2-minute interactive demo?</textarea>
+                    </div>
+
+                    <div id="tab-content-3-pricing" class="hidden space-y-4">
+                        <div class="p-5 rounded-xl bg-slate-900/90 border border-brand-border flex flex-wrap items-center justify-between gap-6">
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
+                                <div class="text-sm text-slate-300 font-bold mt-0.5">$6,500 إلى $8,500 USD / شهرياً (أو ما يعادلها بالجنيه الإسترليني/اليورو)</div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
+                                    <select id="currency-select-3" onchange="updateCurrencySymbol(3)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                        <option value="USD" selected>🇺🇸 USD ($ - أمريكا / دولي)</option>
+                                        <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
+                                        <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
+                                        <option value="SAR">🇸🇦 SAR (ر.س - السعودية)</option>
+                                        <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
+                                        <option value="EGP">🇪🇬 EGP (ج.م - مصر)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
+                                    <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
+                                        <input type="number" id="price-input-3" value="7500" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
+                                        <span id="currency-label-3" class="text-xs text-slate-400 mr-2 font-bold font-mono">USD</span>
+                                    </div>
+                                </div>
+                                <div class="pt-5">
+                                    <button onclick="approveLead(3)" id="btn-approve-3" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                        <span>اعتماد السعر وإطلاق العرض</span>
                                     </button>
                                 </div>
                             </div>
@@ -797,16 +906,123 @@
                                 <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
                                 <div class="text-sm text-slate-300 font-bold mt-0.5">16,000 إلى 20,000 ريال / شهرياً</div>
                             </div>
-                            <div class="flex items-center gap-3">
+                            <div class="flex flex-wrap items-center gap-3">
                                 <div>
-                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد (بالريال):</label>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
+                                    <select id="currency-select-2" onchange="updateCurrencySymbol(2)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                        <option value="SAR" selected>🇸🇦 SAR (ر.س - السعودية)</option>
+                                        <option value="USD">🇺🇸 USD ($ - أمريكا / دولي)</option>
+                                        <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
+                                        <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
+                                        <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
+                                        <option value="EGP">🇪🇬 EGP (ج.م - مصر)</option>
+                                        <option value="KWD">🇰🇼 KWD (د.ك - الكويت)</option>
+                                        <option value="QAR">🇶🇦 QAR (ر.ق - قطر)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
                                     <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
                                         <input type="number" id="price-input-2" value="18000" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
-                                        <span class="text-xs text-slate-400 mr-2">SAR</span>
+                                        <span id="currency-label-2" class="text-xs text-slate-400 mr-2 font-bold font-mono">SAR</span>
                                     </div>
                                 </div>
                                 <div class="pt-5">
                                     <button onclick="approveLead(2)" id="btn-approve-2" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                        <span>اعتماد السعر وإطلاق العرض</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Card 3: Global Luxury Hospitality & Fine Dining (London / New York / Dubai) -->
+            <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-3" data-region="europe usa gcc">
+                <div class="p-6 border-b border-brand-border/60 flex flex-wrap items-center justify-between gap-4 bg-slate-900/40">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-black text-lg">
+                            <i data-lucide="utensils-crossed" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-lg font-bold text-white">مجموعة ذا هيريتدج للمطاعم الفاخرة (The Heritage Hospitality Group)</h3>
+                                <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[11px] px-2.5 py-0.5 rounded-full font-bold">لندن · Mayfair | نيويورك · Manhattan</span>
+                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] px-2 py-0.5 rounded-full font-medium">سلسلة فاخرة دولية</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">تخصص: مطاعم ميشلان، صالات ضيافة كبار الشخصيات، وبطاقات عضوية حصرية</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <span id="badge-status-3" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                            <i data-lucide="hourglass" class="w-3.5 h-3.5"></i>
+                            <span>بانتظار قرار المدير</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Tabs Navigation -->
+                <div class="flex border-b border-brand-border text-xs font-bold px-6 bg-slate-950/40">
+                    <button onclick="switchTab(3, 'audit')" id="tab-btn-3-audit" class="py-3 px-4 text-sky-400 border-b-2 border-sky-400 flex items-center gap-1.5">
+                        <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                        <span>1. تشخيص الثغرات</span>
+                    </button>
+                    <button onclick="switchTab(3, 'pitch')" id="tab-btn-3-pitch" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
+                        <i data-lucide="message-square-text" class="w-4 h-4 text-sky-400"></i>
+                        <span>2. رسالة العرض الدولية</span>
+                    </button>
+                    <button onclick="switchTab(3, 'pricing')" id="tab-btn-3-pricing" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
+                        <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-purple-400"></i>
+                        <span>3. التسعير والعملة الدولية</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="p-6">
+                    <div id="tab-content-3-audit" class="space-y-4">
+                        <div class="p-4 rounded-xl bg-purple-950/10 border border-purple-500/20 text-xs">
+                            <div class="font-bold text-purple-400 text-sm mb-1">ثغرة حجز الطاولات VIP وتراجع تفاعل ريلز الأطباق</div>
+                            <p class="text-slate-300 leading-relaxed">مطاعم ميشلان في لندن ونيويورك تعاني من ضعف تصوير فيديو تحضير الأطباق السينمائي (Culinary Cinematography)، وبطء مسارات حجز طاولات الـ Private Dining عبر منصات السوشيال ميديا.</p>
+                        </div>
+                    </div>
+
+                    <div id="tab-content-3-pitch" class="hidden space-y-3">
+                        <textarea id="pitch-text-3" rows="4" class="w-full bg-slate-900 border border-brand-border rounded-xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">Dear Management Team at The Heritage Group,
+We reviewed your high-end dining venues across Mayfair and Manhattan. While your Michelin-grade culinary execution is exceptional, your current video content lacks the high-retention culinary cinematography required to dominate TikTok and Instagram Reels in 2026.
+We engineered an ultra-fast VIP table reservation funnel and an 8K cinematic reel concept that drives fully-booked private dining lounges every weekend.
+Would you be open to reviewing a 2-minute interactive demo?</textarea>
+                    </div>
+
+                    <div id="tab-content-3-pricing" class="hidden space-y-4">
+                        <div class="p-5 rounded-xl bg-slate-900/90 border border-brand-border flex flex-wrap items-center justify-between gap-6">
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
+                                <div class="text-sm text-slate-300 font-bold mt-0.5">$6,500 إلى $8,500 USD / شهرياً (أو ما يعادلها بالجنيه الإسترليني/اليورو)</div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
+                                    <select id="currency-select-3" onchange="updateCurrencySymbol(3)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                        <option value="USD" selected>🇺🇸 USD ($ - أمريكا / دولي)</option>
+                                        <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
+                                        <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
+                                        <option value="SAR">🇸🇦 SAR (ر.س - السعودية)</option>
+                                        <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
+                                        <option value="EGP">🇪🇬 EGP (ج.م - مصر)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
+                                    <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
+                                        <input type="number" id="price-input-3" value="7500" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
+                                        <span id="currency-label-3" class="text-xs text-slate-400 mr-2 font-bold font-mono">USD</span>
+                                    </div>
+                                </div>
+                                <div class="pt-5">
+                                    <button onclick="approveLead(3)" id="btn-approve-3" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
                                         <i data-lucide="check-circle" class="w-4 h-4"></i>
                                         <span>اعتماد السعر وإطلاق العرض</span>
                                     </button>
@@ -840,21 +1056,52 @@
             });
         }
 
-        // Approve Lead Handler
+        // Currency Symbol Updater
+        function updateCurrencySymbol(leadId) {
+            const select = document.getElementById(`currency-select-${leadId}`);
+            const label = document.getElementById(`currency-label-${leadId}`);
+            if (select && label) {
+                label.innerText = select.value;
+            }
+        }
+
+        // Region Filter Handler
+        function filterRegion(region) {
+            const cards = [
+                { id: 1, region: 'gcc' },
+                { id: 2, region: 'gcc' },
+                { id: 3, region: 'europe usa' }
+            ];
+
+            cards.forEach(c => {
+                const el = document.getElementById(`card-lead-${c.id}`);
+                if (el) {
+                    if (region === 'all' || c.region.includes(region)) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Approve Lead Handler (Multi-Currency)
         function approveLead(leadId) {
             const price = document.getElementById(`price-input-${leadId}`).value;
+            const currencySelect = document.getElementById(`currency-select-${leadId}`);
+            const currency = currencySelect ? currencySelect.value : 'SAR';
             const badge = document.getElementById(`badge-status-${leadId}`);
             const btn = document.getElementById(`btn-approve-${leadId}`);
             
             badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5";
-            badge.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>معتمد بسعر ${Number(price).toLocaleString()} ريال ✅</span>`;
+            badge.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>معتمد بسعر ${Number(price).toLocaleString()} ${currency} ✅</span>`;
             
             btn.className = "px-5 py-2 rounded-xl bg-slate-800 text-slate-400 border border-slate-700 text-xs font-bold cursor-not-allowed";
             btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>تم الاعتماد</span>`;
             btn.disabled = true;
 
             lucide.createIcons();
-            alert(`تم اعتماد الصفقة رقم #${leadId} بنجاح بسعر ${Number(price).toLocaleString()} ريال سعودي!\n\nسيتم تجهيز إرسال رسالة العرض والعينة عبر الوكيل الخامس.`);
+            alert(`تم اعتماد الصفقة رقم #${leadId} بنجاح!\nالسعر المعتمد: ${Number(price).toLocaleString()} ${currency}\n\nسيتم تجهيز إرسال رسالة العرض والعينة عبر الوكيل الخامس.`);
         }
 
         // Reject Lead Handler
