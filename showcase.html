@@ -153,13 +153,13 @@
 
             <div class="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-700 select-none bg-slate-950 shadow-2xl">
                 <div class="absolute inset-0">
-                    <img id="slider-after-img" src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After" class="w-full h-full object-cover">
+                    <img id="slider-after-img" src="assets/proj_cosmetics.png" alt="After" class="w-full h-full object-cover">
                     <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-emerald-500/40 text-emerald-300 font-bold text-xs sm:text-sm">
                         ✓ بعد: الإخراج السينمائي والتجميل الرقمي الفائق
                     </div>
                 </div>
                 <div id="slider-before-overlay" class="absolute inset-0 overflow-hidden border-l-4 border-amber-400" style="width: 50%;">
-                    <img id="slider-before-img" src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before" class="absolute inset-0 w-full h-full object-cover grayscale-[35%] max-w-none" style="width: 100%; min-width: 600px;">
+                    <img id="slider-before-img" src="assets/service_ads.png" alt="Before" class="absolute inset-0 w-full h-full object-cover grayscale-[35%] max-w-none" style="width: 100%; min-width: 600px;">
                     <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-red-500/40 text-red-300 font-bold text-xs sm:text-sm">
                         قبل: تصوير عشوائي وإضاءة رديئة
                     </div>
@@ -218,59 +218,47 @@
     <!-- Script to dynamically adapt page based on ?client= in URL -->
     <script>
         const clientBlueprints = {
-            'labella': {
-                name: 'مجمع عيادات لابيلا الرياض (La Bella Clinics)',
-                headline: 'خطة تصدّر مشهد التجميل والجلدية في الرياض ورفع الحجوزات المؤكدة',
-                p1_title: '1. فيديوهات 4K سينمائية لنحت القوام والليزر',
-                p1_desc: 'إبراز بريق النتائج الطبية بدقة سينمائية تمنع تخطي المشاهد وتلفت أنظار الباحثين عن الفخامة بالرياض.',
-                p2_title: '2. سلايدر مقارنة تفاعلي لنتائج الجراحة',
-                p2_desc: 'إظهار تناسق نتائج قبل/بعد بطريقة تفاعلية مبهرة في موقع الحجز تزيد ثقة المراجع.',
-                p3_title: '3. مسار واتساب فوري لحجز استشارات الرياض',
-                p3_desc: 'تحويل زوار الإعلانات فوراً إلى واتساب الاستقبال (+966534992109) لتقليل نسبة التردد.',
-                img_after: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg',
-                img_before: 'assets/riyadh_luxury_dental_ad_1794673841834.jpg'
+            'ecommerce': {
+                name: 'العلامة التجارية لمستحضرات العناية والجمال',
+                headline: 'خطة التوسع التجاري ومضاعفة مبيعات المتجر الإلكتروني بنسبة 300%',
+                p1_title: '1. إنتاج محتوى سينمائي فاخر للمنتجات',
+                p1_desc: 'إبراز تفاصيل وجودة المنتج بدقة سينمائية تزيد من جاذبيته الشرائية ومعدل الإضافة للسلة.',
+                p2_title: '2. صفحات هبوط فائقة السرعة ومحسنة للتحويل',
+                p2_desc: 'تجربة مستخدم انسيابية ترفع معدل إتمام عمليات الشراء وتقلل السلات المتروكة.',
+                p3_title: '3. حملات إعلانية ذكية متعددة القنوات',
+                p3_desc: 'استهداف دقيق للمهتمين بالمنتج مع إعادة استهداف متقدمة لتعظيم العائد على الإنفاق الإعلاني.',
+                img_after: 'assets/proj_cosmetics.png',
+                img_before: 'assets/service_ads.png'
             },
-            'masan': {
-                name: 'عيادات مسان الطبية للأسنان والجلدية (Masan Clinic)',
-                headline: 'خطة استقطاب حالات زراعة وابتسامة الأسنان الفاخرة بالرياض',
-                p1_title: '1. ريلز ماكرو سينمائي لابتسامة هوليوود',
-                p1_desc: 'تصوير دقيق يبرز تفاصيل الخزف الرقمي وتناسق اللثة بأسلوب عالمي احترافي.',
-                p2_title: '2. سلايدر تفاعلي لمطابقة الابتسامة',
-                p2_desc: 'سلايدر يوضح للمريض كيف ستتحول أسنانه من التصبغ إلى البياض الطبيعي الجذاب.',
-                p3_title: '3. حجز فوري عبر واتساب (+966550426777)',
-                p3_desc: 'مسار مباشر يتيح للمريض حجز موعد المسح ثلاثي الأبعاد المجاني في ثوانٍ معدودة.',
-                img_after: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg',
-                img_before: 'assets/riyadh_luxury_dental_ad_1794673841834.jpg'
+            'app': {
+                name: 'منصة التطبيقات الرقمية والحلول الذكية',
+                headline: 'استراتيجية اكتساب المستخدمين وتخفيض تكلفة التحميل بنسبة 45%',
+                p1_title: '1. فيديوهات ترويجية تفاعلية للميزات',
+                p1_desc: 'شرح مبسط وجذاب للقيمة المضافة للتطبيق يحفز المشاهد على التثبيت الفوري.',
+                p2_title: '2. واجهات وتجارب استخدام عالية التحويل',
+                p2_desc: 'تصميم مسارات تسجيل انسيابية تزيد من الاحتفاظ بالمستخدمين النشطين.',
+                p3_title: '3. مسار واتساب فوري لخدمة كبار العملاء',
+                p3_desc: 'قناة تواصل ذكية لتقديم الدعم واستقطاب الشركات الكبرى.',
+                img_after: 'assets/proj_mobile.png',
+                img_before: 'assets/service_landing.png'
             },
-            'novello': {
-                name: 'مراكز نوفيللو لجراحة التجميل والجلدية (Novello Cairo)',
-                headline: 'منظومة وقف الهدر الإعلاني ومضاعفة حجوزات الليزر والتجميل بالقاهرة',
-                p1_title: '1. إنتاج محتوى سينمائي عالي الجودة',
-                p1_desc: 'مقاطع ريلز قصيرة ومكثفة تركز على ثقة الطبيب ونتائج الحالات الحقيقية.',
-                p2_title: '2. أدوات إقناع رقمية وتجارب حية',
-                p2_desc: 'عرض نتائج الجلسات بوضوح يزيل مخاوف العملاء الجدد ويثبت كفاءة أجهزة المركز.',
-                p3_title: '3. روبوت تأكيد الحجوزات بالواتساب (+201092892600)',
-                p3_desc: 'الرد اللحظي على رسائل إنستغرام وفيسبوك وتأكيد المواعيد بدون انتظار موظف الاستقبال.',
-                img_after: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg',
-                img_before: 'assets/riyadh_luxury_dental_ad_1794673841834.jpg'
-            },
-            'ashby': {
-                name: 'Studio Ashby & Albion Nord London Architecture',
-                headline: 'High-Net-Worth Architectural Showcase & Ultra-Luxury Client Acquisition',
-                p1_title: '1. 4K Cinematic Interior Walkthroughs',
-                p1_desc: 'Atmospheric storytelling for luxury Mayfair & Chelsea residences targeting international UHNW buyers.',
-                p2_title: '2. Interactive Spatial Reveal Slider',
-                p2_desc: 'Interactive digital proof illustrating the transition from raw architectural shells into bespoke luxury living.',
-                p3_title: '3. Direct VIP Consultation Gateway (+442031762571)',
-                p3_desc: 'Private direct scheduling for sovereign wealth and high-profile private palace commissions.',
-                img_after: 'assets/riyadh_luxury_villa_interior_1794673873627.jpg',
-                img_before: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg'
+            'business': {
+                name: 'مجموعة التطوير والاستثمار التجاري',
+                headline: 'خطة استقطاب المستثمرين وتوسيع الحصة السوقية عبر الحملات الرقمية',
+                p1_title: '1. تغطيات وتوثيق سينمائي للمشاريع',
+                p1_desc: 'إبراز ضخامة وجودة المشاريع بأعلى معايير الإخراج البصري.',
+                p2_title: '2. عروض تقديمية تفاعلية وبوابات عملاء',
+                p2_desc: 'منظومة متكاملة لعرض الفرص الاستثمارية وجمع طلبات الاكتتاب والتعاقد.',
+                p3_title: '3. إدارة متكاملة للمبيعات وتأهيل الفرص',
+                p3_desc: 'ربط مباشر بفريق المبيعات لضمان سرعة إغلاق الصفقات الكبرى.',
+                img_after: 'assets/proj_arch.png',
+                img_before: 'assets/service_video.png'
             }
         };
 
         const params = new URLSearchParams(window.location.search);
-        const clientKey = params.get('client') || 'labella';
-        const data = clientBlueprints[clientKey] || clientBlueprints['labella'];
+        const clientKey = params.get('client') || 'ecommerce';
+        const data = clientBlueprints[clientKey] || clientBlueprints['ecommerce'];
 
         document.getElementById('client-header-title').innerText = data.name;
         document.getElementById('hero-headline').innerText = data.headline;
