@@ -964,7 +964,21 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             }
 
             lucide.createIcons();
-            alert(`🚀 تم اعتماد السعر (${Number(price).toLocaleString()} ${currency})!\nقام الأوتوميشن الآن بإرسال رسالة العرض ورابط المعرض التفاعلي للعميل، وهو مبرمج للرد عليه فوراً بالتفاصيل المعتمدة وبدء التفاوض لحسابك.`);
+            
+            // Real Immediate WhatsApp Auto-Open to Client Phone
+            const phoneMap = {
+                1: "+966500000000",
+                2: "+447000000000",
+                3: "+12120000000"
+            };
+            const clientPhone = phoneMap[leadId] || "";
+            const pitchMsg = document.getElementById(`pitch-text-${leadId}`).value;
+            const encodedPitch = encodeURIComponent(pitchMsg + `\n\nالسعر المقترح للباقة: ${Number(price).toLocaleString()} ${currency}\nرابط المعرض الحصري: https://ahmedmorgan86.github.io/nexus-agency/showcase.html`);
+            
+            const liveSendConfirm = confirm(`✅ تم اعتماد الصفقة بقيمة ${Number(price).toLocaleString()} ${currency}!\n\nهل تريد فتح محادثة الإرسال الفعلي المباشر الآن لهذا العميل عبر تطبيق واتساب بنقرة واحدة؟`);
+            if (liveSendConfirm) {
+                window.open(`https://api.whatsapp.com/send?phone=${clientPhone}&text=${encodedPitch}`, '_blank');
+            }
         }
 
         // Reject Lead Handler
