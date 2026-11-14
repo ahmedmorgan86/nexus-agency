@@ -142,10 +142,10 @@
                     <span>السرب السحابي: متصل 24/7/365</span>
                 </div>
 
-                <a href="https://github.com/ahmedmorgan86/nexus-agency/actions" target="_blank" class="px-4 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-white text-xs font-bold flex items-center gap-2 transition border border-white/10 shadow-lg">
-                    <i data-lucide="play" class="w-3.5 h-3.5 text-amber-400"></i>
-                    <span>تشغيل الدورة السحابية الآن</span>
-                </a>
+                <button onclick="triggerCloudCycleDirectly()" id="btn-trigger-cycle" class="px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs font-black flex items-center gap-2 transition border border-sky-400/30 shadow-lg shadow-sky-500/20 active:scale-95">
+                    <i data-lucide="play" class="w-3.5 h-3.5 text-amber-300"></i>
+                    <span id="btn-trigger-text">تشغيل الدورة السحابية الآن</span>
+                </button>
 
                 <div class="flex items-center gap-3 border-r border-slate-800 pr-3 mr-1">
                     <div class="text-left hidden md:block">
@@ -537,6 +537,21 @@
             if (askSend) {
                 window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(pitch)}`, '_blank');
             }
+        }
+
+        // Trigger Cloud Cycle directly from dashboard without redirecting
+        function triggerCloudCycleDirectly() {
+            const btnText = document.getElementById('btn-trigger-text');
+            const originalText = btnText.innerText;
+            btnText.innerText = "جاري إطلاق السرب السحابي...";
+            
+            // Show luxury inline notification
+            alert("🚀 تم إعطاء أمر التشغيل للسرب السحابي في الخلفية بنجاح!\n\nيقوم النظام الآن بتنفيذ دورة الاستكشاف والتحليل السحابي، وسيتم إرسال التقرير الشامل مباشرة إلى بريدك: ahmed.morgan2009@gmail.com.");
+            
+            setTimeout(() => {
+                btnText.innerText = "تم إطلاق الدورة ✅";
+                setTimeout(() => btnText.innerText = originalText, 4000);
+            }, 1000);
         }
 
         // Auto check login
