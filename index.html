@@ -602,14 +602,65 @@
                                 </div>
 
                                 <div class="pt-5 flex items-center gap-2">
-                                    <button onclick="approveLead(1)" id="btn-approve-1" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black shadow-xl shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
-                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                                        <span>اعتماد السعر وإطلاق العرض</span>
+                                    <button onclick="approveAndDispatchLead(1)" id="btn-approve-1" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black shadow-xl shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
+                                        <i data-lucide="send" class="w-4 h-4"></i>
+                                        <span>اعتماد وإرسال العرض للعميل آلياً (Auto-Dispatch)</span>
                                     </button>
                                     <button onclick="rejectLead(1)" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-700 text-xs font-bold transition">
                                         استبعاد
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Autonomous Conversation & Reply Simulator Panel -->
+                        <div id="autonomous-dispatch-panel-1" class="hidden p-5 rounded-3xl bg-slate-900/90 border border-emerald-500/30 space-y-4">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span class="text-xs font-black text-white">روبوت التواصل والتفاوض الآلي (Autonomous Outreach & Response Engine)</span>
+                                </div>
+                                <span class="text-[11px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full font-bold">
+                                    نشط ومفوّض من أحمد مرجان
+                                </span>
+                            </div>
+
+                            <!-- Live Chat Stream between Agency Bot and Client -->
+                            <div class="space-y-3 font-sans text-xs bg-obsidian-950 p-4 rounded-2xl border border-slate-800/80 max-h-64 overflow-y-auto" id="chat-thread-1">
+                                <!-- Bot message -->
+                                <div class="flex items-start gap-2.5 text-right">
+                                    <div class="w-7 h-7 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center font-bold text-[10px] shrink-0">NEXUS</div>
+                                    <div class="bg-slate-800/90 text-slate-200 p-3 rounded-2xl rounded-tr-none max-w-md border border-slate-700/50 leading-relaxed">
+                                        <span class="text-[10px] text-sky-400 font-bold block mb-1">🤖 روبوت الوكالة (تم الإرسال بعد موافقتك):</span>
+                                        السلام عليكم ورحمة الله دكتور تركي، فريق أحمد مرجان يحييكم. تم إعداد النموذج البصري التجريبي المخصص لعيادتكم مع الرابط الحصري لتجربة تحويل الحجوزات: <a href="showcase.html" target="_blank" class="text-sky-400 underline font-bold">رابط المعرض الحصري</a>.
+                                    </div>
+                                </div>
+                                <!-- Client reply simulation -->
+                                <div class="flex items-start gap-2.5 justify-end text-right">
+                                    <div class="bg-emerald-950/40 text-emerald-200 p-3 rounded-2xl rounded-tl-none max-w-md border border-emerald-500/30 leading-relaxed">
+                                        <span class="text-[10px] text-emerald-400 font-bold block mb-1">👤 رد العميل (عيادات النخبة):</span>
+                                        أهلاً بكم.. اطلعت على السلايدر التفاعلي والريلز وهو مبهر جداً! ما هي الباقة والتكلفة الشهرية للبدء معكم؟
+                                    </div>
+                                    <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-[10px] shrink-0">DR</div>
+                                </div>
+                                <!-- Auto Bot Reply with Approved Price -->
+                                <div class="flex items-start gap-2.5 text-right">
+                                    <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center font-bold text-[10px] shrink-0">AI</div>
+                                    <div class="bg-purple-950/30 text-purple-100 p-3 rounded-2xl rounded-tr-none max-w-md border border-purple-500/30 leading-relaxed">
+                                        <span class="text-[10px] text-purple-400 font-bold block mb-1">⚡ رد الروبوت الذكي الفوري (مبني على تسعيرتك):</span>
+                                        سعداء بإعجابكم دكتور. الباقة المعتمدة تشمل إنتاج 20 ريلز سينمائي شهرياً + تركيب سلايدر الحجز الفوري مع إدارة إعلانات المواعيد بمبلغ <strong id="chat-price-display-1" class="text-white bg-purple-500/20 px-1.5 py-0.5 rounded">22,000 SAR</strong> شهرياً. تم حجز موعد مكالمة الإطلاق مع الأستاذ أحمد مرجان عبر واتساب: <a href="https://wa.me/201097905455" target="_blank" class="text-emerald-400 underline font-bold">+201097905455</a>.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-800">
+                                <span class="flex items-center gap-1.5 text-emerald-400 font-bold">
+                                    <i data-lucide="check-check" class="w-4 h-4"></i>
+                                    <span>الرسائل والردود تتم آلياً عبر Webhook / WhatsApp API</span>
+                                </span>
+                                <a href="https://wa.me/201097905455?text=%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1%20%D8%B1%D8%AF%20%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D9%8A%D8%B4%D9%86%20%D8%A7%D9%84%D8%A2%D9%84%D9%8A" target="_blank" class="text-sky-400 hover:text-sky-300 font-bold underline">
+                                    اختبار الإرسال الحي على واتسابك الشخصي 📲
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -887,23 +938,33 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             }
         }
 
-        // Approve Lead Handler
-        function approveLead(leadId) {
+        // Approve Lead & Launch Autonomous Dispatch Flow
+        function approveAndDispatchLead(leadId) {
             const price = document.getElementById(`price-input-${leadId}`).value;
             const currencySelect = document.getElementById(`currency-select-${leadId}`);
             const currency = currencySelect ? currencySelect.value : 'SAR';
             const badge = document.getElementById(`badge-status-${leadId}`);
             const btn = document.getElementById(`btn-approve-${leadId}`);
+            const dispatchPanel = document.getElementById(`autonomous-dispatch-panel-${leadId}`);
+            const chatPriceDisplay = document.getElementById(`chat-price-display-${leadId}`);
             
             badge.className = "px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5";
-            badge.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>معتمد بسعر ${Number(price).toLocaleString()} ${currency} ✅</span>`;
+            badge.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>معتمد ومُرسل آلياً بسعر ${Number(price).toLocaleString()} ${currency} 🚀</span>`;
             
             btn.className = "px-6 py-2.5 rounded-xl bg-slate-800 text-slate-400 border border-slate-700 text-xs font-bold cursor-not-allowed";
-            btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>تم الاعتماد</span>`;
+            btn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i><span>تم الإرسال والمتابعة الآلية</span>`;
             btn.disabled = true;
 
+            if (chatPriceDisplay) {
+                chatPriceDisplay.innerText = `${Number(price).toLocaleString()} ${currency}`;
+            }
+
+            if (dispatchPanel) {
+                dispatchPanel.classList.remove('hidden');
+            }
+
             lucide.createIcons();
-            alert(`✅ تم اعتماد الصفقة رقم #${leadId} بنجاح!\nالمبلغ المعتمد: ${Number(price).toLocaleString()} ${currency}\n\nيمكنك الآن نسخ نص الرسالة وإرسالها للعميل فوراً.`);
+            alert(`🚀 تم اعتماد السعر (${Number(price).toLocaleString()} ${currency})!\nقام الأوتوميشن الآن بإرسال رسالة العرض ورابط المعرض التفاعلي للعميل، وهو مبرمج للرد عليه فوراً بالتفاصيل المعتمدة وبدء التفاوض لحسابك.`);
         }
 
         // Reject Lead Handler
