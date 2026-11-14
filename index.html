@@ -546,7 +546,17 @@
 
             lucide.createIcons();
 
-            const pitch = `السلام عليكم ورحمة الله إدارة ${name}، فريق أحمد مرجان يحييكم.\nتم إعداد النموذج البصري التجريبي المخصص لعلامتكم مع الباقة المعتمدة (${price}).\nرابط المعرض الحصري: https://ahmedmorgan86.github.io/nexus-agency/showcase.html`;
+            const clientKeys = {
+                1: 'labella',
+                2: 'masan',
+                3: 'novello',
+                4: 'ashby',
+                5: 'carmellini'
+            };
+            const clientSlug = clientKeys[leadId] || 'labella';
+            const showcaseUrl = `https://ahmedmorgan86.github.io/nexus-agency/showcase.html?client=${clientSlug}`;
+
+            const pitch = `السلام عليكم ورحمة الله إدارة ${name}، فريق أحمد مرجان يحييكم.\nأعددنا لكم دراسة متكاملة لحل ثغرات الحجز ومضاعفة مبيعاتكم مع نموذج العرض التفاعلي المخصص لكيانكم بالباقة المعتمدة (${price}).\nرابط دراسة الحالة والعرض الحصري المباشر:\n${showcaseUrl}`;
             
             const askSend = confirm(`✅ تم اعتماد الصفقة بمبلغ ${price}!\n\nهل ترغب في فتح محادثة الإرسال الفعلي المباشر الآن لهذا العميل عبر تطبيق واتساب على الرقم الحقيقي (${phone})؟`);
             if (askSend) {

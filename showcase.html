@@ -3,174 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>العرض البصري الحصري — عيادات النخبة لطب وتجميل الأسنان</title>
+    <title>دراسة الجدوى والحلول التسويقية المخصصة — وكالة نكسوس العالمية</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cairo -->
+    <!-- Google Fonts: Cairo, Syne, Cormorant Garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        syne: ['Syne', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif']
+                    },
+                    colors: {
+                        obsidian: {
+                            950: '#030712',
+                            900: '#060b18',
+                            850: '#0c1326',
+                            800: '#111b33',
+                            700: '#1b294d'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #070d19; color: #f8fafc; }
+        body { font-family: 'Cairo', sans-serif; background-color: #030712; color: #f1f5f9; overflow-x: hidden; }
+        .mesh-gradient-bg {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(at 15% 15%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
+                radial-gradient(at 85% 10%, rgba(168, 85, 247, 0.07) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.05) 0px, transparent 65%),
+                radial-gradient(at 80% 90%, rgba(234, 179, 8, 0.05) 0px, transparent 50%);
+        }
+        .luxury-card {
+            background: linear-gradient(135deg, rgba(17, 27, 51, 0.75) 0%, rgba(6, 11, 24, 0.85) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .luxury-pill {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gold-shimmer {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col bg-gradient-to-b from-[#070d19] via-[#0b1329] to-[#040817]">
+<body class="min-h-screen flex flex-col mesh-gradient-bg selection:bg-sky-500/30 selection:text-white">
 
-    <!-- VIP Client Showcase Header -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 px-6 py-4">
-        <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold">
-                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+    <!-- Header -->
+    <header class="border-b border-white/5 luxury-pill sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-600 to-purple-700 flex items-center justify-center text-white shadow-xl shadow-sky-500/20 border border-white/20">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-amber-300"></i>
                 </div>
                 <div>
-                    <span class="text-[11px] text-amber-400 font-bold tracking-widest uppercase block">العرض البصري والنمو الرقمي العالمي (Global Showcase)</span>
-                    <h1 class="text-sm sm:text-base font-black text-white">إلى إدارة الكيانات والعلامات التجارية الفاخرة عالمياً</h1>
+                    <span class="text-[10px] text-amber-400 font-black tracking-widest uppercase block font-syne">EXECUTIVE MARKETING BLUEPRINT</span>
+                    <h1 class="text-base sm:text-lg font-black text-white" id="client-header-title">دراسة الحالة والحلول التسويقية المخصصة</h1>
                 </div>
             </div>
 
-            <!-- Currency & Region Controls -->
             <div class="flex items-center gap-3">
-                <div class="flex items-center gap-1.5 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-xs text-slate-300">
-                    <i data-lucide="coins" class="w-3.5 h-3.5 text-amber-400"></i>
-                    <select id="showcase-currency" class="bg-transparent text-sky-400 font-bold focus:outline-none cursor-pointer">
-                        <option value="USD">USD ($ - Global)</option>
-                        <option value="SAR" selected>SAR (ر.س - الخليج)</option>
-                        <option value="AED">AED (د.إ - الإمارات)</option>
-                        <option value="EUR">EUR (€ - أوروبا)</option>
-                        <option value="GBP">GBP (£ - بريطانيا)</option>
-                        <option value="EGP">EGP (ج.م - مصر)</option>
-                    </select>
-                </div>
-
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A7%D8%B7%D9%84%D8%B9%D9%86%D8%A7%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%B9%D8%B1%D8%B6%20%D8%A7%D9%84%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A%20%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%20%D9%88%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs shadow-lg shadow-emerald-500/30 flex items-center gap-1.5 transition">
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A7%D8%B7%D9%84%D8%B9%D9%86%D8%A7%20%D8%B9%D9%84%D9%89%20%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D8%A9%20%D9%88%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%84%20%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D9%88%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A8%D8%AF%D8%A1%20%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-black text-xs shadow-lg shadow-emerald-500/30 flex items-center gap-2 transition active:scale-95">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>تواصل مع أحمد مرجان</span>
+                    <span>محادثة المستشار أحمد مرجان</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Presentation -->
-    <main class="flex-1 max-w-4xl w-full mx-auto p-6 space-y-10">
+    <!-- Main Dynamic Content -->
+    <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-8 space-y-10">
 
         <!-- Intro Hero -->
-        <section class="text-center space-y-3 pt-4">
-            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-3 py-1 rounded-full">
-                نموذج تحويل المحتوى وتجربة المريض إلى مستوى عالمي
+        <section class="text-center space-y-4 pt-4">
+            <span class="text-xs font-black text-sky-400 bg-sky-500/10 border border-sky-500/20 px-4 py-1.5 rounded-full inline-block">
+                خطة الإطلاق والنمو الرقمي المخصصة
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">
-                كيف نُصدّر دقة نتائجكم الطبية بنفس فخامة كبرى مراكز لوس أنجلوس ودبي؟
+            <h2 class="text-2xl sm:text-4xl font-black text-white leading-tight max-w-3xl mx-auto" id="hero-headline">
+                خطة تحويل الكيان من مرحلة الهدر الإعلاني إلى صدارة الحجوزات المؤكدة
             </h2>
-            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                أثناء مراجعتنا لملفكم الرقمي بالرياض، لاحظنا أن شغلكم الطبي في غاية الاحتراف، لكن طريقة العرض الحالية تظلم النتائج. صممنا لكم هذا النموذج الحي التفاعلي لنريكم الفرق.
+            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed" id="hero-subtext">
+                أثناء الفحص الميداني والرقمي لمنصاتكم، قمنا برصد مواطن تسريب العملاء بدقة، ووضعنا هذه المنظومة التسويقية المتكاملة المصممة خصيصاً لمكانة علامتكم التجارية.
             </p>
         </section>
 
-        <!-- Feature 1: The Interactive Before/After Slider -->
-        <section class="bg-slate-900/90 rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-6 shadow-2xl">
-            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
-                <div>
-                    <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">سلايدر العرض التفاعلي</span>
-                    <h3 class="text-lg font-black text-white mt-1">تجربة المقارنة الفورية لابتسامة هوليوود (قبل / بعد)</h3>
+        <!-- 3-Pillar Solution Architecture -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- Pillar 1 -->
+            <div class="luxury-card rounded-3xl p-6 space-y-3 border-t-2 border-t-sky-400">
+                <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+                    <i data-lucide="film" class="w-6 h-6"></i>
                 </div>
-                <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full font-mono">اسحب المؤشر للمعاينة</span>
+                <h3 class="text-base font-black text-white" id="p1-title">1. الأصول السينمائية 4K</h3>
+                <p class="text-xs text-slate-300 leading-relaxed" id="p1-desc">
+                    تصوير ماكرو سينمائي بخطافات بصرية (Hooks) في أول ثانيتين لإيقاف تخطي المشاهدين في ريلز وتيك توك، وإبراز نتائج الجودة الفائقة.
+                </p>
             </div>
 
-            <!-- The Slider Component with Real Generated Photos -->
+            <!-- Pillar 2 -->
+            <div class="luxury-card rounded-3xl p-6 space-y-3 border-t-2 border-t-amber-400">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                    <i data-lucide="split-square-vertical" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-base font-black text-white" id="p2-title">2. أدوات الإقناع التفاعلية</h3>
+                <p class="text-xs text-slate-300 leading-relaxed" id="p2-desc">
+                    سلايدر مقارنة حركي (Before / After) يُدمج في صفحة الحجز ليمنح العميل الدليل البصري القاطع لنقل ثقته بالكامل لخدماتكم.
+                </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="luxury-card rounded-3xl p-6 space-y-3 border-t-2 border-t-emerald-400">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-base font-black text-white" id="p3-title">3. مسار الحجز الفوري السريع</h3>
+                <p class="text-xs text-slate-300 leading-relaxed" id="p3-desc">
+                    إلغاء الاستمارات الطويلة، واستبدالها بنظام تأكيد حجوزات ومواعيد مباشر عبر الواتساب يرفع معدل الحجوزات الفعلية بنسبة +45%.
+                </p>
+            </div>
+        </section>
+
+        <!-- Interactive Before/After Preview -->
+        <section class="luxury-card rounded-[32px] p-6 sm:p-8 space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Interactive Proof Tool</span>
+                    <h3 class="text-lg sm:text-xl font-black text-white mt-1">نموذج السلايدر التفاعلي المخصص المدمج في الحملة</h3>
+                </div>
+                <span class="text-xs bg-emerald-500/15 text-emerald-300 px-3 py-1 rounded-full font-bold border border-emerald-500/30">
+                    دقة 4K فائقة الوضوح
+                </span>
+            </div>
+
             <div class="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-700 select-none bg-slate-950 shadow-2xl">
-                <!-- After Image (Real Macro Hollywood Smile) -->
                 <div class="absolute inset-0">
-                    <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After: Real Hollywood Smile" class="w-full h-full object-cover">
-                    <div class="absolute bottom-4 right-4 bg-black/75 backdrop-blur-md px-4 py-1.5 rounded-full border border-emerald-500/40 text-emerald-300 font-black text-xs sm:text-sm">
-                        ✓ بعد: ابتسامة هوليوود الطبيعية بالخزف الرقمي
+                    <img id="slider-after-img" src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-emerald-500/40 text-emerald-300 font-bold text-xs sm:text-sm">
+                        ✓ بعد: الإخراج السينمائي والتجميل الرقمي الفائق
                     </div>
                 </div>
-
-                <!-- Before Image (Comparative View) -->
                 <div id="slider-before-overlay" class="absolute inset-0 overflow-hidden border-l-4 border-amber-400" style="width: 50%;">
-                    <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before: Initial Condition" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] contrast-125 max-w-none" style="width: 100%; min-width: 600px;">
-                    <div class="absolute bottom-4 left-4 bg-black/75 backdrop-blur-md px-4 py-1.5 rounded-full border border-red-500/40 text-red-300 font-black text-xs sm:text-sm">
-                        قبل: تصبغات وعدم تناسق الأسنان
+                    <img id="slider-before-img" src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before" class="absolute inset-0 w-full h-full object-cover grayscale-[35%] max-w-none" style="width: 100%; min-width: 600px;">
+                    <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-red-500/40 text-red-300 font-bold text-xs sm:text-sm">
+                        قبل: تصوير عشوائي وإضاءة رديئة
                     </div>
                 </div>
-
-                <!-- Range Input -->
                 <input type="range" min="0" max="100" value="50" oninput="document.getElementById('slider-before-overlay').style.width = this.value + '%'" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
             </div>
-
-            <p class="text-xs text-center text-slate-400">
-                💡 هذا السلايدر التفاعلي يُدمج في صفحة الحجز الخاصة بعيادتكم لتحويل كل مريض متردد إلى مراجع مؤكد.
-            </p>
+            <p class="text-xs text-center text-slate-400">💡 اسحب المؤشر يميناً ويساراً لمشاهدة الفرق الحاسم في جودة المحتوى.</p>
         </section>
 
-        <!-- Feature 2: 4K Cinema Reel Concept -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div class="space-y-4">
-                <span class="text-xs bg-purple-500/10 text-purple-400 border border-purple-500/20 px-3 py-1 rounded-full font-bold">
-                    الإخراج السينمائي 4K للريلز
-                </span>
-                <h3 class="text-xl sm:text-2xl font-black text-white leading-tight">
-                    فيديوهات توقف أصبع المشاهد في أول ثانيتين على تيك توك وإنستقرام
-                </h3>
-                <ul class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
-                    <li class="flex items-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-                        <span>تصوير ماكرو سينمائي يبرز بريق الخزف وتناسق اللثة بدقة فائقة.</span>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-                        <span>مؤثرات صوتية هوليوودية (Cinematic Sound FX) تزيد معدل المشاهدة للنهاية.</span>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-                        <span>مسار تحويل فوري ومباشر لواتساب الاستقبال بدون استمارات معقدة.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="w-full max-w-[280px] mx-auto aspect-[9/16] bg-black rounded-[36px] p-3 shadow-2xl border-4 border-slate-700 relative overflow-hidden flex flex-col justify-between">
-                <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="Reel Preview" class="absolute inset-0 w-full h-full object-cover brightness-90">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60 z-10"></div>
-                <div class="relative z-20 text-center space-y-2 my-auto p-4 bg-black/40 backdrop-blur-sm rounded-2xl border border-white/10">
-                    <div class="text-white font-black text-sm">"الابتسامة التي تليق بحضورك في الرياض"</div>
-                    <div class="text-[10px] text-amber-300 font-bold">جلسة استشارة ومسح 3D فوري</div>
+        <!-- ROI & Delivery Commitment -->
+        <section class="luxury-card rounded-[32px] p-6 sm:p-8 space-y-6">
+            <h3 class="text-lg sm:text-xl font-black text-white border-b border-white/5 pb-4">مؤشرات الأداء المتوقعة خلال أول 30 يوماً</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <div class="p-4 rounded-2xl bg-obsidian-950 border border-slate-800">
+                    <div class="text-2xl font-black text-emerald-400 font-syne">+340%</div>
+                    <div class="text-xs text-slate-400 mt-1">معدل النقر والتفاعل (CTR)</div>
                 </div>
-                <div class="relative z-20">
-                    <div class="bg-emerald-500 text-white font-bold text-xs py-2 rounded-xl text-center shadow-lg">
-                        احجز موعدك الآن عبر واتساب
-                    </div>
+                <div class="p-4 rounded-2xl bg-obsidian-950 border border-slate-800">
+                    <div class="text-2xl font-black text-sky-400 font-syne">+45%</div>
+                    <div class="text-xs text-slate-400 mt-1">تأكيد المواعيد والحجوزات</div>
+                </div>
+                <div class="p-4 rounded-2xl bg-obsidian-950 border border-slate-800">
+                    <div class="text-2xl font-black text-amber-400 font-syne">100/100</div>
+                    <div class="text-xs text-slate-400 mt-1">Google Core Vitals</div>
+                </div>
+                <div class="p-4 rounded-2xl bg-obsidian-950 border border-slate-800">
+                    <div class="text-2xl font-black text-purple-400 font-syne">-40%</div>
+                    <div class="text-xs text-slate-400 mt-1">تكلفة الاستحواذ (CPA)</div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Direct to Ahmed Morgan -->
-        <section class="bg-gradient-to-r from-sky-950/60 via-slate-900 to-emerald-950/60 rounded-3xl p-8 border border-sky-500/30 text-center space-y-4">
-            <h3 class="text-xl sm:text-2xl font-black text-white">هل أنتم مستعدون لتصدر مشهد التجميل الطبي في الرياض؟</h3>
-            <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto">
-                يسعدنا مناقشة خطة الإطلاق وتخصيص الباقة الشهرية لفروعكم مباشرة.
+        <!-- Direct CTA to Ahmed Morgan -->
+        <section class="luxury-card rounded-[32px] p-8 text-center space-y-5 border border-sky-500/30">
+            <h3 class="text-xl sm:text-3xl font-black text-white" id="cta-heading">هل أنتم مستعدون لتصدر المشهد وتحقيق أقصى عائد إعلاني؟</h3>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+                يسعدنا عقد جلسة إطلاق استراتيجية مباشرة لمناقشة تخصيص الباقة الشهرية لفروعكم تحت إشراف مباشر.
             </p>
             <div class="pt-2">
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8%20%D9%85%D9%88%D8%B9%D8%AF%20%D8%B9%D9%85%D9%84%20%D9%84%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82%20%D9%84%D8%B9%D9%8A%D8%A7%D8%AF%D8%A7%D8%AA%D9%86%D8%A7" target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-white font-black text-sm shadow-xl shadow-emerald-500/30 transition transform hover:-translate-y-0.5">
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A8%D8%AF%D8%A1%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%A7%D9%84%D8%AE%D8%B7%D8%A9%20%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AE%D8%B5%D8%B5%D8%A9" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:opacity-95 text-white font-black text-sm shadow-2xl shadow-emerald-500/30 transition transform hover:-translate-y-0.5">
                     <i data-lucide="message-circle" class="w-5 h-5"></i>
-                    <span>بدء المحادثة المباشرة عبر واتساب</span>
+                    <span>تأكيد موعد الإطلاق عبر واتساب (+201210237652)</span>
                 </a>
             </div>
             <div class="text-[11px] text-slate-400">
-                بإشراف: أحمد مرجان — كبير المستشارين المعماريين والتسويقيين
+                بإشراف: أحمد مرجان — كبير الاستشاريين والمطورين التنفيذيين
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 text-center py-6 text-xs text-slate-500">
-        © 2026 Nexus Agency · Engineered with Precision & Google AI
+    <footer class="border-t border-white/5 text-center py-6 text-xs text-slate-500">
+        © 2026 Nexus Global Agency OS · Engineered by Ahmed Morgan
     </footer>
 
+    <!-- Script to dynamically adapt page based on ?client= in URL -->
     <script>
+        const clientBlueprints = {
+            'labella': {
+                name: 'مجمع عيادات لابيلا الرياض (La Bella Clinics)',
+                headline: 'خطة تصدّر مشهد التجميل والجلدية في الرياض ورفع الحجوزات المؤكدة',
+                p1_title: '1. فيديوهات 4K سينمائية لنحت القوام والليزر',
+                p1_desc: 'إبراز بريق النتائج الطبية بدقة سينمائية تمنع تخطي المشاهد وتلفت أنظار الباحثين عن الفخامة بالرياض.',
+                p2_title: '2. سلايدر مقارنة تفاعلي لنتائج الجراحة',
+                p2_desc: 'إظهار تناسق نتائج قبل/بعد بطريقة تفاعلية مبهرة في موقع الحجز تزيد ثقة المراجع.',
+                p3_title: '3. مسار واتساب فوري لحجز استشارات الرياض',
+                p3_desc: 'تحويل زوار الإعلانات فوراً إلى واتساب الاستقبال (+966534992109) لتقليل نسبة التردد.',
+                img_after: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg',
+                img_before: 'assets/riyadh_luxury_dental_ad_1794673841834.jpg'
+            },
+            'masan': {
+                name: 'عيادات مسان الطبية للأسنان والجلدية (Masan Clinic)',
+                headline: 'خطة استقطاب حالات زراعة وابتسامة الأسنان الفاخرة بالرياض',
+                p1_title: '1. ريلز ماكرو سينمائي لابتسامة هوليوود',
+                p1_desc: 'تصوير دقيق يبرز تفاصيل الخزف الرقمي وتناسق اللثة بأسلوب عالمي احترافي.',
+                p2_title: '2. سلايدر تفاعلي لمطابقة الابتسامة',
+                p2_desc: 'سلايدر يوضح للمريض كيف ستتحول أسنانه من التصبغ إلى البياض الطبيعي الجذاب.',
+                p3_title: '3. حجز فوري عبر واتساب (+966550426777)',
+                p3_desc: 'مسار مباشر يتيح للمريض حجز موعد المسح ثلاثي الأبعاد المجاني في ثوانٍ معدودة.',
+                img_after: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg',
+                img_before: 'assets/riyadh_luxury_dental_ad_1794673841834.jpg'
+            },
+            'novello': {
+                name: 'مراكز نوفيللو لجراحة التجميل والجلدية (Novello Cairo)',
+                headline: 'منظومة وقف الهدر الإعلاني ومضاعفة حجوزات الليزر والتجميل بالقاهرة',
+                p1_title: '1. إنتاج محتوى سينمائي عالي الجودة',
+                p1_desc: 'مقاطع ريلز قصيرة ومكثفة تركز على ثقة الطبيب ونتائج الحالات الحقيقية.',
+                p2_title: '2. أدوات إقناع رقمية وتجارب حية',
+                p2_desc: 'عرض نتائج الجلسات بوضوح يزيل مخاوف العملاء الجدد ويثبت كفاءة أجهزة المركز.',
+                p3_title: '3. روبوت تأكيد الحجوزات بالواتساب (+201092892600)',
+                p3_desc: 'الرد اللحظي على رسائل إنستغرام وفيسبوك وتأكيد المواعيد بدون انتظار موظف الاستقبال.',
+                img_after: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg',
+                img_before: 'assets/riyadh_luxury_dental_ad_1794673841834.jpg'
+            },
+            'ashby': {
+                name: 'Studio Ashby & Albion Nord London Architecture',
+                headline: 'High-Net-Worth Architectural Showcase & Ultra-Luxury Client Acquisition',
+                p1_title: '1. 4K Cinematic Interior Walkthroughs',
+                p1_desc: 'Atmospheric storytelling for luxury Mayfair & Chelsea residences targeting international UHNW buyers.',
+                p2_title: '2. Interactive Spatial Reveal Slider',
+                p2_desc: 'Interactive digital proof illustrating the transition from raw architectural shells into bespoke luxury living.',
+                p3_title: '3. Direct VIP Consultation Gateway (+442031762571)',
+                p3_desc: 'Private direct scheduling for sovereign wealth and high-profile private palace commissions.',
+                img_after: 'assets/riyadh_luxury_villa_interior_1794673873627.jpg',
+                img_before: 'assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg'
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const clientKey = params.get('client') || 'labella';
+        const data = clientBlueprints[clientKey] || clientBlueprints['labella'];
+
+        document.getElementById('client-header-title').innerText = data.name;
+        document.getElementById('hero-headline').innerText = data.headline;
+        document.getElementById('p1-title').innerText = data.p1_title;
+        document.getElementById('p1-desc').innerText = data.p1_desc;
+        document.getElementById('p2-title').innerText = data.p2_title;
+        document.getElementById('p2-desc').innerText = data.p2_desc;
+        document.getElementById('p3-title').innerText = data.p3_title;
+        document.getElementById('p3-desc').innerText = data.p3_desc;
+        document.getElementById('slider-after-img').src = data.img_after;
+        document.getElementById('slider-before-img').src = data.img_before;
+
         lucide.createIcons();
     </script>
 </body>
