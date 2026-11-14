@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Sovereign Agency — لوحة القيادة والتحكم التنفيذية</title>
+    <title>NEXUS SOVEREIGN — Global Agency OS</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cairo -->
+    <!-- Google Fonts: Plus Jakarta Sans & Tajawal & Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -18,16 +18,25 @@
                 extend: {
                     fontFamily: {
                         cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            dark: '#070d19',
-                            card: '#0f172a',
-                            border: '#1e293b',
-                            accent: '#0ea5e9',
-                            gold: '#f59e0b',
+                        obsidian: {
+                            950: '#02040a',
+                            900: '#060a14',
+                            850: '#0a0f1d',
+                            800: '#0f172a',
+                            700: '#1e293b',
+                            600: '#334155'
+                        },
+                        accent: {
+                            blue: '#38bdf8',
+                            cyan: '#06b6d4',
                             emerald: '#10b981',
-                            rose: '#f43f5e',
+                            amber: '#f59e0b',
+                            purple: '#a855f7',
+                            rose: '#f43f5e'
                         }
                     }
                 }
@@ -35,89 +44,97 @@
         }
     </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #070d19; color: #f8fafc; }
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #070d19; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #02040a; color: #f8fafc; }
+        .glass-panel { background: rgba(10, 15, 29, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-panel-elevated { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(56, 189, 248, 0.2); }
+        .radial-mesh { background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.12) 0%, transparent 60%); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #02040a; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
         ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col relative">
+<body class="min-h-screen flex flex-col relative radial-mesh selection:bg-sky-500/30 selection:text-sky-200">
 
-    <!-- MASTER PASSCODE SECURITY GATE (حماية صفحة الإدارة بكلمة مرور مشفرة) -->
-    <div id="security-gate" class="fixed inset-0 z-[100] bg-[#070d19]/98 backdrop-blur-2xl flex items-center justify-center p-4 transition-all duration-500">
-        <div class="max-w-md w-full bg-slate-900 border border-slate-700/80 rounded-3xl p-8 shadow-2xl space-y-6 text-center relative overflow-hidden">
-            <div class="absolute -top-12 -right-12 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl pointer-events-none"></div>
-            
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 mx-auto flex items-center justify-center text-white shadow-xl shadow-sky-500/20">
-                <i data-lucide="lock" class="w-8 h-8"></i>
+    <!-- MASTER PASSCODE SECURITY GATE (حماية الدخول المشفرة) -->
+    <div id="security-gate" class="fixed inset-0 z-[100] bg-obsidian-950/98 backdrop-blur-2xl flex items-center justify-center p-4 transition-all duration-500">
+        <div class="max-w-md w-full glass-panel-elevated rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6 text-center relative overflow-hidden">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 mx-auto flex items-center justify-center text-white shadow-xl shadow-sky-500/25">
+                <i data-lucide="shield" class="w-8 h-8"></i>
             </div>
             
-            <div>
-                <h2 class="text-xl font-black text-white">بوابة دخول المدير التنفيذي المشفرة</h2>
-                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">صفحة التحكم مؤمنة تشفيرياً لحماية بيانات العملاء والأسعار. أدخل كلمة المرور للمتابعة</p>
+            <div class="space-y-1.5">
+                <span class="text-[11px] font-extrabold tracking-widest text-sky-400 uppercase bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">Executive Access Only</span>
+                <h2 class="text-2xl font-black text-white pt-2">بوابة المدير التنفيذي المشفرة</h2>
+                <p class="text-xs text-slate-400 leading-relaxed">أدخل كلمة المرور السرية لفتح لوحة القيادة واعتماد الصفقات</p>
             </div>
 
-            <div class="space-y-3">
+            <div class="space-y-3 pt-2">
                 <div class="relative">
-                    <input type="password" id="admin-passcode" placeholder="أدخل كلمة المرور السرية..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-sm text-center text-white focus:border-sky-500 focus:outline-none tracking-widest font-mono" onkeydown="if(event.key==='Enter') verifyPasscode()">
+                    <input type="password" id="admin-passcode" placeholder="••••••••••••" class="w-full bg-obsidian-950/90 border border-slate-700/80 rounded-2xl px-4 py-3.5 text-center text-white text-base focus:border-sky-400 focus:ring-1 focus:ring-sky-400 focus:outline-none tracking-widest font-mono transition" onkeydown="if(event.key==='Enter') verifyPasscode()">
                 </div>
                 
-                <div id="auth-error" class="text-xs text-rose-400 font-bold hidden flex items-center justify-center gap-1.5 bg-rose-500/10 py-2 rounded-lg border border-rose-500/20">
+                <div id="auth-error" class="text-xs text-rose-400 font-bold hidden flex items-center justify-center gap-1.5 bg-rose-500/10 py-2.5 rounded-xl border border-rose-500/20">
                     <i data-lucide="alert-circle" class="w-4 h-4"></i>
-                    <span>كلمة المرور غير صحيحة! يرجى التأكد وإعادة المحاولة.</span>
+                    <span>كلمة المرور غير صحيحة! يرجى إعادة المحاولة.</span>
                 </div>
 
-                <button onclick="verifyPasscode()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/20 transition active:scale-95 flex items-center justify-center gap-2">
-                    <i data-lucide="key" class="w-4 h-4"></i>
-                    <span>فتح لوحة القيادة والتحكم</span>
+                <button onclick="verifyPasscode()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-extrabold text-sm shadow-xl shadow-sky-500/25 transition active:scale-95 flex items-center justify-center gap-2">
+                    <i data-lucide="lock-keyhole" class="w-4 h-4"></i>
+                    <span>دخول آمن بلوحة التحكم</span>
                 </button>
             </div>
 
-            <div class="text-[11px] text-slate-400 border-t border-slate-800 pt-4 flex flex-col gap-1.5 text-center">
-                <div class="flex items-center justify-center gap-1 text-slate-400">
-                    <i data-lucide="shield" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>نظام حماية مشفر بتقنية SHA-256 مع حظر الدخول المتكرر</span>
-                </div>
+            <div class="pt-3 border-t border-slate-800/80 text-[11px] text-slate-500 flex items-center justify-center gap-1.5 font-medium">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>تشفير المتصفح الصارم بتقنية SHA-256</span>
             </div>
         </div>
     </div>
 
-    <!-- Top Navigation Bar -->
-    <header class="border-b border-brand-border bg-brand-card/90 backdrop-blur sticky top-0 z-50 px-6 py-4">
+    <!-- Navigation Header -->
+    <header class="border-b border-white/5 glass-panel sticky top-0 z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+            <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-sky-400 via-blue-600 to-indigo-700 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 border border-white/20">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <h1 class="text-xl font-black tracking-tight text-white">NEXUS SOVEREIGN</h1>
-                        <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">بوابة المدير التنفيذي</span>
+                        <span class="text-lg font-black tracking-tight text-white font-sans">NEXUS SOVEREIGN</span>
+                        <span class="text-[10px] bg-sky-500/15 text-sky-300 border border-sky-500/30 px-2.5 py-0.5 rounded-full font-bold">GLOBAL AGENCY OS</span>
                     </div>
-                    <p class="text-xs text-slate-400">مركز القيادة الموحد لإدارة وكلاء التسويق واعتماد الصفقات والتصاميم</p>
+                    <p class="text-[11px] text-slate-400">نظام إدارة الوكالة الذكية واعتماد الصفقات الدولية والتصاميم</p>
                 </div>
             </div>
 
-            <!-- Global Status & Action -->
-            <div class="flex items-center gap-3">
-                <!-- Google API Key Button & Status -->
-                <button onclick="toggleApiKeyModal()" class="px-3 py-1.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-sky-400 text-xs font-bold flex items-center gap-1.5 transition">
-                    <span class="w-2 h-2 rounded-full bg-[#4285F4]"></span>
-                    <span id="nav-google-status">إعدادات Google API</span>
+            <!-- Top Actions Bar -->
+            <div class="flex flex-wrap items-center gap-3">
+                <!-- Google API Key Button -->
+                <button onclick="toggleApiKeyModal()" class="px-3.5 py-2 rounded-xl glass-panel hover:bg-slate-800/60 text-sky-400 text-xs font-bold flex items-center gap-2 transition border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-[#4285F4] animate-pulse"></span>
+                    <span id="nav-google-status">Google API: متصل 🟢</span>
                 </button>
 
-                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span>تشغيل سحابي متواصل 24/7/365</span>
+                <!-- 24/7 Engine Badge -->
+                <div class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>سحابي 24/7/365</span>
                 </div>
-                <div class="flex items-center gap-3 border-r border-brand-border pr-4 mr-2">
-                    <div class="text-left">
-                        <div class="text-xs text-slate-400">المدير العام</div>
-                        <div class="text-sm font-bold text-white">أحمد مرجان</div>
+
+                <!-- Manual Trigger Workflow Button -->
+                <a href="https://github.com/ahmedmorgan86/nexus-agency/actions" target="_blank" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 text-xs font-bold flex items-center gap-1.5 transition border border-white/10" title="تشغيل فوري في جيت هب">
+                    <i data-lucide="play" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>تشغيل الأوتوميشن الآن</span>
+                </a>
+
+                <!-- Director Profile & Logout -->
+                <div class="flex items-center gap-2.5 border-r border-slate-800 pr-3 mr-1">
+                    <div class="text-left hidden md:block">
+                        <div class="text-[10px] text-slate-400">مدير الوكالة</div>
+                        <div class="text-xs font-bold text-white">أحمد مرجان</div>
                     </div>
-                    <!-- Logout & Security Control -->
-                    <button onclick="lockDashboard()" title="قفل الصفحة وتسجيل الخروج" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-rose-400 border border-slate-700 transition">
+                    <button onclick="lockDashboard()" title="قفل الخروج" class="p-2 rounded-xl glass-panel hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 transition">
                         <i data-lucide="log-out" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -125,9 +142,9 @@
         </div>
     </header>
 
-    <!-- GOOGLE API KEY MODAL (لربط مفتاح جوجل وتأكيد الجودة) -->
+    <!-- Google API Modal -->
     <div id="google-api-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="max-w-md w-full bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-5 shadow-2xl relative">
+        <div class="max-w-md w-full glass-panel-elevated rounded-3xl p-6 space-y-5 shadow-2xl relative">
             <div class="flex items-center justify-between pb-3 border-b border-slate-800">
                 <div class="flex items-center gap-2">
                     <div class="flex items-center gap-1 bg-slate-950 px-2 py-1 rounded border border-slate-800">
@@ -145,7 +162,7 @@
             </p>
             <div class="space-y-2">
                 <label class="block text-xs font-bold text-sky-400">Google Gemini API Key:</label>
-                <input type="password" id="gemini-key-input" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:border-sky-500 focus:outline-none">
+                <input type="password" id="gemini-key-input" placeholder="AIzaSy..." class="w-full bg-obsidian-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:border-sky-500 focus:outline-none">
             </div>
             <div class="flex items-center justify-between gap-3 pt-2">
                 <button onclick="saveApiKey()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-xs shadow-lg shadow-sky-500/20 transition active:scale-95">
@@ -155,175 +172,210 @@
                     إلغاء
                 </button>
             </div>
-            <div class="text-[11px] text-slate-400 bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+            <div class="text-[11px] text-slate-400 bg-obsidian-950 p-3 rounded-xl border border-slate-800 space-y-1">
                 <div class="font-bold text-slate-300">💡 أين تضعه في GitHub للأوتوميشن السحابي؟</div>
                 <div>في المستودع: <strong>Settings > Secrets and variables > Actions</strong> باسم: <code class="text-sky-400 font-mono font-bold">GEMINI_API_KEY</code></div>
             </div>
         </div>
     </div>
 
-    <!-- Main Workspace Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-6 space-y-8">
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-8">
 
-        <!-- Stats Overview Cards -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-brand-card p-5 rounded-2xl border border-brand-border flex items-center justify-between">
-                <div>
-                    <div class="text-xs text-slate-400 font-medium">العملاء المكتشفون اليوم</div>
-                    <div class="text-2xl font-black text-white mt-1" id="stat-leads">3 كيانات</div>
-                    <div class="text-xs text-sky-400 mt-1 flex items-center gap-1">
-                        <i data-lucide="target" class="w-3.5 h-3.5"></i>
-                        <span>الرياض وجدة ودبي</span>
+        <!-- QUICK OPERATOR GUIDE (دليل التشغيل والموافقة السريع للمدير) -->
+        <section class="glass-panel rounded-3xl p-6 border border-sky-500/20 relative overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4 mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                        <i data-lucide="compass" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-white">كيف يعمل النظام؟ خطوات التشغيل والاعتماد في دقيقة:</h3>
+                        <p class="text-xs text-slate-400">دليلك البسيط لإطلاق الأوتوميشن السحابي واعتماد الصفقات</p>
                     </div>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+                <div class="flex items-center gap-2">
+                    <a href="https://github.com/ahmedmorgan86/nexus-agency/actions" target="_blank" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-extrabold shadow-lg shadow-sky-500/20 transition flex items-center gap-1.5">
+                        <i data-lucide="play-circle" class="w-4 h-4"></i>
+                        <span>1. تشغيل الأوتوميشن في جيت هب</span>
+                    </a>
+                    <a href="showcase.html" target="_blank" class="px-4 py-2 rounded-xl glass-panel text-slate-200 hover:text-white text-xs font-bold transition flex items-center gap-1.5">
+                        <i data-lucide="external-link" class="w-4 h-4 text-emerald-400"></i>
+                        <span>2. معاينة صفحة العميل العامة</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3 Simple Workflow Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div class="p-4 rounded-2xl bg-obsidian-950/80 border border-slate-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-extrabold text-sky-400 text-sm">الخطوة 1: الأوتوميشن</span>
+                        <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold">1</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">الوكلاء يعملون تلقائياً كل 3 ساعات في السحابة. يمكنك تشغيلهم يدوياً حالاً من زر "تشغيل الأوتوميشن" في الأعلى وسيقومون بمسح السوق وإرسال التقرير لإيميلك.</p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-obsidian-950/80 border border-slate-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-extrabold text-amber-400 text-sm">الخطوة 2: المراجعة والتسعير</span>
+                        <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">2</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">افتح بطاقة العميل بالأسفل، راجع الثغرات والتصاميم المجهزة، حدد العملة (SAR, USD, EUR...) واكتب السعر المناسب في خانة السعر.</p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-obsidian-950/80 border border-slate-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-extrabold text-emerald-400 text-sm">الخطوة 3: الموافقة والإرسال</span>
+                        <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">3</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">اضغط على زر <strong class="text-emerald-400">"اعتماد السعر وإطلاق العرض"</strong> الأخضر، ثم انسخ نص الرسالة الجاهزة وأرسلها للعميل مع رابط الـ Showcase وانتظر رده لإتمام التعاقد.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Metrics -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="glass-panel p-5 rounded-3xl flex items-center justify-between">
+                <div>
+                    <div class="text-[11px] text-slate-400 font-semibold">العملاء النشطون بالرادار</div>
+                    <div class="text-2xl font-black text-white mt-1">4 أسواق كبرى</div>
+                    <div class="text-[11px] text-sky-400 mt-1 flex items-center gap-1 font-semibold">
+                        <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                        <span>الخليج · أوروبا · أمريكا · مصر</span>
+                    </div>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
                     <i data-lucide="radar" class="w-6 h-6"></i>
                 </div>
             </div>
 
-            <div class="bg-brand-card p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+            <div class="glass-panel p-5 rounded-3xl flex items-center justify-between">
                 <div>
-                    <div class="text-xs text-slate-400 font-medium">صفقات بانتظار اعتمادك</div>
-                    <div class="text-2xl font-black text-amber-400 mt-1" id="stat-pending">2 صفقات</div>
-                    <div class="text-xs text-amber-400/80 mt-1 flex items-center gap-1">
+                    <div class="text-[11px] text-slate-400 font-semibold">صفقات بانتظار اعتمادك</div>
+                    <div class="text-2xl font-black text-amber-400 mt-1">3 صفقات</div>
+                    <div class="text-[11px] text-amber-400/90 mt-1 flex items-center gap-1 font-semibold">
                         <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-                        <span>السعر بانتظار التحديد</span>
+                        <span>بانتظار تحديدك للسعر والعملة</span>
                     </div>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
                     <i data-lucide="file-check-2" class="w-6 h-6"></i>
                 </div>
             </div>
 
-            <div class="bg-brand-card p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+            <div class="glass-panel p-5 rounded-3xl flex items-center justify-between">
                 <div>
-                    <div class="text-xs text-slate-400 font-medium">التصاميم المنفذة ذاتياً</div>
-                    <div class="text-2xl font-black text-emerald-400 mt-1">4 تصاميم</div>
-                    <div class="text-xs text-emerald-400/80 mt-1 flex items-center gap-1">
-                        <i data-lucide="palette" class="w-3.5 h-3.5"></i>
-                        <span>ريلز + لاندينج بيج + إعلانات</span>
+                    <div class="text-[11px] text-slate-400 font-semibold">التصاميم الفوتوغرافية 4K</div>
+                    <div class="text-2xl font-black text-emerald-400 mt-1">جاهزة 100%</div>
+                    <div class="text-[11px] text-emerald-400/90 mt-1 flex items-center gap-1 font-semibold">
+                        <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                        <span>صور حقيقية + سلايدر تفاعلي</span>
                     </div>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                     <i data-lucide="sparkles" class="w-6 h-6"></i>
                 </div>
             </div>
 
-            <div class="bg-brand-card p-5 rounded-2xl border border-brand-border flex items-center justify-between">
+            <div class="glass-panel p-5 rounded-3xl flex items-center justify-between">
                 <div>
-                    <div class="text-xs text-slate-400 font-medium">العائد الشهري المتوقع</div>
-                    <div class="text-2xl font-black text-purple-400 mt-1" id="stat-revenue">38,000 ريال</div>
-                    <div class="text-xs text-purple-400/80 mt-1 flex items-center gap-1">
-                        <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                    <div class="text-[11px] text-slate-400 font-semibold">قيمة العقود المقترحة</div>
+                    <div class="text-2xl font-black text-purple-400 mt-1">$22,500+</div>
+                    <div class="text-[11px] text-purple-400/90 mt-1 flex items-center gap-1 font-semibold">
+                        <i data-lucide="coins" class="w-3.5 h-3.5"></i>
                         <span>عقود ريتينر شهرية مستمرة</span>
                     </div>
                 </div>
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
                     <i data-lucide="wallet" class="w-6 h-6"></i>
                 </div>
             </div>
         </section>
 
-        <!-- Multi-Agent Swarm Live Monitoring Bar -->
-        <section class="bg-brand-card rounded-2xl border border-brand-border p-5">
+        <!-- Swarm Live Status Monitor -->
+        <section class="glass-panel rounded-3xl p-5 border border-white/5">
             <div class="flex items-center justify-between mb-4">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2.5">
                     <i data-lucide="cpu" class="w-5 h-5 text-sky-400"></i>
-                    <h2 class="text-base font-bold text-white">حالة شبكة الوكلاء المتخصصين الستة (Swarm Status)</h2>
+                    <h2 class="text-sm font-extrabold text-white">حالة شبكة الوكلاء السحابية (Autonomous Swarm Live Status)</h2>
                 </div>
-                <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full border border-slate-700">تحديث لحظي</span>
+                <span class="text-[10px] bg-slate-900 text-slate-400 px-3 py-1 rounded-full border border-slate-800 font-mono">24/7 Engine</span>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col gap-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-300">SCOUT-01</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-                    <span class="text-slate-400 text-[11px]">صياد الليدات والرادار</span>
-                    <span class="text-emerald-400 font-semibold text-[10px]">جاهز ونفذ الدفعة</span>
+                <div class="p-3 rounded-2xl bg-obsidian-950/80 border border-slate-800 flex flex-col gap-1">
+                    <div class="flex items-center justify-between"><span class="font-bold text-slate-300">SCOUT-01</span><span class="w-2 h-2 rounded-full bg-emerald-400"></span></div>
+                    <span class="text-slate-400 text-[10px]">الرادار وصيد الليدات</span>
+                    <span class="text-emerald-400 font-semibold text-[10px]">نشط دولياً 🟢</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col gap-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-300">AUDIT-02</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-                    <span class="text-slate-400 text-[11px]">محلل الثغرات الرقمية</span>
-                    <span class="text-emerald-400 font-semibold text-[10px]">استخرج 4 ثغرات</span>
+                <div class="p-3 rounded-2xl bg-obsidian-950/80 border border-slate-800 flex flex-col gap-1">
+                    <div class="flex items-center justify-between"><span class="font-bold text-slate-300">AUDIT-02</span><span class="w-2 h-2 rounded-full bg-emerald-400"></span></div>
+                    <span class="text-slate-400 text-[10px]">تشخيص الثغرات</span>
+                    <span class="text-emerald-400 font-semibold text-[10px]">فحص مستمر 🟢</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col gap-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-300">PITCH-03</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-                    <span class="text-slate-400 text-[11px]">مهندس رسائل الإقناع</span>
-                    <span class="text-emerald-400 font-semibold text-[10px]">جهز نصوص الواتساب</span>
+                <div class="p-3 rounded-2xl bg-obsidian-950/80 border border-slate-800 flex flex-col gap-1">
+                    <div class="flex items-center justify-between"><span class="font-bold text-slate-300">PITCH-03</span><span class="w-2 h-2 rounded-full bg-emerald-400"></span></div>
+                    <span class="text-slate-400 text-[10px]">صانع الرسائل</span>
+                    <span class="text-emerald-400 font-semibold text-[10px]">متعدد اللغات 🟢</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col gap-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-300">PROD-04</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-                    <span class="text-slate-400 text-[11px]">مدير التجهيز والإنتاج</span>
-                    <span class="text-emerald-400 font-semibold text-[10px]">فصل البريفات الفنية</span>
+                <div class="p-3 rounded-2xl bg-obsidian-950/80 border border-slate-800 flex flex-col gap-1">
+                    <div class="flex items-center justify-between"><span class="font-bold text-slate-300">PROD-04</span><span class="w-2 h-2 rounded-full bg-emerald-400"></span></div>
+                    <span class="text-slate-400 text-[10px]">مدير الإنتاج</span>
+                    <span class="text-emerald-400 font-semibold text-[10px]">جاهز للتنفيذ 🟢</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col gap-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-300">CLOSER-05</span>
-                        <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-                    </div>
-                    <span class="text-slate-400 text-[11px]">مسؤول التواصل والمبيعات</span>
-                    <span class="text-sky-400 font-semibold text-[10px]">بانتظار ردود العملاء</span>
+                <div class="p-3 rounded-2xl bg-obsidian-950/80 border border-slate-800 flex flex-col gap-1">
+                    <div class="flex items-center justify-between"><span class="font-bold text-slate-300">CLOSER-05</span><span class="w-2 h-2 rounded-full bg-sky-400"></span></div>
+                    <span class="text-slate-400 text-[10px]">مسؤول التواصل</span>
+                    <span class="text-sky-400 font-semibold text-[10px]">بانتظار الردود 🟢</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-brand-accent/30 bg-sky-950/20 flex flex-col gap-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-sky-300">DESIGN-06</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    </div>
-                    <span class="text-slate-400 text-[11px]">المصمم الذكي المنفذ</span>
-                    <span class="text-sky-400 font-semibold text-[10px]">صمم العينات المرفقة</span>
+                <div class="p-3 rounded-2xl bg-obsidian-950/80 border border-sky-500/30 bg-sky-950/15 flex flex-col gap-1">
+                    <div class="flex items-center justify-between"><span class="font-bold text-sky-300">DESIGN-06</span><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span></div>
+                    <span class="text-slate-400 text-[10px]">المصمم الذكي 4K</span>
+                    <span class="text-emerald-400 font-semibold text-[10px]">أصول حقيقية 4K 🟢</span>
                 </div>
             </div>
         </section>
 
-        <!-- Main Approval & Operations Area -->
+        <!-- Main Operations & Approval Desk -->
         <section class="space-y-6">
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-black text-white flex items-center gap-2">
                         <i data-lucide="globe-2" class="w-6 h-6 text-sky-400"></i>
-                        <span>الرادار العالمي للعملاء واعتمادات المدير (Global Market Radar)</span>
+                        <span>الرادار العالمي للعملاء واعتمادات المدير</span>
                     </h2>
-                    <p class="text-xs text-slate-400 mt-0.5">استكشاف الفرص حول العالم بكل العملات (الخليج، أمريكا، أوروبا، ومصر) مع تسعير دولي فوري</p>
+                    <p class="text-xs text-slate-400 mt-0.5">راجع العينات الحقيقية، حدد السعر والعملة، واعتمد الصفقات بنقرة واحدة</p>
                 </div>
 
+                <!-- Region Filter Pill Bar -->
                 <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="filterRegion('all')" class="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-semibold hover:bg-slate-700 transition border border-slate-700 active-filter text-sky-400 border-sky-500/40">🌍 العالم كله (Global)</button>
-                    <button onclick="filterRegion('gcc')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇸🇦 الخليج (SAR / AED)</button>
-                    <button onclick="filterRegion('europe')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇬🇧 أوروبا وبريطانيا (GBP / EUR)</button>
-                    <button onclick="filterRegion('usa')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇺🇸 أمريكا (USD)</button>
-                    <button onclick="filterRegion('egypt')" class="px-3 py-1.5 rounded-xl bg-slate-800/50 text-xs font-semibold hover:bg-slate-700 transition border border-slate-800 text-slate-400">🇪🇬 مصر (EGP)</button>
+                    <button onclick="filterRegion('all')" class="px-3.5 py-1.5 rounded-xl bg-slate-800 text-xs font-bold text-sky-400 border border-sky-500/40">🌍 العالم كله</button>
+                    <button onclick="filterRegion('gcc')" class="px-3.5 py-1.5 rounded-xl glass-panel text-xs font-semibold text-slate-400 hover:text-white transition">🇸🇦 الخليج (SAR / AED)</button>
+                    <button onclick="filterRegion('europe')" class="px-3.5 py-1.5 rounded-xl glass-panel text-xs font-semibold text-slate-400 hover:text-white transition">🇬🇧 أوروبا (GBP / EUR)</button>
+                    <button onclick="filterRegion('usa')" class="px-3.5 py-1.5 rounded-xl glass-panel text-xs font-semibold text-slate-400 hover:text-white transition">🇺🇸 أمريكا (USD)</button>
+                    <button onclick="filterRegion('egypt')" class="px-3.5 py-1.5 rounded-xl glass-panel text-xs font-semibold text-slate-400 hover:text-white transition">🇪🇬 مصر (EGP)</button>
                 </div>
             </div>
 
             <!-- Lead Card 1: Medical / Dental Clinic -->
-            <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-1">
-                <div class="p-6 border-b border-brand-border/60 flex flex-wrap items-center justify-between gap-4 bg-slate-900/40">
+            <div class="glass-panel rounded-3xl border border-white/10 overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-1" data-region="gcc">
+                <div class="p-6 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-obsidian-900/60">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-black text-lg">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
                             <i data-lucide="stethoscope" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
                                 <h3 class="text-lg font-bold text-white">مجمع عيادات تجميل وأسنان النخبة</h3>
-                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] px-2.5 py-0.5 rounded-full font-bold">الرياض · العليا</span>
-                                <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[11px] px-2 py-0.5 rounded-full font-medium">قوة شرائية عالية جداً</span>
+                                <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[11px] px-2.5 py-0.5 rounded-full font-bold">الرياض · العليا</span>
+                                <span class="bg-purple-500/15 text-purple-400 border border-purple-500/30 text-[11px] px-2.5 py-0.5 rounded-full font-bold">قوة شرائية عالية</span>
                             </div>
                             <p class="text-xs text-slate-400 mt-1">تخصص: جراحة اليوم الواحد، زراعة وابتسامة الأسنان، الفيلر والنحت</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <span id="badge-status-1" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                        <span id="badge-status-1" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
                             <i data-lucide="hourglass" class="w-3.5 h-3.5"></i>
                             <span>بانتظار قرار المدير</span>
                         </span>
@@ -331,10 +383,10 @@
                 </div>
 
                 <!-- Tabs Navigation -->
-                <div class="flex border-b border-brand-border text-xs font-bold px-6 bg-slate-950/40">
+                <div class="flex border-b border-white/5 text-xs font-bold px-6 bg-obsidian-950/60 overflow-x-auto">
                     <button onclick="switchTab(1, 'audit')" id="tab-btn-1-audit" class="py-3 px-4 text-sky-400 border-b-2 border-sky-400 flex items-center gap-1.5">
                         <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
-                        <span>1. تشخيص الثغرات والتسريب</span>
+                        <span>1. تشخيص الثغرات</span>
                     </button>
                     <button onclick="switchTab(1, 'pitch')" id="tab-btn-1-pitch" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
                         <i data-lucide="message-square-text" class="w-4 h-4 text-sky-400"></i>
@@ -342,7 +394,7 @@
                     </button>
                     <button onclick="switchTab(1, 'design')" id="tab-btn-1-design" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
                         <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
-                        <span>3. التصاميم والعينات المنفذة</span>
+                        <span>3. التصاميم والعينات الحقيقية 4K</span>
                     </button>
                     <button onclick="switchTab(1, 'pricing')" id="tab-btn-1-pricing" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
                         <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-purple-400"></i>
@@ -355,14 +407,14 @@
                     <!-- Tab 1: Audit -->
                     <div id="tab-content-1-audit" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            <div class="p-4 rounded-xl bg-red-950/10 border border-red-500/20 space-y-2">
+                            <div class="p-4 rounded-2xl bg-red-950/15 border border-red-500/20 space-y-2">
                                 <div class="font-bold text-red-400 flex items-center gap-1.5 text-sm">
                                     <i data-lucide="video-off" class="w-4 h-4"></i>
                                     <span>ثغرة المحتوى المرئي (Video Leak)</span>
                                 </div>
                                 <p class="text-slate-300 leading-relaxed">تصوير عشوائي بالهاتف بإضاءة رديئة تظلم دقة وجمال نتائج الأسنان. غياب الخطافات البصرية (Hooks) في أول ثانيتين يجعل مشاهدي ريلز وتيك توك يتخطون الحساب فوراً.</p>
                             </div>
-                            <div class="p-4 rounded-xl bg-amber-950/10 border border-amber-500/20 space-y-2">
+                            <div class="p-4 rounded-2xl bg-amber-950/15 border border-amber-500/20 space-y-2">
                                 <div class="font-bold text-amber-400 flex items-center gap-1.5 text-sm">
                                     <i data-lucide="globe" class="w-4 h-4"></i>
                                     <span>ثغرة موقع الحجز ومسار التحويل</span>
@@ -376,83 +428,55 @@
                     <div id="tab-content-1-pitch" class="hidden space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-xs font-bold text-slate-300">نص رسالة الواتساب المجهزة للإرسال المباشر:</span>
-                            <button onclick="copyPitch(1)" class="text-xs text-sky-400 hover:text-sky-300 flex items-center gap-1">
+                            <button onclick="copyPitch(1)" class="text-xs text-sky-400 hover:text-sky-300 flex items-center gap-1 font-bold">
                                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                                <span>نسخ النص</span>
+                                <span>نسخ النص للحافظة</span>
                             </button>
                         </div>
-                        <textarea id="pitch-text-1" rows="5" class="w-full bg-slate-900 border border-brand-border rounded-xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">السلام عليكم ورحمة الله دكتور [الاسم]، تحياتي لفريقكم المتميز في مجمع عياداتكم.
+                        <textarea id="pitch-text-1" rows="5" class="w-full bg-obsidian-950 border border-slate-700 rounded-2xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">السلام عليكم ورحمة الله دكتور [الاسم]، تحياتي لفريقكم المتميز في مجمع عياداتكم.
 شغلكم الطبي في الرياض راقٍ ويستحق الصدارة، لكن أثناء فحصنا رصدنا نقطتين تسببان تسريب عشرات المواعيد شهرياً لصالح المنافسين: غياب الإخراج السينمائي للريلز، وبطء مسار حجز المواعيد على الموقع.
 جهزنا لكم نموذج فيديو تجريبي (Mockup Reel) ومسار حجز مباشر عبر الواتساب يرفع معدل الحجوزات المؤكدة.
 هل يناسبكم إرسال النموذج هنا للاطلاع عليه في دقيقتين؟</textarea>
                     </div>
 
-                    <!-- Tab 3: Design (World-Class Creative & Cinema Suite) -->
+                    <!-- Tab 3: Design (Real 4K Photo Suite) -->
                     <div id="tab-content-1-design" class="hidden space-y-8">
-                        <!-- Top Header for Creative Suite -->
-                        <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-gradient-to-r from-sky-950/40 via-purple-950/30 to-slate-900 border border-sky-500/30">
-                            <div>
-                                <span class="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Awwwards / Behance Grade</span>
-                                <h4 class="text-base font-black text-white mt-1 flex items-center gap-2">
-                                    <i data-lucide="clapperboard" class="w-5 h-5 text-sky-400"></i>
-                                    <span>جناح الإنتاج البصري والمونتاج السينمائي المتقدم (Elite Creative Suite)</span>
-                                </h4>
-                                <p class="text-xs text-slate-300">مخرجات وكيل الإخراج والمونتاج الذكي: تصوير سينمائي 4K، سلايدر مقارنة تفاعلي، ومؤثرات صوتية هوليوودية</p>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs bg-slate-900/90 text-emerald-400 font-bold px-3 py-1.5 rounded-lg border border-emerald-500/30 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                    <span>تصدير فوري 4K / 60 FPS</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- 3-Column Creative Grid -->
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-                            <!-- Column 1: Interactive Reel & Video Simulator (5 Cols) -->
-                            <div class="lg:col-span-5 bg-slate-900/90 rounded-2xl p-5 border border-brand-border flex flex-col justify-between space-y-4">
-                                <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
-                                        <span class="text-xs font-bold text-white">مشغل الريلز السينمائي التفاعلي (Reel Simulator 9:16)</span>
-                                    </div>
-                                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">1080 × 1920</span>
+                            <!-- Reel Simulator with Real 4K Macro Image -->
+                            <div class="lg:col-span-5 glass-panel rounded-3xl p-5 border border-white/5 space-y-4">
+                                <div class="flex items-center justify-between pb-3 border-b border-white/5 text-xs">
+                                    <span class="font-bold text-white flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                                        <span>مشغل الريلز السينمائي 4K الحقيقي (9:16)</span>
+                                    </span>
+                                    <span class="font-mono text-[10px] text-slate-400">1080 × 1920</span>
                                 </div>
 
-                                <!-- Smartphone Frame with Interactive Reel Screen -->
-                                <div class="w-full max-w-[280px] mx-auto aspect-[9/16] bg-black rounded-[36px] p-3 shadow-2xl shadow-sky-950/50 border-4 border-slate-700 relative overflow-hidden flex flex-col justify-between">
-                                    <!-- Dynamic Island / Speaker Notch -->
-                                    <div class="w-20 h-4 bg-slate-900 rounded-full mx-auto relative z-30 flex items-center justify-center">
-                                        <div class="w-2 h-2 rounded-full bg-slate-800 mr-2"></div>
-                                    </div>
+                                <div class="w-full max-w-[280px] mx-auto aspect-[9/16] bg-black rounded-[36px] p-3 shadow-2xl border-4 border-slate-700 relative overflow-hidden flex flex-col justify-between">
+                                    <!-- Dynamic Island -->
+                                    <div class="w-20 h-4 bg-slate-900 rounded-full mx-auto relative z-30"></div>
 
-                                    <!-- REAL 4K CINEMATIC PHOTOGRAPHIC BACKGROUND LAYER -->
-                                    <img id="reel-bg-img-1" src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="Real 4K Macro Dental Aesthetic Ad" class="absolute inset-0 w-full h-full object-cover z-0 transition-all duration-700 brightness-90">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/60 z-10"></div>
+                                    <!-- REAL 4K PHOTOGRAPHIC BACKGROUND -->
+                                    <img id="reel-bg-img-1" src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="Real 4K Macro" class="absolute inset-0 w-full h-full object-cover brightness-90 z-0">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/60 z-10"></div>
 
-                                    <!-- Video Layer (Real Photographic Scene & Typography) -->
-                                    <div id="reel-screen-1" class="absolute inset-0 flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700 z-20">
-                                        <!-- Top Info -->
-                                        <div class="flex items-center justify-between text-[10px] text-white/90 z-20">
+                                    <div id="reel-screen-1" class="absolute inset-0 flex flex-col justify-between p-4 pt-10 text-center z-20">
+                                        <div class="flex items-center justify-between text-[10px] text-white/90">
                                             <span class="font-bold bg-black/60 backdrop-blur px-2.5 py-0.5 rounded-full border border-white/20">@elite_clinics_ryd</span>
                                             <span class="bg-amber-500/30 text-amber-300 px-2 py-0.5 rounded text-[9px] font-black border border-amber-500/40">4K PRORES</span>
                                         </div>
 
-                                        <!-- Center Visual Hook Display -->
                                         <div class="my-auto relative z-20 py-4">
-                                            <div id="reel-caption-1" class="text-white font-black text-base leading-snug drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] bg-black/40 backdrop-blur-sm p-3 rounded-2xl border border-white/10">
+                                            <div id="reel-caption-1" class="text-white font-black text-base leading-snug drop-shadow-lg bg-black/50 backdrop-blur-sm p-3 rounded-2xl border border-white/10">
                                                 "الابتسامة التي تليق بحضورك في الرياض"
                                             </div>
-                                            <div class="text-[10px] text-amber-300 mt-2 font-bold bg-amber-950/60 backdrop-blur px-2 py-1 rounded-full border border-amber-500/30 inline-block">
-                                                تصميم رقمي ثلاثي الأبعاد وخزف طبيعي
+                                            <div class="text-[10px] text-amber-300 mt-2 font-bold bg-amber-950/70 backdrop-blur px-2.5 py-1 rounded-full border border-amber-500/30 inline-block">
+                                                تصميم رقمي 3D وخزف طبيعي
                                             </div>
                                         </div>
 
-                                        <!-- Bottom Overlay: Sound Wave & CTA -->
                                         <div class="space-y-2 z-20">
-                                            <!-- Sound Wave Equalizer Animation -->
-                                            <div class="flex items-center justify-center gap-1 h-4 bg-black/50 backdrop-blur py-1 px-3 rounded-full border border-white/10 w-fit mx-auto">
+                                            <div class="flex items-center justify-center gap-1 h-4 bg-black/60 backdrop-blur py-1 px-3 rounded-full border border-white/10 w-fit mx-auto">
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-2"></span>
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-4" style="animation-delay: 0.1s"></span>
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-3" style="animation-delay: 0.2s"></span>
@@ -460,8 +484,7 @@
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-1" style="animation-delay: 0.3s"></span>
                                                 <span class="text-[9px] text-slate-200 font-mono mr-1">Hollywood Sound FX</span>
                                             </div>
-
-                                            <div class="bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold text-[11px] py-2.5 rounded-xl shadow-lg shadow-emerald-500/40 flex items-center justify-center gap-1.5 transition">
+                                            <div class="bg-emerald-500 text-white font-extrabold text-[11px] py-2.5 rounded-xl shadow-lg flex items-center justify-center gap-1.5">
                                                 <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
                                                 <span>احجز موعدك الآن عبر واتساب</span>
                                             </div>
@@ -469,221 +492,97 @@
                                     </div>
                                 </div>
 
-                                <!-- Video Player Controls & Timeline Scrubber -->
-                                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-2 text-xs">
+                                <!-- Scrubber -->
+                                <div class="bg-obsidian-950 p-3 rounded-2xl border border-slate-800 space-y-2 text-xs">
                                     <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono">
                                         <span id="reel-timer-1">00:03 / 00:15</span>
-                                        <span class="text-sky-400 font-semibold">Speed Ramp · 100mm Macro Cine</span>
-                                    </div>
-                                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden flex">
-                                        <div class="bg-amber-400 h-full w-[20%]"></div>
-                                        <div class="bg-sky-400 h-full w-[40%]"></div>
-                                        <div class="bg-emerald-400 h-full w-[40%]"></div>
+                                        <span class="text-sky-400 font-semibold">ARRI Alexa 100mm Macro Cine</span>
                                     </div>
                                     <div class="flex items-center justify-between pt-1">
-                                        <button onclick="playReelScene(1, 1)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-1 rounded">1. الهوك (0-3s)</button>
-                                        <button onclick="playReelScene(1, 2)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-sky-300 px-2 py-1 rounded">2. التكنولوجيا (4-9s)</button>
-                                        <button onclick="playReelScene(1, 3)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-emerald-300 px-2 py-1 rounded">3. الإغلاق (10-15s)</button>
+                                        <button onclick="playReelScene(1, 1)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-1 rounded">1. الهوك</button>
+                                        <button onclick="playReelScene(1, 2)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-sky-300 px-2 py-1 rounded">2. التكنولوجيا</button>
+                                        <button onclick="playReelScene(1, 3)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-emerald-300 px-2 py-1 rounded">3. الإغلاق</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Column 2: Interactive Before/After Smile Slider & Ad Canvas (7 Cols) -->
+                            <!-- Real Before/After Slider & Google Tools -->
                             <div class="lg:col-span-7 space-y-6">
-
-                                <!-- Interactive Before & After Visual Slider -->
-                                <div class="bg-slate-900/90 rounded-2xl p-5 border border-brand-border space-y-4">
+                                <div class="glass-panel rounded-3xl p-5 border border-white/5 space-y-4">
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <h5 class="text-sm font-bold text-white flex items-center gap-2">
                                                 <i data-lucide="split-square-vertical" class="w-4 h-4 text-amber-400"></i>
-                                                <span>سلايدر المقارنة التفاعلي (Interactive Before/After Slider)</span>
+                                                <span>سلايدر المقارنة التفاعلي بالصور الحقيقية 4K</span>
                                             </h5>
-                                            <p class="text-[11px] text-slate-400">حرك المؤشر يميناً ويساراً لمشاهدة تأثير تقنية تجميل وابتسامة هوليوود الرقمية</p>
+                                            <p class="text-[11px] text-slate-400">اسحب المؤشر يميناً ويساراً لمشاهدة التحول الطبيعي بالخزف الرقمي</p>
                                         </div>
-                                        <span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-0.5 rounded-full border border-amber-500/30 font-bold">عنصر تفاعلي بالصفحة</span>
+                                        <span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full font-bold border border-emerald-500/30">صور حقيقية 4K</span>
                                     </div>
 
-                                    <!-- Slider Container with Real Generated Photographic Comparison -->
+                                    <!-- Slider with Real Images -->
                                     <div class="relative w-full h-64 rounded-2xl overflow-hidden border border-slate-700 select-none bg-slate-950 shadow-2xl">
-                                        <!-- After Image: Real Macro Hollywood Smile Photograph -->
                                         <div class="absolute inset-0">
-                                            <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After: Real Hollywood Smile" class="w-full h-full object-cover">
-                                            <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-500/40 text-emerald-300 font-black text-xs">
+                                            <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After" class="w-full h-full object-cover">
+                                            <div class="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-500/40 text-emerald-300 font-black text-xs">
                                                 ✓ بعد: ابتسامة هوليوود الطبيعية بالخزف الرقمي
                                             </div>
                                         </div>
-
-                                        <!-- Before Image: Real Portrait with Comparative Overlay -->
                                         <div id="slider-before-overlay" class="absolute inset-0 overflow-hidden border-l-2 border-amber-400" style="width: 50%;">
-                                            <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before: Initial Condition" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] contrast-125 max-w-none" style="width: 100%; min-width: 480px;">
-                                            <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-red-500/40 text-red-300 font-black text-xs">
-                                                قبل: تصبغات وعدم تناسق الأسنان
+                                            <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] contrast-125 max-w-none" style="width: 100%; min-width: 480px;">
+                                            <div class="absolute bottom-3 left-3 bg-black/75 backdrop-blur-md px-3 py-1 rounded-full border border-red-500/40 text-red-300 font-black text-xs">
+                                                قبل: تصبغات وعدم تناسق
                                             </div>
                                         </div>
-
-                                        <!-- Range Input Controller -->
                                         <input type="range" min="0" max="100" value="50" oninput="updateBeforeAfter(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
                                     </div>
-                                    <div class="flex items-center justify-between text-[11px] text-slate-400 font-semibold px-1">
-                                        <span>← اسحب لليسار لرؤية النتيجة النهائية</span>
-                                        <span>اسحب لليمين لمشاهدة الحالة الأولى →</span>
-                                    </div>
                                 </div>
 
-                                <!-- Film Director & Production Specs Board (Technical Breakdown) -->
-                                <div class="bg-slate-900/90 rounded-2xl p-5 border border-brand-border space-y-4">
-                                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                                        <h5 class="text-sm font-bold text-sky-400 flex items-center gap-2">
-                                            <i data-lucide="film" class="w-4 h-4"></i>
-                                            <span>البطاقة الفنية للمونتير والمصور (Cinematography Specs)</span>
-                                        </h5>
-                                        <span class="text-[10px] text-slate-400 font-mono">DOP & Colorist Notes</span>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
-                                            <span class="text-slate-400 text-[10px] block">الكاميرا والعدسة</span>
-                                            <span class="text-white font-bold text-[11px] mt-0.5 block">ARRI 4K + 100mm Macro</span>
-                                        </div>
-                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
-                                            <span class="text-slate-400 text-[10px] block">هندسة الإضاءة</span>
-                                            <span class="text-amber-300 font-bold text-[11px] mt-0.5 block">Rim Light + Softbox 120cm</span>
-                                        </div>
-                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
-                                            <span class="text-slate-400 text-[10px] block">التلوين السينمائي</span>
-                                            <span class="text-emerald-300 font-bold text-[11px] mt-0.5 block">Kodak 2383 Medical LUT</span>
-                                        </div>
-                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
-                                            <span class="text-slate-400 text-[10px] block">المؤثرات الصوتية</span>
-                                            <span class="text-sky-300 font-bold text-[11px] mt-0.5 block">Deep Sub-Bass + Riser</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Typography & Color Identity -->
-                                    <div class="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-800/60">
+                                <!-- Google Ecosystem Tooling Bar -->
+                                <div class="glass-panel rounded-3xl p-5 border border-sky-500/20 space-y-4">
+                                    <div class="flex items-center justify-between border-b border-white/5 pb-3">
                                         <div class="flex items-center gap-2">
-                                            <span class="text-slate-400 text-[11px]">لوحة الألوان المعتمدة:</span>
-                                            <span class="w-4 h-4 rounded-full bg-[#0b1329] border border-slate-700 shadow" title="كحلي ملكي"></span>
-                                            <span class="w-4 h-4 rounded-full bg-[#d4af37] border border-slate-700 shadow" title="ذهب صحراوي مطفأ"></span>
-                                            <span class="w-4 h-4 rounded-full bg-[#10b981] border border-slate-700 shadow" title="زمردي طبي"></span>
-                                            <span class="w-4 h-4 rounded-full bg-[#ffffff] border border-slate-700 shadow" title="أبيض سيراميكي"></span>
+                                            <span class="w-2.5 h-2.5 rounded-full bg-[#4285F4]"></span>
+                                            <span class="text-xs font-bold text-white">ترسانة جوجل الإبداعية (Google Ads 10/10 & Lighthouse 100)</span>
                                         </div>
-                                        <div class="text-[11px] text-slate-400">
-                                            <span>الخطوط:</span> <strong class="text-slate-200">Tajawal Display Bold</strong> + <strong class="text-slate-200">Cairo</strong>
+                                        <span class="text-xs font-extrabold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">Google Certified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                                        <div class="bg-obsidian-950 p-3 rounded-2xl border border-slate-800">
+                                            <div class="text-emerald-400 font-black text-sm">100/100</div>
+                                            <div class="text-[10px] text-slate-400 mt-0.5">Google Speed</div>
+                                        </div>
+                                        <div class="bg-obsidian-950 p-3 rounded-2xl border border-slate-800">
+                                            <div class="text-sky-400 font-black text-sm">10/10</div>
+                                            <div class="text-[10px] text-slate-400 mt-0.5">Google Ad Strength</div>
+                                        </div>
+                                        <div class="bg-obsidian-950 p-3 rounded-2xl border border-slate-800">
+                                            <div class="text-amber-400 font-black text-sm">+340%</div>
+                                            <div class="text-[10px] text-slate-400 mt-0.5">Expected CTR</div>
+                                        </div>
+                                        <div class="bg-obsidian-950 p-3 rounded-2xl border border-slate-800">
+                                            <div class="text-purple-400 font-black text-sm">-45%</div>
+                                            <div class="text-[10px] text-slate-400 mt-0.5">CPC Savings</div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- GOOGLE ECOSYSTEM EMPOWERMENT SUITE (Powered by Google Creative Tech) -->
-                                <div class="bg-gradient-to-br from-slate-900 via-[#0b1329] to-[#040817] rounded-2xl p-6 border-2 border-sky-500/30 space-y-6 shadow-xl relative overflow-hidden">
-                                    <div class="absolute -top-12 -left-12 w-40 h-40 bg-gradient-to-tr from-blue-500/10 via-red-500/10 to-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                                    <!-- Header with Google Brand Bar -->
-                                    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800 relative z-10">
-                                        <div class="flex items-center gap-2.5">
-                                            <!-- Google 4-Color Dots -->
-                                            <div class="flex items-center gap-1 bg-slate-950 px-2 py-1.5 rounded-lg border border-slate-800">
-                                                <span class="w-2.5 h-2.5 rounded-full bg-[#4285F4]"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-[#EA4335]"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-[#FBBC05]"></span>
-                                                <span class="w-2.5 h-2.5 rounded-full bg-[#34A853]"></span>
-                                            </div>
-                                            <div>
-                                                <h5 class="text-sm font-black text-white flex items-center gap-2">
-                                                    <span>ترسانة تقنيات جوجل الإبداعية والتسويقية (Google Creative Engine)</span>
-                                                </h5>
-                                                <p class="text-[11px] text-slate-400">دمج كامل لمعايير Google Material You 3، DeepMind Imagen 3، ومقياس Google Ads الممتاز</p>
-                                            </div>
-                                        </div>
-                                        <span class="text-[11px] bg-gradient-to-r from-blue-500/20 via-green-500/20 to-yellow-500/20 text-sky-300 font-extrabold px-3 py-1 rounded-full border border-sky-500/30">
-                                            Google Certified Standards
-                                        </span>
-                                    </div>
-
-                                    <!-- Google Feature 1: Google Ads Quality Score & Ad Strength (10/10) -->
-                                    <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3 relative z-10">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex items-center gap-2">
-                                                <i data-lucide="gauge" class="w-4 h-4 text-emerald-400"></i>
-                                                <span class="text-xs font-bold text-white">مقياس قوة الإعلان وجودة جوجل (Google Ad Strength):</span>
-                                            </div>
-                                            <span class="text-xs font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                                                ممتاز (Excellent) · 10/10
-                                            </span>
-                                        </div>
-                                        <!-- Progress Bar -->
-                                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden flex">
-                                            <div class="bg-[#4285F4] h-full w-[25%]" title="صلة الكلمات المفتاحية"></div>
-                                            <div class="bg-[#34A853] h-full w-[25%]" title="تنوع العناوين"></div>
-                                            <div class="bg-[#FBBC05] h-full w-[25%]" title="جودة صفحة الهبوط"></div>
-                                            <div class="bg-[#EA4335] h-full w-[25%]" title="معدل النقر المتوقع"></div>
-                                        </div>
-                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-slate-300 pt-1">
-                                            <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>تنوع العناوين: 100%</span></div>
-                                            <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>سرعة الهبوط: 1.1s</span></div>
-                                            <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>توقع النقرات: +340%</span></div>
-                                            <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i><span>توفير في النقرة: -45%</span></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Google Feature 2: DeepMind Imagen 3 & Veo 4K Master Prompts -->
-                                    <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-2 relative z-10">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
-                                                <i data-lucide="wand-2" class="w-4 h-4 text-purple-400"></i>
-                                                <span>أمر التوليد البصري الفائق (Google DeepMind Imagen 3 & Veo Engine):</span>
-                                            </span>
-                                            <button onclick="copyGooglePrompt()" class="text-[10px] text-amber-300 hover:text-amber-200 flex items-center gap-1 font-bold">
-                                                <i data-lucide="copy" class="w-3 h-3"></i>
-                                                <span>نسخ البرومبت الهندسي</span>
-                                            </button>
-                                        </div>
-                                        <textarea id="google-prompt-text" rows="2" readonly class="w-full bg-slate-900/90 border border-slate-800 rounded-lg p-2.5 text-[11px] text-slate-300 font-mono leading-relaxed focus:outline-none">Ultra-photorealistic close-up macro cinematography of natural Hollywood smile veneers, 8K resolution, shot on ARRI Alexa Mini LF 100mm f/1.8 macro cine lens, cinematic volumetric lighting, ray-traced porcelain translucency, subtle gold luxury rim light, realistic skin texture, high-end Saudi Riyadh aesthetic clinic, Google Veo camera slow pan right, 60fps --v 6.1 --style raw</textarea>
-                                    </div>
-
-                                    <!-- Google Feature 3: Google Core Web Vitals & Lighthouse 100/100 Certification -->
-                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center relative z-10">
-                                        <div class="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
-                                            <div class="w-10 h-10 rounded-full border-2 border-emerald-400 mx-auto flex items-center justify-center font-black text-emerald-400 text-xs">100</div>
-                                            <span class="text-[10px] text-slate-300 font-bold mt-1 block">الأداء (Performance)</span>
-                                            <span class="text-[9px] text-emerald-400">تحميل 1.1s</span>
-                                        </div>
-                                        <div class="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
-                                            <div class="w-10 h-10 rounded-full border-2 border-emerald-400 mx-auto flex items-center justify-center font-black text-emerald-400 text-xs">100</div>
-                                            <span class="text-[10px] text-slate-300 font-bold mt-1 block">إتاحة الاستخدام (A11y)</span>
-                                            <span class="text-[9px] text-emerald-400">متوافق 100%</span>
-                                        </div>
-                                        <div class="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
-                                            <div class="w-10 h-10 rounded-full border-2 border-emerald-400 mx-auto flex items-center justify-center font-black text-emerald-400 text-xs">100</div>
-                                            <span class="text-[10px] text-slate-300 font-bold mt-1 block">أفضل الممارسات</span>
-                                            <span class="text-[9px] text-emerald-400">معايير جوجل 2026</span>
-                                        </div>
-                                        <div class="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
-                                            <div class="w-10 h-10 rounded-full border-2 border-emerald-400 mx-auto flex items-center justify-center font-black text-emerald-400 text-xs">100</div>
-                                            <span class="text-[10px] text-slate-300 font-bold mt-1 block">محركات البحث (SEO)</span>
-                                            <span class="text-[9px] text-emerald-400">تصدر نتائج الرياض</span>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tab 4: Pricing & Final Approval -->
+                    <!-- Tab 4: Pricing & Final Approval (The Approval Desk) -->
                     <div id="tab-content-1-pricing" class="hidden space-y-4">
-                        <div class="p-5 rounded-xl bg-slate-900/90 border border-brand-border flex flex-wrap items-center justify-between gap-6">
+                        <div class="p-6 rounded-3xl bg-obsidian-950 border border-brand-border flex flex-wrap items-center justify-between gap-6">
                             <div>
-                                <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
-                                <div class="text-sm text-slate-300 font-bold mt-0.5">18,000 إلى 24,000 ريال / شهرياً</div>
+                                <div class="text-xs text-slate-400 font-semibold">السعر المقترح استرشادياً:</div>
+                                <div class="text-base text-slate-200 font-black mt-1">18,000 إلى 24,000 ريال / شهرياً ($4,800 - $6,400 USD)</div>
                                 <p class="text-[11px] text-slate-400 mt-1">يشمل 20 ريلز سينمائي + صفحة الحجز السريعة + إدارة إعلانات استقطاب المواعيد</p>
                             </div>
 
                             <div class="flex flex-wrap items-center gap-3">
                                 <div>
-                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة المعتمدة:</label>
-                                    <select id="currency-select-1" onchange="updateCurrencySymbol(1)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
+                                    <select id="currency-select-1" onchange="updateCurrencySymbol(1)" class="bg-obsidian-900 text-sky-300 font-bold border border-slate-700 rounded-xl px-3 py-2.5 text-xs focus:border-sky-500 focus:outline-none">
                                         <option value="SAR" selected>🇸🇦 SAR (ر.س - السعودية)</option>
                                         <option value="USD">🇺🇸 USD ($ - أمريكا / دولي)</option>
                                         <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
@@ -696,18 +595,18 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
-                                    <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
+                                    <div class="flex items-center bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2">
                                         <input type="number" id="price-input-1" value="22000" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
                                         <span id="currency-label-1" class="text-xs text-slate-400 mr-2 font-bold font-mono">SAR</span>
                                     </div>
                                 </div>
 
                                 <div class="pt-5 flex items-center gap-2">
-                                    <button onclick="approveLead(1)" id="btn-approve-1" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
+                                    <button onclick="approveLead(1)" id="btn-approve-1" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black shadow-xl shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
                                         <i data-lucide="check-circle" class="w-4 h-4"></i>
                                         <span>اعتماد السعر وإطلاق العرض</span>
                                     </button>
-                                    <button onclick="rejectLead(1)" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-700 text-xs font-bold transition">
+                                    <button onclick="rejectLead(1)" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-400 border border-slate-700 text-xs font-bold transition">
                                         استبعاد
                                     </button>
                                 </div>
@@ -717,127 +616,33 @@
                 </div>
             </div>
 
-            <!-- Lead Card 3: Global Luxury Hospitality & Fine Dining (London / New York / Dubai) -->
-            <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-3" data-region="europe usa gcc">
-                <div class="p-6 border-b border-brand-border/60 flex flex-wrap items-center justify-between gap-4 bg-slate-900/40">
+            <!-- Lead Card 2: Luxury Interior Architecture -->
+            <div class="glass-panel rounded-3xl border border-white/10 overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-2" data-region="gcc europe">
+                <div class="p-6 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-obsidian-900/60">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-black text-lg">
-                            <i data-lucide="utensils-crossed" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-lg font-bold text-white">مجموعة ذا هيريتدج للمطاعم الفاخرة (The Heritage Hospitality Group)</h3>
-                                <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[11px] px-2.5 py-0.5 rounded-full font-bold">لندن · Mayfair | نيويورك · Manhattan</span>
-                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] px-2 py-0.5 rounded-full font-medium">سلسلة فاخرة دولية</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mt-1">تخصص: مطاعم ميشلان، صالات ضيافة كبار الشخصيات، وبطاقات عضوية حصرية</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <span id="badge-status-3" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
-                            <i data-lucide="hourglass" class="w-3.5 h-3.5"></i>
-                            <span>بانتظار قرار المدير</span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Tabs Navigation -->
-                <div class="flex border-b border-brand-border text-xs font-bold px-6 bg-slate-950/40">
-                    <button onclick="switchTab(3, 'audit')" id="tab-btn-3-audit" class="py-3 px-4 text-sky-400 border-b-2 border-sky-400 flex items-center gap-1.5">
-                        <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
-                        <span>1. تشخيص الثغرات</span>
-                    </button>
-                    <button onclick="switchTab(3, 'pitch')" id="tab-btn-3-pitch" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
-                        <i data-lucide="message-square-text" class="w-4 h-4 text-sky-400"></i>
-                        <span>2. رسالة العرض الدولية</span>
-                    </button>
-                    <button onclick="switchTab(3, 'pricing')" id="tab-btn-3-pricing" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
-                        <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-purple-400"></i>
-                        <span>3. التسعير والعملة الدولية</span>
-                    </button>
-                </div>
-
-                <!-- Tab Contents -->
-                <div class="p-6">
-                    <div id="tab-content-3-audit" class="space-y-4">
-                        <div class="p-4 rounded-xl bg-purple-950/10 border border-purple-500/20 text-xs">
-                            <div class="font-bold text-purple-400 text-sm mb-1">ثغرة حجز الطاولات VIP وتراجع تفاعل ريلز الأطباق</div>
-                            <p class="text-slate-300 leading-relaxed">مطاعم ميشلان في لندن ونيويورك تعاني من ضعف تصوير فيديو تحضير الأطباق السينمائي (Culinary Cinematography)، وبطء مسارات حجز طاولات الـ Private Dining عبر منصات السوشيال ميديا.</p>
-                        </div>
-                    </div>
-
-                    <div id="tab-content-3-pitch" class="hidden space-y-3">
-                        <textarea id="pitch-text-3" rows="4" class="w-full bg-slate-900 border border-brand-border rounded-xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">Dear Management Team at The Heritage Group,
-We reviewed your high-end dining venues across Mayfair and Manhattan. While your Michelin-grade culinary execution is exceptional, your current video content lacks the high-retention culinary cinematography required to dominate TikTok and Instagram Reels in 2026.
-We engineered an ultra-fast VIP table reservation funnel and an 8K cinematic reel concept that drives fully-booked private dining lounges every weekend.
-Would you be open to reviewing a 2-minute interactive demo?</textarea>
-                    </div>
-
-                    <div id="tab-content-3-pricing" class="hidden space-y-4">
-                        <div class="p-5 rounded-xl bg-slate-900/90 border border-brand-border flex flex-wrap items-center justify-between gap-6">
-                            <div>
-                                <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
-                                <div class="text-sm text-slate-300 font-bold mt-0.5">$6,500 إلى $8,500 USD / شهرياً (أو ما يعادلها بالجنيه الإسترليني/اليورو)</div>
-                            </div>
-                            <div class="flex flex-wrap items-center gap-3">
-                                <div>
-                                    <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
-                                    <select id="currency-select-3" onchange="updateCurrencySymbol(3)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
-                                        <option value="USD" selected>🇺🇸 USD ($ - أمريكا / دولي)</option>
-                                        <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
-                                        <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
-                                        <option value="SAR">🇸🇦 SAR (ر.س - السعودية)</option>
-                                        <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
-                                        <option value="EGP">🇪🇬 EGP (ج.م - مصر)</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
-                                    <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
-                                        <input type="number" id="price-input-3" value="7500" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
-                                        <span id="currency-label-3" class="text-xs text-slate-400 mr-2 font-bold font-mono">USD</span>
-                                    </div>
-                                </div>
-                                <div class="pt-5">
-                                    <button onclick="approveLead(3)" id="btn-approve-3" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
-                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
-                                        <span>اعتماد السعر وإطلاق العرض</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lead Card 2: Luxury Interior Design -->
-            <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-2">
-                <div class="p-6 border-b border-brand-border/60 flex flex-wrap items-center justify-between gap-4 bg-slate-900/40">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-black text-lg">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
                             <i data-lucide="home" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <h3 class="text-lg font-bold text-white">استوديو ريادة للتصميم الداخلي والتشطيب الفاخر</h3>
-                                <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[11px] px-2.5 py-0.5 rounded-full font-bold">الرياض · حطين</span>
-                                <span class="bg-sky-500/10 text-sky-400 border border-sky-500/20 text-[11px] px-2 py-0.5 rounded-full font-medium">مشاريع قصور وفلل</span>
+                                <h3 class="text-lg font-bold text-white">استوديو ريادة للتصميم الداخلي وتشطيب القصور الفاخرة</h3>
+                                <span class="bg-amber-500/15 text-amber-400 border border-amber-500/30 text-[11px] px-2.5 py-0.5 rounded-full font-bold">الرياض · حطين</span>
+                                <span class="bg-sky-500/15 text-sky-400 border border-sky-500/30 text-[11px] px-2.5 py-0.5 rounded-full font-bold">مشاريع قصور وفلل</span>
                             </div>
                             <p class="text-xs text-slate-400 mt-1">تخصص: تصميم وتنفيذ القصور، الفلل المودرن، ومقرات الشركات VIP</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <span id="badge-status-2" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                        <span id="badge-status-2" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
                             <i data-lucide="hourglass" class="w-3.5 h-3.5"></i>
                             <span>بانتظار قرار المدير</span>
                         </span>
                     </div>
                 </div>
 
-                <!-- Tabs Navigation -->
-                <div class="flex border-b border-brand-border text-xs font-bold px-6 bg-slate-950/40">
+                <!-- Tabs -->
+                <div class="flex border-b border-white/5 text-xs font-bold px-6 bg-obsidian-950/60 overflow-x-auto">
                     <button onclick="switchTab(2, 'audit')" id="tab-btn-2-audit" class="py-3 px-4 text-sky-400 border-b-2 border-sky-400 flex items-center gap-1.5">
                         <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
                         <span>1. تشخيص الثغرات</span>
@@ -848,7 +653,7 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
                     </button>
                     <button onclick="switchTab(2, 'design')" id="tab-btn-2-design" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
                         <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
-                        <span>3. التصوير المعماري الحقيقي المنفذ</span>
+                        <span>3. التصوير المعماري الحقيقي 4K</span>
                     </button>
                     <button onclick="switchTab(2, 'pricing')" id="tab-btn-2-pricing" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
                         <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-purple-400"></i>
@@ -856,76 +661,72 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
                     </button>
                 </div>
 
-                <!-- Tab Contents -->
                 <div class="p-6">
                     <div id="tab-content-2-audit" class="space-y-4">
-                        <div class="p-4 rounded-xl bg-amber-950/10 border border-amber-500/20 text-xs">
+                        <div class="p-4 rounded-2xl bg-amber-950/15 border border-amber-500/20 text-xs">
                             <div class="font-bold text-amber-400 text-sm mb-1">ثغرة الاكتفاء بصور 3D وغياب الفيديو الواقعي</div>
                             <p class="text-slate-300 leading-relaxed">السوق تشبع بصور 3D المكررة. عملاء القصور في الرياض يبحثون عن جولات فيديو حقيقية للمشاريع المنفذة (Site Tours) تبرز فخامة الرخام وتوزيع الإضاءة المخفية.</p>
                         </div>
                     </div>
 
                     <div id="tab-content-2-pitch" class="hidden space-y-3">
-                        <textarea id="pitch-text-2" rows="4" class="w-full bg-slate-900 border border-brand-border rounded-xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">مساكم الله بالخير بشمهندس [الاسم]. تصاميم مشاريع الفلل عندكم ما شاء الله في منتهى الفخامة.
-أثناء مراجعتنا، رصدنا فجوة تسويقية: عملاء القصور يبحثون عن جولات فيديو واقعية تثبت دقة التنفيذ على أرض الواقع بدلاً من صور الـ 3D التي تشبع بها السوق.
+                        <textarea id="pitch-text-2" rows="4" class="w-full bg-obsidian-950 border border-slate-700 rounded-2xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">مساكم الله بالخير بشمهندس [الاسم]. تصاميم مشاريع الفلل عندكم ما شاء الله في منتهى الفخامة.
+عملاء القصور في الرياض يبحثون عن جولات فيديو واقعية تثبت دقة التنفيذ على أرض الواقع بدلاً من صور الـ 3D التي تشبع بها السوق.
 صممنا نموذج بورتفوليو رقمي سريع ونمط إخراج سينمائي يرفع إدراك العميل لقيمة مشاريعكم ويجعله يطلب استشارة فورية.
 يسعدنا مشاركتكم النموذج التجريبي لنرى رأيكم الهندسي؟</textarea>
                     </div>
 
-                    <!-- Tab 2 Design: Real Architectural Photography Showcase -->
+                    <!-- Real Architectural Photo Tab -->
                     <div id="tab-content-2-design" class="hidden space-y-4">
-                        <div class="bg-slate-900/90 rounded-2xl p-5 border border-brand-border space-y-4">
+                        <div class="glass-panel rounded-3xl p-5 border border-white/5 space-y-4">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <h5 class="text-sm font-bold text-white flex items-center gap-2">
                                         <i data-lucide="camera" class="w-4 h-4 text-emerald-400"></i>
-                                        <span>التصوير المعماري السينمائي الحقيقي (Architectural Digest Grade)</span>
+                                        <span>التصوير المعماري الحقيقي لقصر مودرن (Architectural Digest Grade)</span>
                                     </h5>
-                                    <p class="text-[11px] text-slate-400">صورة معمارية حقيقية 16:9 لقصر مودرن بالرياض — رخام كالاكاتا جولد وإضاءة مخفية مخصصة للعميل</p>
+                                    <p class="text-[11px] text-slate-400">رخام إيطالي كالاكاتا جولد، أسقف بارتفاع مزدوج، وإضاءة مخفية مخصصة للعميل</p>
                                 </div>
-                                <span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">صورة حقيقية فعلية 4K</span>
+                                <span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">صورة حقيقية 4K</span>
                             </div>
 
                             <div class="relative w-full rounded-2xl overflow-hidden border border-slate-700 shadow-2xl group">
-                                <img src="assets/riyadh_luxury_villa_interior_1794673873627.jpg" alt="Riyadh Luxury Villa Palace Architectural Interior" class="w-full h-80 object-cover group-hover:scale-105 transition-all duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
-                                    <span class="text-amber-400 text-xs font-black uppercase tracking-wider">RIYADH MODERN PALACE · INTERIOR FIT-OUT</span>
-                                    <h4 class="text-white font-black text-lg mt-1">مشروع قصر حطين الفاخر — تنفيذ وتشطيب استوديو ريادة</h4>
-                                    <p class="text-xs text-slate-300 mt-1">أسقف مزدوجة الارتفاع، رخام إيطالي كالاكاتا، وزجاج بانورامي على الواحة الداخلية</p>
+                                <img src="assets/riyadh_luxury_villa_interior_1794673873627.jpg" alt="Riyadh Luxury Villa" class="w-full h-80 object-cover group-hover:scale-105 transition-all duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex flex-col justify-end p-6">
+                                    <span class="text-amber-400 text-xs font-black uppercase tracking-wider">RIYADH MODERN PALACE · ARCHITECTURAL FIT-OUT</span>
+                                    <h4 class="text-white font-black text-lg mt-1">مشروع قصر حطين الفاخر — تنفيذ استوديو ريادة</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div id="tab-content-2-pricing" class="hidden space-y-4">
-                        <div class="p-5 rounded-xl bg-slate-900/90 border border-brand-border flex flex-wrap items-center justify-between gap-6">
+                        <div class="p-6 rounded-3xl bg-obsidian-950 border border-brand-border flex flex-wrap items-center justify-between gap-6">
                             <div>
-                                <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
-                                <div class="text-sm text-slate-300 font-bold mt-0.5">16,000 إلى 20,000 ريال / شهرياً</div>
+                                <div class="text-xs text-slate-400 font-semibold">السعر المقترح استرشادياً:</div>
+                                <div class="text-base text-slate-200 font-black mt-1">16,000 إلى 20,000 ريال / شهرياً ($4,200 - $5,300 USD)</div>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
                                 <div>
                                     <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
-                                    <select id="currency-select-2" onchange="updateCurrencySymbol(2)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                    <select id="currency-select-2" onchange="updateCurrencySymbol(2)" class="bg-obsidian-900 text-sky-300 font-bold border border-slate-700 rounded-xl px-3 py-2.5 text-xs focus:border-sky-500 focus:outline-none">
                                         <option value="SAR" selected>🇸🇦 SAR (ر.س - السعودية)</option>
                                         <option value="USD">🇺🇸 USD ($ - أمريكا / دولي)</option>
                                         <option value="AED">🇦🇪 AED (د.إ - الإمارات)</option>
                                         <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
                                         <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
                                         <option value="EGP">🇪🇬 EGP (ج.م - مصر)</option>
-                                        <option value="KWD">🇰🇼 KWD (د.ك - الكويت)</option>
-                                        <option value="QAR">🇶🇦 QAR (ر.ق - قطر)</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
-                                    <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
+                                    <div class="flex items-center bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2">
                                         <input type="number" id="price-input-2" value="18000" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
                                         <span id="currency-label-2" class="text-xs text-slate-400 mr-2 font-bold font-mono">SAR</span>
                                     </div>
                                 </div>
                                 <div class="pt-5">
-                                    <button onclick="approveLead(2)" id="btn-approve-2" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
+                                    <button onclick="approveLead(2)" id="btn-approve-2" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black shadow-xl shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
                                         <i data-lucide="check-circle" class="w-4 h-4"></i>
                                         <span>اعتماد السعر وإطلاق العرض</span>
                                     </button>
@@ -936,33 +737,33 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
                 </div>
             </div>
 
-            <!-- Lead Card 3: Global Luxury Hospitality & Fine Dining (London / New York / Dubai) -->
-            <div class="bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-3" data-region="europe usa gcc">
-                <div class="p-6 border-b border-brand-border/60 flex flex-wrap items-center justify-between gap-4 bg-slate-900/40">
+            <!-- Lead Card 3: International Hospitality Group (London & New York) -->
+            <div class="glass-panel rounded-3xl border border-white/10 overflow-hidden transition-all duration-300 hover:border-slate-700" id="card-lead-3" data-region="europe usa">
+                <div class="p-6 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-obsidian-900/60">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-black text-lg">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
                             <i data-lucide="utensils-crossed" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <h3 class="text-lg font-bold text-white">مجموعة ذا هيريتدج للمطاعم الفاخرة (The Heritage Hospitality Group)</h3>
-                                <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[11px] px-2.5 py-0.5 rounded-full font-bold">لندن · Mayfair | نيويورك · Manhattan</span>
-                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] px-2 py-0.5 rounded-full font-medium">سلسلة فاخرة دولية</span>
+                                <h3 class="text-lg font-bold text-white">The Heritage Luxury Hospitality Group</h3>
+                                <span class="bg-blue-500/15 text-blue-400 border border-blue-500/30 text-[11px] px-2.5 py-0.5 rounded-full font-bold">لندن · Mayfair | نيويورك · Manhattan</span>
+                                <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[11px] px-2.5 py-0.5 rounded-full font-bold">International Group</span>
                             </div>
                             <p class="text-xs text-slate-400 mt-1">تخصص: مطاعم ميشلان، صالات ضيافة كبار الشخصيات، وبطاقات عضوية حصرية</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <span id="badge-status-3" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                        <span id="badge-status-3" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
                             <i data-lucide="hourglass" class="w-3.5 h-3.5"></i>
                             <span>بانتظار قرار المدير</span>
                         </span>
                     </div>
                 </div>
 
-                <!-- Tabs Navigation -->
-                <div class="flex border-b border-brand-border text-xs font-bold px-6 bg-slate-950/40">
+                <!-- Tabs -->
+                <div class="flex border-b border-white/5 text-xs font-bold px-6 bg-obsidian-950/60 overflow-x-auto">
                     <button onclick="switchTab(3, 'audit')" id="tab-btn-3-audit" class="py-3 px-4 text-sky-400 border-b-2 border-sky-400 flex items-center gap-1.5">
                         <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
                         <span>1. تشخيص الثغرات</span>
@@ -977,32 +778,31 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
                     </button>
                 </div>
 
-                <!-- Tab Contents -->
                 <div class="p-6">
                     <div id="tab-content-3-audit" class="space-y-4">
-                        <div class="p-4 rounded-xl bg-purple-950/10 border border-purple-500/20 text-xs">
-                            <div class="font-bold text-purple-400 text-sm mb-1">ثغرة حجز الطاولات VIP وتراجع تفاعل ريلز الأطباق</div>
+                        <div class="p-4 rounded-2xl bg-purple-950/15 border border-purple-500/20 text-xs">
+                            <div class="font-bold text-purple-400 text-sm mb-1">ثغرة حجز طاولات كبار الشخصيات وضعف فيديو الأطباق</div>
                             <p class="text-slate-300 leading-relaxed">مطاعم ميشلان في لندن ونيويورك تعاني من ضعف تصوير فيديو تحضير الأطباق السينمائي (Culinary Cinematography)، وبطء مسارات حجز طاولات الـ Private Dining عبر منصات السوشيال ميديا.</p>
                         </div>
                     </div>
 
                     <div id="tab-content-3-pitch" class="hidden space-y-3">
-                        <textarea id="pitch-text-3" rows="4" class="w-full bg-slate-900 border border-brand-border rounded-xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none">Dear Management Team at The Heritage Group,
+                        <textarea id="pitch-text-3" rows="4" class="w-full bg-obsidian-950 border border-slate-700 rounded-2xl p-4 text-xs text-slate-200 leading-relaxed focus:border-sky-500 focus:outline-none font-sans">Dear Management Team at The Heritage Group,
 We reviewed your high-end dining venues across Mayfair and Manhattan. While your Michelin-grade culinary execution is exceptional, your current video content lacks the high-retention culinary cinematography required to dominate TikTok and Instagram Reels in 2026.
 We engineered an ultra-fast VIP table reservation funnel and an 8K cinematic reel concept that drives fully-booked private dining lounges every weekend.
 Would you be open to reviewing a 2-minute interactive demo?</textarea>
                     </div>
 
                     <div id="tab-content-3-pricing" class="hidden space-y-4">
-                        <div class="p-5 rounded-xl bg-slate-900/90 border border-brand-border flex flex-wrap items-center justify-between gap-6">
+                        <div class="p-6 rounded-3xl bg-obsidian-950 border border-brand-border flex flex-wrap items-center justify-between gap-6">
                             <div>
-                                <div class="text-xs text-slate-400 font-medium">السعر الشهري المقترح استرشادياً:</div>
-                                <div class="text-sm text-slate-300 font-bold mt-0.5">$6,500 إلى $8,500 USD / شهرياً (أو ما يعادلها بالجنيه الإسترليني/اليورو)</div>
+                                <div class="text-xs text-slate-400 font-semibold">السعر الشهري المقترح استرشادياً:</div>
+                                <div class="text-base text-slate-200 font-black mt-1">$6,500 إلى $8,500 USD / شهرياً (£5,200 - £6,800 GBP)</div>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
                                 <div>
                                     <label class="block text-xs font-bold text-sky-400 mb-1">العملة الدولية:</label>
-                                    <select id="currency-select-3" onchange="updateCurrencySymbol(3)" class="bg-slate-950 text-sky-300 font-bold border border-slate-700 rounded-xl px-2.5 py-2 text-xs focus:border-sky-500 focus:outline-none">
+                                    <select id="currency-select-3" onchange="updateCurrencySymbol(3)" class="bg-obsidian-900 text-sky-300 font-bold border border-slate-700 rounded-xl px-3 py-2.5 text-xs focus:border-sky-500 focus:outline-none">
                                         <option value="USD" selected>🇺🇸 USD ($ - أمريكا / دولي)</option>
                                         <option value="GBP">🇬🇧 GBP (£ - بريطانيا)</option>
                                         <option value="EUR">🇪🇺 EUR (€ - أوروبا)</option>
@@ -1013,13 +813,13 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-sky-400 mb-1">حدد السعر المعتمد:</label>
-                                    <div class="flex items-center bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5">
+                                    <div class="flex items-center bg-obsidian-900 border border-slate-700 rounded-xl px-3 py-2">
                                         <input type="number" id="price-input-3" value="7500" class="bg-transparent text-white font-black text-sm w-24 focus:outline-none text-left" dir="ltr">
                                         <span id="currency-label-3" class="text-xs text-slate-400 mr-2 font-bold font-mono">USD</span>
                                     </div>
                                 </div>
                                 <div class="pt-5">
-                                    <button onclick="approveLead(3)" id="btn-approve-3" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition active:scale-95">
+                                    <button onclick="approveLead(3)" id="btn-approve-3" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black shadow-xl shadow-emerald-500/25 flex items-center gap-2 transition active:scale-95">
                                         <i data-lucide="check-circle" class="w-4 h-4"></i>
                                         <span>اعتماد السعر وإطلاق العرض</span>
                                     </button>
@@ -1033,7 +833,12 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
 
     </main>
 
-    <!-- Interactive Script -->
+    <!-- Footer -->
+    <footer class="border-t border-white/5 text-center py-6 text-xs text-slate-500 glass-panel">
+        © 2026 Nexus Sovereign Global Agency OS · Engineered with Precision for Ahmed Morgan
+    </footer>
+
+    <!-- Interactive Scripts -->
     <script>
         // Tab Switcher
         function switchTab(leadId, tabName) {
@@ -1053,20 +858,11 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             });
         }
 
-        // Currency Symbol Updater
-        function updateCurrencySymbol(leadId) {
-            const select = document.getElementById(`currency-select-${leadId}`);
-            const label = document.getElementById(`currency-label-${leadId}`);
-            if (select && label) {
-                label.innerText = select.value;
-            }
-        }
-
-        // Region Filter Handler
+        // Region Filter
         function filterRegion(region) {
             const cards = [
                 { id: 1, region: 'gcc' },
-                { id: 2, region: 'gcc' },
+                { id: 2, region: 'gcc europe' },
                 { id: 3, region: 'europe usa' }
             ];
 
@@ -1082,7 +878,16 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             });
         }
 
-        // Approve Lead Handler (Multi-Currency)
+        // Currency Symbol Updater
+        function updateCurrencySymbol(leadId) {
+            const select = document.getElementById(`currency-select-${leadId}`);
+            const label = document.getElementById(`currency-label-${leadId}`);
+            if (select && label) {
+                label.innerText = select.value;
+            }
+        }
+
+        // Approve Lead Handler
         function approveLead(leadId) {
             const price = document.getElementById(`price-input-${leadId}`).value;
             const currencySelect = document.getElementById(`currency-select-${leadId}`);
@@ -1090,22 +895,22 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             const badge = document.getElementById(`badge-status-${leadId}`);
             const btn = document.getElementById(`btn-approve-${leadId}`);
             
-            badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5";
+            badge.className = "px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5";
             badge.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>معتمد بسعر ${Number(price).toLocaleString()} ${currency} ✅</span>`;
             
-            btn.className = "px-5 py-2 rounded-xl bg-slate-800 text-slate-400 border border-slate-700 text-xs font-bold cursor-not-allowed";
+            btn.className = "px-6 py-2.5 rounded-xl bg-slate-800 text-slate-400 border border-slate-700 text-xs font-bold cursor-not-allowed";
             btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>تم الاعتماد</span>`;
             btn.disabled = true;
 
             lucide.createIcons();
-            alert(`تم اعتماد الصفقة رقم #${leadId} بنجاح!\nالسعر المعتمد: ${Number(price).toLocaleString()} ${currency}\n\nسيتم تجهيز إرسال رسالة العرض والعينة عبر الوكيل الخامس.`);
+            alert(`✅ تم اعتماد الصفقة رقم #${leadId} بنجاح!\nالمبلغ المعتمد: ${Number(price).toLocaleString()} ${currency}\n\nيمكنك الآن نسخ نص الرسالة وإرسالها للعميل فوراً.`);
         }
 
         // Reject Lead Handler
         function rejectLead(leadId) {
             if (confirm("هل أنت متأكد من استبعاد هذا العميل من الدورة الحالية؟")) {
                 const card = document.getElementById(`card-lead-${leadId}`);
-                card.style.opacity = '0.4';
+                card.style.opacity = '0.35';
                 const badge = document.getElementById(`badge-status-${leadId}`);
                 badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30";
                 badge.innerText = "تم الاستبعاد ❌";
@@ -1119,7 +924,7 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             alert("تم نسخ نص الرسالة للحافظة بنجاح!");
         }
 
-        // Interactive Before/After Slider Function
+        // Before/After Slider
         function updateBeforeAfter(val) {
             const overlay = document.getElementById('slider-before-overlay');
             if (overlay) {
@@ -1127,36 +932,25 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             }
         }
 
-        // Interactive Reel Scene Simulator Function
+        // Reel Player Simulator
         function playReelScene(leadId, sceneNum) {
-            const screen = document.getElementById(`reel-screen-${leadId}`);
             const caption = document.getElementById(`reel-caption-${leadId}`);
             const timer = document.getElementById(`reel-timer-${leadId}`);
 
             if (sceneNum === 1) {
-                screen.className = "absolute inset-0 bg-gradient-to-b from-[#0b1329] via-[#040817] to-[#01030a] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700";
-                caption.innerHTML = '"الابتسامة اللي تليق بحضورك في الرياض"';
+                caption.innerHTML = '"الابتسامة التي تليق بحضورك في الرياض"';
                 timer.innerText = "00:03 / 00:15";
             } else if (sceneNum === 2) {
-                screen.className = "absolute inset-0 bg-gradient-to-b from-[#022c22] via-[#064e3b] to-[#021f18] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700";
                 caption.innerHTML = '<span class="text-emerald-300">"مسح رقمي 3D فائق الدقة بدون ألم"</span>';
                 timer.innerText = "00:08 / 00:15";
             } else if (sceneNum === 3) {
-                screen.className = "absolute inset-0 bg-gradient-to-b from-[#311042] via-[#1a0928] to-[#0b0412] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700";
                 caption.innerHTML = '<span class="text-amber-300">"جاهز لابتسامتك الجديدة؟ احجز الآن"</span>';
                 timer.innerText = "00:14 / 00:15";
             }
             lucide.createIcons();
         }
 
-        // Copy Google DeepMind Prompt Function
-        function copyGooglePrompt() {
-            const promptText = document.getElementById('google-prompt-text').value;
-            navigator.clipboard.writeText(promptText);
-            alert("تم نسخ البرومبت الهندسي الفائق لـ Google DeepMind Imagen 3 & Veo بنجاح!");
-        }
-
-        // SHA-256 Hashing Function
+        // SHA-256 Hashing & Security Gate
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -1164,7 +958,6 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // Master Passcode Security Hash
         const MASTER_PASSCODE_HASH = "ff0a5f39b703f6d02441f3b42aa02af28bc400cd8193ffd8fb1f4c4d245444c5";
 
         async function verifyPasscode() {
