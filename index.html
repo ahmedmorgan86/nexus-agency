@@ -297,61 +297,193 @@
 هل يناسبكم إرسال النموذج هنا للاطلاع عليه في دقيقتين؟</textarea>
                     </div>
 
-                    <!-- Tab 3: Design -->
-                    <div id="tab-content-1-design" class="hidden space-y-6">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <!-- Visual Ad Preview -->
-                            <div class="bg-slate-900/90 rounded-xl p-5 border border-brand-border">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-xs font-bold text-emerald-400 flex items-center gap-1">
-                                        <i data-lucide="image" class="w-4 h-4"></i>
-                                        <span>معاينة الإعلان البصري المولد (Social Creative)</span>
-                                    </span>
-                                    <span class="text-[10px] text-slate-400">1080x1350</span>
+                    <!-- Tab 3: Design (World-Class Creative & Cinema Suite) -->
+                    <div id="tab-content-1-design" class="hidden space-y-8">
+                        <!-- Top Header for Creative Suite -->
+                        <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-gradient-to-r from-sky-950/40 via-purple-950/30 to-slate-900 border border-sky-500/30">
+                            <div>
+                                <span class="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Awwwards / Behance Grade</span>
+                                <h4 class="text-base font-black text-white mt-1 flex items-center gap-2">
+                                    <i data-lucide="clapperboard" class="w-5 h-5 text-sky-400"></i>
+                                    <span>جناح الإنتاج البصري والمونتاج السينمائي المتقدم (Elite Creative Suite)</span>
+                                </h4>
+                                <p class="text-xs text-slate-300">مخرجات وكيل الإخراج والمونتاج الذكي: تصوير سينمائي 4K، سلايدر مقارنة تفاعلي، ومؤثرات صوتية هوليوودية</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs bg-slate-900/90 text-emerald-400 font-bold px-3 py-1.5 rounded-lg border border-emerald-500/30 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <span>تصدير فوري 4K / 60 FPS</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 3-Column Creative Grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                            <!-- Column 1: Interactive Reel & Video Simulator (5 Cols) -->
+                            <div class="lg:col-span-5 bg-slate-900/90 rounded-2xl p-5 border border-brand-border flex flex-col justify-between space-y-4">
+                                <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
+                                        <span class="text-xs font-bold text-white">مشغل الريلز السينمائي التفاعلي (Reel Simulator 9:16)</span>
+                                    </div>
+                                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">1080 × 1920</span>
                                 </div>
-                                <div class="aspect-[4/5] bg-gradient-to-b from-[#0b1329] to-[#040814] rounded-lg border border-slate-800 p-6 flex flex-col justify-between text-center relative overflow-hidden">
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent"></div>
-                                    <div class="relative z-10">
-                                        <div class="text-[11px] text-amber-400 font-bold tracking-widest uppercase">ELITE MEDICAL AESTHETICS</div>
-                                        <h4 class="text-lg font-black text-white mt-3 leading-snug">الابتسامة التي تليق بحضورك في الرياض</h4>
+
+                                <!-- Smartphone Frame with Interactive Reel Screen -->
+                                <div class="w-full max-w-[280px] mx-auto aspect-[9/16] bg-black rounded-[36px] p-3 shadow-2xl shadow-sky-950/50 border-4 border-slate-700 relative overflow-hidden flex flex-col justify-between">
+                                    <!-- Dynamic Island / Speaker Notch -->
+                                    <div class="w-20 h-4 bg-slate-900 rounded-full mx-auto relative z-30 flex items-center justify-center">
+                                        <div class="w-2 h-2 rounded-full bg-slate-800 mr-2"></div>
                                     </div>
-                                    <div class="relative z-10 my-4 py-8 border-y border-slate-800/80 bg-slate-950/40 rounded-xl">
-                                        <i data-lucide="sparkle" class="w-8 h-8 text-amber-400 mx-auto mb-2 animate-pulse"></i>
-                                        <div class="text-xs text-slate-300 font-semibold">محاكاة رقمية ثلاثية الأبعاد قبل البدء</div>
-                                        <div class="text-[11px] text-slate-400 mt-1">بإشراف نخبة كبار الاستشاريين · أجنحة VIP خاصة</div>
-                                    </div>
-                                    <div class="relative z-10">
-                                        <div class="bg-emerald-500 text-white font-bold text-xs py-2.5 rounded-lg shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
-                                            <i data-lucide="message-circle" class="w-4 h-4"></i>
-                                            <span>احجز جلستك الاستشارية عبر واتساب</span>
+
+                                    <!-- Video Layer (Simulated Scene with Motion Gradient & Macro Glow) -->
+                                    <div id="reel-screen-1" class="absolute inset-0 bg-gradient-to-b from-[#0b1329] via-[#040817] to-[#01030a] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700">
+                                        <!-- Top Info -->
+                                        <div class="flex items-center justify-between text-[10px] text-white/80 z-20">
+                                            <span class="font-bold bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">@elite_clinics_ryd</span>
+                                            <span class="bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded text-[9px] font-bold">4K PRORES</span>
                                         </div>
+
+                                        <!-- Center Visual Hook Display -->
+                                        <div class="my-auto relative z-20 py-4">
+                                            <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-amber-400/20 via-sky-400/20 to-emerald-400/20 flex items-center justify-center border border-amber-400/30 mb-3 shadow-lg shadow-amber-500/10">
+                                                <i data-lucide="sparkles" class="w-10 h-10 text-amber-300 animate-pulse"></i>
+                                            </div>
+                                            <div id="reel-caption-1" class="text-white font-black text-sm leading-tight drop-shadow-md">
+                                                "الابتسامة اللي تليق بحضورك في الرياض"
+                                            </div>
+                                            <div class="text-[10px] text-amber-300 mt-1 font-semibold">استشارة رقمية ثلاثية الأبعاد فورية</div>
+                                        </div>
+
+                                        <!-- Bottom Overlay: Sound Wave & CTA -->
+                                        <div class="space-y-2 z-20">
+                                            <!-- Sound Wave Equalizer Animation -->
+                                            <div class="flex items-center justify-center gap-1 h-4">
+                                                <span class="w-1 bg-amber-400 rounded-full animate-bounce h-2"></span>
+                                                <span class="w-1 bg-amber-400 rounded-full animate-bounce h-4" style="animation-delay: 0.1s"></span>
+                                                <span class="w-1 bg-amber-400 rounded-full animate-bounce h-3" style="animation-delay: 0.2s"></span>
+                                                <span class="w-1 bg-amber-400 rounded-full animate-bounce h-4" style="animation-delay: 0.15s"></span>
+                                                <span class="w-1 bg-amber-400 rounded-full animate-bounce h-1" style="animation-delay: 0.3s"></span>
+                                                <span class="text-[9px] text-slate-300 font-mono mr-1">Cinematic Sound FX</span>
+                                            </div>
+
+                                            <div class="bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold text-[11px] py-2 rounded-xl shadow-lg shadow-emerald-500/30 flex items-center justify-center gap-1.5 transition">
+                                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                                                <span>احجز موعدك الآن عبر واتساب</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Video Player Controls & Timeline Scrubber -->
+                                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-2 text-xs">
+                                    <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                                        <span id="reel-timer-1">00:03 / 00:15</span>
+                                        <span class="text-sky-400 font-semibold">Speed Ramp · 100mm Macro Cine</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden flex">
+                                        <div class="bg-amber-400 h-full w-[20%]"></div>
+                                        <div class="bg-sky-400 h-full w-[40%]"></div>
+                                        <div class="bg-emerald-400 h-full w-[40%]"></div>
+                                    </div>
+                                    <div class="flex items-center justify-between pt-1">
+                                        <button onclick="playReelScene(1, 1)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-1 rounded">1. الهوك (0-3s)</button>
+                                        <button onclick="playReelScene(1, 2)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-sky-300 px-2 py-1 rounded">2. التكنولوجيا (4-9s)</button>
+                                        <button onclick="playReelScene(1, 3)" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-emerald-300 px-2 py-1 rounded">3. الإغلاق (10-15s)</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Mobile Landing Page Preview -->
-                            <div class="bg-slate-900/90 rounded-xl p-5 border border-brand-border">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-xs font-bold text-sky-400 flex items-center gap-1">
-                                        <i data-lucide="smartphone" class="w-4 h-4"></i>
-                                        <span>معاينة صفحة الهبوط السريعة للجوال (Landing Page)</span>
-                                    </span>
-                                    <span class="text-[10px] text-emerald-400 font-semibold">تحميل: 1.1s</span>
-                                </div>
-                                <div class="bg-[#0b1329] rounded-lg border border-slate-800 p-5 space-y-4 text-xs">
-                                    <div class="text-center pb-3 border-b border-slate-800">
-                                        <span class="text-[10px] text-amber-400 font-bold">جلسة الابتسامة الرقمية المتكاملة</span>
-                                        <h5 class="text-sm font-black text-white mt-1">عيادات النخبة للجلدية وتجميل الأسنان</h5>
+                            <!-- Column 2: Interactive Before/After Smile Slider & Ad Canvas (7 Cols) -->
+                            <div class="lg:col-span-7 space-y-6">
+
+                                <!-- Interactive Before & After Visual Slider -->
+                                <div class="bg-slate-900/90 rounded-2xl p-5 border border-brand-border space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h5 class="text-sm font-bold text-white flex items-center gap-2">
+                                                <i data-lucide="split-square-vertical" class="w-4 h-4 text-amber-400"></i>
+                                                <span>سلايدر المقارنة التفاعلي (Interactive Before/After Slider)</span>
+                                            </h5>
+                                            <p class="text-[11px] text-slate-400">حرك المؤشر يميناً ويساراً لمشاهدة تأثير تقنية تجميل وابتسامة هوليوود الرقمية</p>
+                                        </div>
+                                        <span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-0.5 rounded-full border border-amber-500/30 font-bold">عنصر تفاعلي بالصفحة</span>
                                     </div>
-                                    <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800 space-y-1.5">
-                                        <div class="text-[11px] text-sky-400 font-bold">✨ مميزات الحجز معنا:</div>
-                                        <p class="text-slate-300 text-[11px]">فحص ثلاثي الأبعاد بالأشعة المقطعية مع معاينة النتيجة قبل التنفيذ وبدون فترات انتظار.</p>
+
+                                    <!-- Slider Container -->
+                                    <div class="relative w-full h-56 rounded-xl overflow-hidden border border-slate-700 select-none bg-slate-950">
+                                        <!-- After Image Simulation (Right / Background) -->
+                                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/60 via-slate-900 to-amber-950/40 flex items-center justify-center p-6 text-center">
+                                            <div class="space-y-2">
+                                                <span class="text-xs bg-emerald-500 text-white font-black px-2.5 py-0.5 rounded-full shadow">بعد: ابتسامة هوليوود الطبيعية</span>
+                                                <div class="text-xl font-black text-amber-300 mt-2">تناسق متقن وخزف طبيعي عالي الشفافية</div>
+                                                <div class="text-xs text-slate-300">محاذاة هندسية دقيقة ولون متطابق مع لون البشرة</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Before Image Simulation (Left / Foreground clipped) -->
+                                        <div id="slider-before-overlay" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-red-950/40 flex items-center justify-center p-6 text-center border-l-2 border-amber-400" style="width: 50%;">
+                                            <div class="space-y-2">
+                                                <span class="text-xs bg-red-500 text-white font-black px-2.5 py-0.5 rounded-full shadow">قبل: تصبغات وعدم انتظام</span>
+                                                <div class="text-lg font-black text-slate-300 mt-2">تزاحم في القواطع وفقدان لبريق الأسنان</div>
+                                                <div class="text-xs text-slate-400">الحالة المبدئية قبل التصميم الرقمي</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Range Input Controller -->
+                                        <input type="range" min="0" max="100" value="50" oninput="updateBeforeAfter(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
                                     </div>
-                                    <button class="w-full bg-emerald-500 text-white font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-1.5">
-                                        <i data-lucide="calendar-check" class="w-3.5 h-3.5"></i>
-                                        <span>تأكيد موعد استشارة فورية عبر الواتساب</span>
-                                    </button>
+                                    <div class="flex items-center justify-between text-[11px] text-slate-400 font-semibold px-1">
+                                        <span>← اسحب لليسار لرؤية النتيجة النهائية</span>
+                                        <span>اسحب لليمين لمشاهدة الحالة الأولى →</span>
+                                    </div>
                                 </div>
+
+                                <!-- Film Director & Production Specs Board (Technical Breakdown) -->
+                                <div class="bg-slate-900/90 rounded-2xl p-5 border border-brand-border space-y-4">
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                        <h5 class="text-sm font-bold text-sky-400 flex items-center gap-2">
+                                            <i data-lucide="film" class="w-4 h-4"></i>
+                                            <span>البطاقة الفنية للمونتير والمصور (Cinematography Specs)</span>
+                                        </h5>
+                                        <span class="text-[10px] text-slate-400 font-mono">DOP & Colorist Notes</span>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
+                                            <span class="text-slate-400 text-[10px] block">الكاميرا والعدسة</span>
+                                            <span class="text-white font-bold text-[11px] mt-0.5 block">ARRI 4K + 100mm Macro</span>
+                                        </div>
+                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
+                                            <span class="text-slate-400 text-[10px] block">هندسة الإضاءة</span>
+                                            <span class="text-amber-300 font-bold text-[11px] mt-0.5 block">Rim Light + Softbox 120cm</span>
+                                        </div>
+                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
+                                            <span class="text-slate-400 text-[10px] block">التلوين السينمائي</span>
+                                            <span class="text-emerald-300 font-bold text-[11px] mt-0.5 block">Kodak 2383 Medical LUT</span>
+                                        </div>
+                                        <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80">
+                                            <span class="text-slate-400 text-[10px] block">المؤثرات الصوتية</span>
+                                            <span class="text-sky-300 font-bold text-[11px] mt-0.5 block">Deep Sub-Bass + Riser</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Typography & Color Identity -->
+                                    <div class="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-800/60">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-slate-400 text-[11px]">لوحة الألوان المعتمدة:</span>
+                                            <span class="w-4 h-4 rounded-full bg-[#0b1329] border border-slate-700 shadow" title="كحلي ملكي"></span>
+                                            <span class="w-4 h-4 rounded-full bg-[#d4af37] border border-slate-700 shadow" title="ذهب صحراوي مطفأ"></span>
+                                            <span class="w-4 h-4 rounded-full bg-[#10b981] border border-slate-700 shadow" title="زمردي طبي"></span>
+                                            <span class="w-4 h-4 rounded-full bg-[#ffffff] border border-slate-700 shadow" title="أبيض سيراميكي"></span>
+                                        </div>
+                                        <div class="text-[11px] text-slate-400">
+                                            <span>الخطوط:</span> <strong class="text-slate-200">Tajawal Display Bold</strong> + <strong class="text-slate-200">Cairo</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -528,6 +660,36 @@
             const text = document.getElementById(`pitch-text-${leadId}`).value;
             navigator.clipboard.writeText(text);
             alert("تم نسخ نص الرسالة للحافظة بنجاح!");
+        }
+
+        // Interactive Before/After Slider Function
+        function updateBeforeAfter(val) {
+            const overlay = document.getElementById('slider-before-overlay');
+            if (overlay) {
+                overlay.style.width = `${val}%`;
+            }
+        }
+
+        // Interactive Reel Scene Simulator Function
+        function playReelScene(leadId, sceneNum) {
+            const screen = document.getElementById(`reel-screen-${leadId}`);
+            const caption = document.getElementById(`reel-caption-${leadId}`);
+            const timer = document.getElementById(`reel-timer-${leadId}`);
+
+            if (sceneNum === 1) {
+                screen.className = "absolute inset-0 bg-gradient-to-b from-[#0b1329] via-[#040817] to-[#01030a] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700";
+                caption.innerHTML = '"الابتسامة اللي تليق بحضورك في الرياض"';
+                timer.innerText = "00:03 / 00:15";
+            } else if (sceneNum === 2) {
+                screen.className = "absolute inset-0 bg-gradient-to-b from-[#022c22] via-[#064e3b] to-[#021f18] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700";
+                caption.innerHTML = '<span class="text-emerald-300">"مسح رقمي 3D فائق الدقة بدون ألم"</span>';
+                timer.innerText = "00:08 / 00:15";
+            } else if (sceneNum === 3) {
+                screen.className = "absolute inset-0 bg-gradient-to-b from-[#311042] via-[#1a0928] to-[#0b0412] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700";
+                caption.innerHTML = '<span class="text-amber-300">"جاهز لابتسامتك الجديدة؟ احجز الآن"</span>';
+                timer.innerText = "00:14 / 00:15";
+            }
+            lucide.createIcons();
         }
 
         // Initialize Icons
