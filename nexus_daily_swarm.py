@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime, timezone, timedelta
 
-DIRECTOR_EMAIL = os.environ.get("DIRECTOR_EMAIL", "ahmed.morgan86@gmail.com")
+DIRECTOR_EMAIL = os.environ.get("DIRECTOR_EMAIL", "ahmed.morgan2009@gmail.com")
 SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("SMTP_PORT", 465))
 SMTP_USER = os.environ.get("SMTP_USER", "")

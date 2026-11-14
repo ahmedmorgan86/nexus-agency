@@ -32,7 +32,7 @@ jobs:
       - name: Run Multi-Agent Swarm (24/7/365 Engine)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          DIRECTOR_EMAIL: ${{ secrets.DIRECTOR_EMAIL || 'ahmed.morgan86@gmail.com' }}
+          DIRECTOR_EMAIL: ${{ secrets.DIRECTOR_EMAIL || 'ahmed.morgan2009@gmail.com' }}
           SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
           SMTP_PORT: ${{ secrets.SMTP_PORT || '465' }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
