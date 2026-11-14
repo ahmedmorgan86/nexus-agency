@@ -3,4 +3,4 @@ Allow: /
 Disallow: /dashboard.html
 Disallow: /agency_command_center.html
 
-Sitemap: https://nexus-agency-six.vercel.app/sitemap.xml
+Sitemap: https://nexus-agency-am.vercel.app/sitemap.xml

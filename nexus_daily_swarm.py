@@ -298,7 +298,7 @@ def generate_continuous_dossier():
                 <div class="cycle-title">⚡ النبض التشغيلي النشط: {cycle_info['cycle_name']}</div>
                 <div style="font-size: 13px; color: #cbd5e1;">التركيز اللحظي: {cycle_info['cycle_focus']}</div>
                 <div style="margin-top: 12px;">
-                    <a href="https://ahmedmorgan86.github.io/nexus-agency/dashboard.html" class="btn-dash">
+                    <a href="https://nexus-agency-am.vercel.app/dashboard.html" class="btn-dash">
                         فتح لوحة تحكم NEXUS للاطلاع والاعتماد
                     </a>
                 </div>
