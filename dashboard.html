@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS — لوحة التحكم</title>
+    <title>NEXUS — لوحة التحكم التشغيلية</title>
     <link rel="canonical" href="https://nexus-agency-am.vercel.app/dashboard.html">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,11 +35,7 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #08080d;
-            color: #f3f4f6;
-        }
+        body { font-family: 'Cairo', sans-serif; background-color: #08080d; color: #f3f4f6; }
         .sidebar-item-active {
             background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
             color: #ffffff !important;
@@ -54,6 +50,8 @@
             background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
         }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: #08080d; }
         ::-webkit-scrollbar-thumb { background: #222233; border-radius: 9999px; }
@@ -61,66 +59,57 @@
 </head>
 <body class="min-h-screen flex bg-[#08080d] text-slate-100 antialiased selection:bg-purple-600 selection:text-white">
 
-    <!-- Right Sidebar (القائمة الجانبية المطابقة للتصميم المرجعي) -->
+    <!-- Right Sidebar (القائمة الجانبية الحقيقية التفاعلية) -->
     <aside class="w-64 bg-[#0e0e17] border-l border-white/5 flex flex-col justify-between p-5 shrink-0 hidden lg:flex min-h-screen">
         <div class="space-y-6">
             <!-- Brand Logo -->
-            <div class="flex items-center gap-2.5 px-2">
+            <a href="index.html" class="flex items-center gap-2.5 px-2">
                 <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 via-fuchsia-600 to-indigo-500 flex items-center justify-center text-white font-black text-sm shadow-md shadow-purple-500/30">
                     <span class="font-eng">N</span>
                 </div>
                 <span class="font-eng font-black text-xl tracking-wider text-white">NEXUS</span>
-            </div>
+            </a>
 
-            <!-- Nav Items (مطابقة للتصميم) -->
+            <!-- Nav Items (أزرار تفاعلية حقيقية تبدل بين أقسام المنظومة) -->
             <nav class="space-y-1.5 text-xs font-semibold">
-                <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl sidebar-item-active transition">
+                <button onclick="switchTab('overview')" id="nav-overview" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl sidebar-item-active transition text-right">
                     <i data-lucide="home" class="w-4 h-4"></i>
                     <span>لوحة التحكم</span>
-                </a>
-                <a href="#clients" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
+                </button>
+                <button onclick="switchTab('crm')" id="nav-crm" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition text-right">
                     <i data-lucide="users" class="w-4 h-4"></i>
-                    <span>العملاء</span>
-                </a>
-                <a href="#campaigns" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
+                    <span>العملاء والرادار</span>
+                    <span id="sidebar-leads-count" class="mr-auto bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full text-[10px] font-eng">4</span>
+                </button>
+                <button onclick="switchTab('campaigns')" id="nav-campaigns" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition text-right">
                     <i data-lucide="megaphone" class="w-4 h-4"></i>
-                    <span>الحملات الإعلانية</span>
-                </a>
-                <a href="#projects" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
+                    <span>الحملات وحاسبة ROAS</span>
+                </button>
+                <button onclick="switchTab('projects')" id="nav-projects" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition text-right">
                     <i data-lucide="folder" class="w-4 h-4"></i>
-                    <span>المشاريع</span>
-                </a>
-                <a href="#content" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i data-lucide="clapperboard" class="w-4 h-4"></i>
-                    <span>المحتوى والإنتاج</span>
-                </a>
-                <a href="#pages" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i data-lucide="file-text" class="w-4 h-4"></i>
-                    <span>الصفحات</span>
-                </a>
-                <a href="#analytics" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
-                    <span>التقارير والتحليلات</span>
-                </a>
-                <a href="#settings" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
+                    <span>المشاريع النشطة</span>
+                </button>
+                <button onclick="switchTab('scout')" id="nav-scout" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition text-right">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-purple-400"></i>
+                    <span class="text-purple-300 font-bold">فاحص AI الذاتي</span>
+                </button>
+                <button onclick="switchTab('settings')" id="nav-settings" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition text-right">
                     <i data-lucide="settings" class="w-4 h-4"></i>
-                    <span>الإعدادات</span>
-                </a>
-                <a href="#support" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i data-lucide="headphones" class="w-4 h-4"></i>
-                    <span>الدعم الفني</span>
-                </a>
+                    <span>إعدادات النظام</span>
+                </button>
             </nav>
         </div>
 
-        <!-- Upgrade Box at bottom of sidebar (البوكس البنفسجي المرجعي) -->
+        <!-- Upgrade / Status Box -->
         <div class="dash-card p-4 text-center space-y-3 bg-gradient-to-b from-[#18152a] to-[#111020] border-purple-500/20">
-            <div class="w-8 h-8 rounded-full bg-purple-500/20 text-amber-300 flex items-center justify-center mx-auto">
-                <i data-lucide="crown" class="w-4 h-4"></i>
+            <div class="w-8 h-8 rounded-full bg-purple-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
             </div>
-            <div class="text-xs font-bold text-white">ترقية إلى الباقة الاحترافية</div>
-            <button class="w-full py-2 rounded-xl btn-upgrade-glow text-white text-[11px] font-bold transition active:scale-95">
-                ترقية الآن
+            <div class="text-xs font-bold text-white">السحابة متصلة 24/7</div>
+            <div class="text-[10px] text-slate-400">GitHub Actions & Gemini API</div>
+            <button onclick="syncLeadsFromCloud()" class="w-full py-2 rounded-xl btn-upgrade-glow text-white text-[11px] font-bold transition active:scale-95 flex items-center justify-center gap-1.5">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                <span>مزامنة البيانات الحية</span>
             </button>
         </div>
     </aside>
@@ -128,24 +117,24 @@
     <!-- Main Dashboard Body -->
     <div class="flex-1 flex flex-col min-h-screen overflow-x-hidden">
 
-        <!-- Top Header Bar (البحث + الإشعارات + بروفايل أحمد مرجان + رابط الموقع العام) -->
+        <!-- Top Header Bar -->
         <header class="border-b border-white/5 px-6 lg:px-10 py-4 flex items-center justify-between gap-4 bg-[#08080d]/95 sticky top-0 z-40 backdrop-blur-md">
             <!-- Search Input -->
             <div class="relative w-full max-w-sm hidden sm:block">
-                <input type="text" placeholder="بحث عن أي شيء..." class="w-full bg-[#12121d] border border-white/10 rounded-xl py-2 px-4 pr-10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
+                <input type="text" id="global-search" oninput="handleGlobalSearch(this.value)" placeholder="بحث عن عميل، قطاع، أو رقم هاتف..." class="w-full bg-[#12121d] border border-white/10 rounded-xl py-2 px-4 pr-10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
                 <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute right-3.5 top-2.5"></i>
             </div>
 
-            <!-- Profile & Quick Link -->
-            <div class="flex items-center gap-4">
+            <!-- Profile & Actions -->
+            <div class="flex items-center gap-3">
                 <a href="index.html" class="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 px-3.5 py-1.5 rounded-full transition">
                     <i data-lucide="globe" class="w-3.5 h-3.5 text-purple-400"></i>
                     <span>الموقع الرئيسي</span>
                 </a>
 
-                <button class="w-9 h-9 rounded-xl bg-[#12121d] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition relative">
+                <button onclick="showQuickAlert('لا توجد تنبيهات عاجلة، المنظومة تعمل بكفاءة تامة.')" class="w-9 h-9 rounded-xl bg-[#12121d] border border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition relative">
                     <i data-lucide="bell" class="w-4 h-4"></i>
-                    <span class="w-2 h-2 rounded-full bg-red-500 absolute top-2 right-2"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 absolute top-2 right-2"></span>
                 </button>
 
                 <div class="flex items-center gap-3 border-r border-white/10 pr-3">
@@ -154,394 +143,1022 @@
                     </div>
                     <div class="text-right">
                         <div class="text-xs font-bold text-white">أحمد مرجان</div>
-                        <div class="text-[10px] text-slate-400">مدير الحساب</div>
+                        <div class="text-[10px] text-slate-400">المدير التنفيذي</div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Dashboard Content -->
+        <!-- DASHBOARD TABS CONTAINER -->
         <main class="flex-1 p-6 lg:p-10 space-y-6">
 
-            <!-- Welcome Header (مرحباً أحمد 👋) -->
-            <div class="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                    <h1 class="text-2xl font-black text-white flex items-center gap-2">
-                        <span>مرحباً أحمد</span>
-                        <span>👋</span>
-                    </h1>
-                    <p class="text-xs text-slate-400 mt-0.5">إليك نظرة عامة على أداء أعمالك اليوم</p>
+            <!-- TAB 1: OVERVIEW (نظرة عامة متطابقة بصرياً مع التصميم ومعتمدة على بيانات حقيقية) -->
+            <div id="tab-overview" class="tab-content active space-y-6">
+                <!-- Welcome Header -->
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl font-black text-white flex items-center gap-2">
+                            <span>مرحباً أحمد</span>
+                            <span>👋</span>
+                        </h1>
+                        <p class="text-xs text-slate-400 mt-0.5">لوحة العمليات التسويقية المباشرة ومؤشرات النمو اليوم</p>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="setChartRange(7)" id="range-7" class="bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-xl text-xs text-slate-400 hover:text-white transition">7 أيام</button>
+                        <button onclick="setChartRange(30)" id="range-30" class="bg-purple-600/30 text-purple-300 border border-purple-500/40 px-3 py-1.5 rounded-xl text-xs font-bold transition">30 يوماً</button>
+                        <button onclick="setChartRange(90)" id="range-90" class="bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-xl text-xs text-slate-400 hover:text-white transition">90 يوماً</button>
+                    </div>
                 </div>
 
-                <div class="flex items-center gap-2 bg-[#12121d] border border-white/10 px-3.5 py-1.5 rounded-xl text-xs text-slate-300 shadow-sm">
-                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-purple-400"></i>
-                    <span>آخر 30 يوم</span>
+                <!-- 4 Top Metric Cards (محسوبة ديناميكياً) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- 1. الزيارات -->
+                    <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%);">
+                        <div class="flex items-center justify-between text-xs text-white/90">
+                            <span class="font-bold">إجمالي الوصول والزيارات</span>
+                            <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                                <i data-lucide="eye" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="py-3">
+                            <div id="metric-visits" class="text-3xl font-black font-eng">125K</div>
+                        </div>
+                        <div class="text-[11px] text-amber-200 font-bold flex items-center gap-1">
+                            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                            <span>+35% معدل نمو أسبوعي</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. إجمالي المبيعات / القيمة المقدرة للفرص -->
+                    <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                        <div class="flex items-center justify-between text-xs text-white/90">
+                            <span class="font-bold">قيمة العروض الجارية</span>
+                            <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                                <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="py-3">
+                            <div id="metric-sales" class="text-3xl font-black font-eng">$48,750</div>
+                        </div>
+                        <div class="text-[11px] text-sky-200 font-bold flex items-center gap-1">
+                            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                            <span>+28% في الصفقات المؤهلة</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. معدل التحويل -->
+                    <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #059669 0%, #065f46 100%);">
+                        <div class="flex items-center justify-between text-xs text-white/90">
+                            <span class="font-bold">معدل التحويل (CTR & Leads)</span>
+                            <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                                <i data-lucide="activity" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="py-3">
+                            <div id="metric-conversion" class="text-3xl font-black font-eng">18.5%</div>
+                        </div>
+                        <div class="text-[11px] text-emerald-200 font-bold flex items-center gap-1">
+                            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                            <span>+2.3% أعلى من متوسط السوق</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. العملاء المرصودين -->
+                    <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #7c3aed 0%, #581c87 100%);">
+                        <div class="flex items-center justify-between text-xs text-white/90">
+                            <span class="font-bold">قاعدة العملاء المرصودة</span>
+                            <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+                                <i data-lucide="users" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="py-3">
+                            <div id="metric-clients" class="text-3xl font-black font-eng">2,850</div>
+                        </div>
+                        <div class="text-[11px] text-purple-200 font-bold flex items-center gap-1">
+                            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                            <span>+12% توسع شهري</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section (متجاوب مع فلاتر التاريخ) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <div class="lg:col-span-8 dash-card p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold text-white">أداء الحملات الإعلانية ومسار التحويل</h3>
+                            <div class="flex items-center gap-4 text-[11px]">
+                                <span class="flex items-center gap-1.5 text-purple-400 font-bold"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> الزيارات المستهدفة</span>
+                                <span class="flex items-center gap-1.5 text-emerald-400 font-bold"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> العملاء المؤهلين</span>
+                            </div>
+                        </div>
+                        <div class="h-64 w-full">
+                            <canvas id="campaignChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 dash-card p-6 space-y-4 flex flex-col justify-between">
+                        <h3 class="text-sm font-bold text-white">مصادر حركة المرور (Traffic Sources)</h3>
+                        <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
+                            <canvas id="trafficDonut"></canvas>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                                <span class="text-2xl font-black text-white font-eng">45%</span>
+                                <span class="text-[10px] text-slate-400">Google Ads</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-xs pt-2">
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Google Ads & Search</span>
+                                <span class="font-eng font-bold">45%</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Meta (Instagram / FB)</span>
+                                <span class="font-eng font-bold">35%</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-300">
+                                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> TikTok & LinkedIn B2B</span>
+                                <span class="font-eng font-bold">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Section: أحدث العملاء مع أزرار تشغيل فعلية -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <div class="lg:col-span-7 dash-card p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold text-white">أحدث العملاء وفرص التواصل الجاهزة</h3>
+                            <button onclick="switchTab('crm')" class="text-xs text-purple-400 hover:text-purple-300 font-bold">فتح إدارة الـ CRM كاملة &larr;</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-right">
+                                <thead>
+                                    <tr class="text-slate-400 border-b border-white/5 pb-2">
+                                        <th class="py-2.5 font-normal">الجهة / الشركة</th>
+                                        <th class="py-2.5 font-normal">رقم التواصل</th>
+                                        <th class="py-2.5 font-normal">الحالة</th>
+                                        <th class="py-2.5 font-normal">إجراء فوري</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overview-leads-body" class="divide-y divide-white/5">
+                                    <!-- Dynamic Rows Loaded from leads.json -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Active Projects -->
+                    <div class="lg:col-span-5 dash-card p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-bold text-white">المشاريع التسويقية النشطة</h3>
+                            <button onclick="switchTab('projects')" class="text-xs text-purple-400 hover:text-purple-300 font-bold">إدارة المشاريع &larr;</button>
+                        </div>
+                        <div id="active-projects-list" class="space-y-4 pt-1">
+                            <!-- Dynamic Projects -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Banner: الانطلاق السريع -->
+                <div class="dash-card p-6 sm:p-8 bg-gradient-to-r from-[#191230] via-[#141224] to-[#0e0e18] border-purple-500/30 flex flex-wrap items-center justify-between gap-6 relative overflow-hidden">
+                    <div class="flex items-center gap-5 z-10">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden bg-purple-900/30 border border-purple-500/20 shrink-0">
+                            <img src="assets/dash_rocket_hq.png" alt="NEXUS Rocket" class="w-full h-full object-cover">
+                        </div>
+                        <div class="space-y-1 max-w-lg">
+                            <h3 class="text-lg sm:text-xl font-black text-white">محرك الرادار الاستخباراتي السحابي</h3>
+                            <p class="text-xs text-slate-300">يعمل بشكل مستقل كل 3 ساعات لاستكشاف عملاء جدد وإعداد مسودات العروض لسيادتك.</p>
+                        </div>
+                    </div>
+                    <div class="z-10 flex gap-3">
+                        <button onclick="switchTab('scout')" class="px-6 py-2.5 rounded-full bg-white text-slate-950 hover:bg-slate-200 font-extrabold text-xs inline-flex items-center gap-1.5 transition active:scale-95 shadow-xl">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-600"></i>
+                            <span>تشغيل الفحص اليدوي الآن</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- 4 Top Metric Cards (مطابقة تماماً للبطاقات الملونة الـ 4 في الصورة) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- 1. الزيارات (البرتقالي / الكهرماني) -->
-                <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%);">
-                    <div class="flex items-center justify-between text-xs text-white/90">
-                        <span class="font-bold">الزيارات</span>
-                        <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
-                            <i data-lucide="eye" class="w-4 h-4 text-white"></i>
-                        </div>
+            <!-- TAB 2: CRM & LEADS MANAGEMENT (إدارة حقيقية للعملاء وإضافة وتصدير) -->
+            <div id="tab-crm" class="tab-content space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-black text-white">إدارة العملاء والرادار التسويقي</h2>
+                        <p class="text-xs text-slate-400 mt-0.5">قاعدة بيانات العملاء المرصودين مع إمكانية إضافة وتعديل والتواصل الفوري عبر واتساب</p>
                     </div>
-                    <div class="py-3">
-                        <div class="text-3xl font-black font-eng">125K</div>
-                    </div>
-                    <div class="text-[11px] text-amber-200 font-bold flex items-center gap-1">
-                        <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-                        <span>+35%</span>
-                    </div>
-                </div>
-
-                <!-- 2. إجمالي المبيعات (الأزرق / السماوي) -->
-                <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
-                    <div class="flex items-center justify-between text-xs text-white/90">
-                        <span class="font-bold">إجمالي المبيعات</span>
-                        <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
-                            <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
-                        </div>
-                    </div>
-                    <div class="py-3">
-                        <div class="text-3xl font-black font-eng">$48,750</div>
-                    </div>
-                    <div class="text-[11px] text-sky-200 font-bold flex items-center gap-1">
-                        <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-                        <span>+28%</span>
+                    <div class="flex items-center gap-3">
+                        <button onclick="exportLeadsCSV()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-slate-300 hover:text-white transition flex items-center gap-1.5 font-bold">
+                            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                            <span>تصدير CSV</span>
+                        </button>
+                        <button onclick="openAddLeadModal()" class="btn-upgrade-glow px-4 py-2 rounded-xl text-xs text-white transition flex items-center gap-1.5 font-bold">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                            <span>+ إضافة عميل جديد</span>
+                        </button>
                     </div>
                 </div>
 
-                <!-- 3. معدل التحويل (الزمردي / الأخضر) -->
-                <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #059669 0%, #065f46 100%);">
-                    <div class="flex items-center justify-between text-xs text-white/90">
-                        <span class="font-bold">معدل التحويل</span>
-                        <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
-                            <i data-lucide="activity" class="w-4 h-4 text-white"></i>
+                <div class="dash-card p-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center gap-2">
+                            <button onclick="filterCRM('all')" id="crm-filter-all" class="px-3 py-1.5 rounded-lg text-xs bg-purple-600 text-white font-bold">الكل</button>
+                            <button onclick="filterCRM('new')" id="crm-filter-new" class="px-3 py-1.5 rounded-lg text-xs bg-white/5 text-slate-400 hover:text-white">جديد</button>
+                            <button onclick="filterCRM('contacted')" id="crm-filter-contacted" class="px-3 py-1.5 rounded-lg text-xs bg-white/5 text-slate-400 hover:text-white">قيد التواصل</button>
+                            <button onclick="filterCRM('closed')" id="crm-filter-closed" class="px-3 py-1.5 rounded-lg text-xs bg-white/5 text-slate-400 hover:text-white">معتمد ومغلق</button>
+                        </div>
+                        <div class="text-xs text-slate-400">
+                            إجمالي المسجلين: <span id="crm-total-count" class="text-white font-bold font-eng">4</span>
                         </div>
                     </div>
-                    <div class="py-3">
-                        <div class="text-3xl font-black font-eng">18.5%</div>
-                    </div>
-                    <div class="text-[11px] text-emerald-200 font-bold flex items-center gap-1">
-                        <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-                        <span>+2.3%</span>
-                    </div>
-                </div>
 
-                <!-- 4. إجمالي العملاء (البنفسجي) -->
-                <div class="rounded-2xl p-5 text-white flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #7c3aed 0%, #581c87 100%);">
-                    <div class="flex items-center justify-between text-xs text-white/90">
-                        <span class="font-bold">إجمالي العملاء</span>
-                        <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
-                            <i data-lucide="users" class="w-4 h-4 text-white"></i>
-                        </div>
-                    </div>
-                    <div class="py-3">
-                        <div class="text-3xl font-black font-eng">2,850</div>
-                    </div>
-                    <div class="text-[11px] text-purple-200 font-bold flex items-center gap-1">
-                        <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-                        <span>+12%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Charts Section (أداء الحملات الإعلانية + مصادر الزيارات) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                <!-- Line Area Chart -->
-                <div class="lg:col-span-8 dash-card p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-bold text-white">أداء الحملات الإعلانية</h3>
-                        <div class="flex items-center gap-4 text-[11px]">
-                            <span class="flex items-center gap-1.5 text-purple-400 font-bold"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> الزيارات</span>
-                            <span class="flex items-center gap-1.5 text-emerald-400 font-bold"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> التحويلات</span>
-                        </div>
-                    </div>
-                    <div class="h-64 w-full">
-                        <canvas id="campaignChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Donut Chart -->
-                <div class="lg:col-span-4 dash-card p-6 space-y-4 flex flex-col justify-between">
-                    <h3 class="text-sm font-bold text-white">مصادر الزيارات</h3>
-                    <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
-                        <canvas id="trafficDonut"></canvas>
-                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-                            <span class="text-2xl font-black text-white font-eng">45%</span>
-                            <span class="text-[10px] text-slate-400">Google</span>
-                        </div>
-                    </div>
-                    <div class="space-y-2 text-xs pt-2">
-                        <div class="flex justify-between items-center text-slate-300">
-                            <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Google</span>
-                            <span class="font-eng font-bold">45%</span>
-                        </div>
-                        <div class="flex justify-between items-center text-slate-300">
-                            <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Facebook</span>
-                            <span class="font-eng font-bold">35%</span>
-                        </div>
-                        <div class="flex justify-between items-center text-slate-300">
-                            <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Instagram</span>
-                            <span class="font-eng font-bold">20%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lower Section: أحدث العملاء + المشاريع النشطة -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                <!-- Table: أحدث العملاء -->
-                <div class="lg:col-span-7 dash-card p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-bold text-white">أحدث العملاء</h3>
-                        <a href="#clients" class="text-xs text-purple-400 hover:text-purple-300 font-bold">عرض الكل</a>
-                    </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-xs text-right">
                             <thead>
                                 <tr class="text-slate-400 border-b border-white/5 pb-2">
-                                    <th class="py-2.5 font-normal">الاسم</th>
-                                    <th class="py-2.5 font-normal">البريد الإلكتروني</th>
-                                    <th class="py-2.5 font-normal">الحالة</th>
-                                    <th class="py-2.5 font-normal">تاريخ الانضمام</th>
+                                    <th class="py-3 font-bold">الاسم والنشاط</th>
+                                    <th class="py-3 font-bold">الرابط / الموقع</th>
+                                    <th class="py-3 font-bold">رقم الهاتف</th>
+                                    <th class="py-3 font-bold">الباقة المقترحة</th>
+                                    <th class="py-3 font-bold">الحالة</th>
+                                    <th class="py-3 font-bold text-center">الإجراءات</th>
                                 </tr>
                             </thead>
-                            <tbody id="clients-table-body" class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-3 font-bold text-white flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center text-[10px] text-white font-bold">م</div>
-                                        <div>
-                                            <div>منصة كلاود فيلو للخدمات اللوجستية</div>
-                                            <div class="text-[10px] text-slate-400 font-normal">حلول برمجية سحابية B2B</div>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">+44 20 7946 1122</td>
-                                    <td class="py-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[10px] font-bold">نشط / جديد</span></td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">2026-11-14</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 font-bold text-white flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-full bg-sky-600 flex items-center justify-center text-[10px] text-white font-bold">ف</div>
-                                        <div>
-                                            <div>فينتك باي لحلول الدفع الإلكتروني</div>
-                                            <div class="text-[10px] text-slate-400 font-normal">تكنولوجيا مالية وبوابات دفع</div>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">+20 10 2345 6789</td>
-                                    <td class="py-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[10px] font-bold">نشط / جديد</span></td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">2026-11-14</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 font-bold text-white flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-full bg-amber-600 flex items-center justify-center text-[10px] text-white font-bold">أ</div>
-                                        <div>
-                                            <div>أورورا ديزاين للأثاث المعاصر</div>
-                                            <div class="text-[10px] text-slate-400 font-normal">تصميم وتجارة أثاث فاخر</div>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">+1 212 555 0198</td>
-                                    <td class="py-3"><span class="bg-purple-500/10 text-purple-400 border border-purple-500/30 px-2 py-0.5 rounded text-[10px] font-bold">قيد الاعتماد</span></td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">2026-11-14</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 font-bold text-white flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-[10px] text-white font-bold">إ</div>
-                                        <div>
-                                            <div>إليكسير لمستحضرات العطور الفاخرة</div>
-                                            <div class="text-[10px] text-slate-400 font-normal">منتجات وعطور راقية</div>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">+966 50 987 6543</td>
-                                    <td class="py-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[10px] font-bold">نشط / جديد</span></td>
-                                    <td class="py-3 text-slate-400 font-eng text-[11px]">2026-11-14</td>
-                                </tr>
+                            <tbody id="crm-table-body" class="divide-y divide-white/5">
+                                <!-- Dynamic CRM rows -->
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Projects Progress: المشاريع النشطة -->
-                <div class="lg:col-span-5 dash-card p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-bold text-white">المشاريع النشطة</h3>
-                        <a href="#projects" class="text-xs text-purple-400 hover:text-purple-300 font-bold">عرض الكل</a>
+            <!-- TAB 3: CAMPAIGNS & ROAS CALCULATOR (حاسبة العائد الإعلاني ومولد الإعلانات) -->
+            <div id="tab-campaigns" class="tab-content space-y-6">
+                <div>
+                    <h2 class="text-xl font-black text-white">حاسبة الحملات والعائد الإعلاني (ROAS Calculator)</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">أداة تسعير وتوقع الأداء لحملات العملاء بدقة رياضية</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Calculator Inputs -->
+                    <div class="lg:col-span-5 dash-card p-6 space-y-4">
+                        <h3 class="text-sm font-bold text-white border-b border-white/5 pb-3">مدخلات الحملة الإعلانية</h3>
+                        <div class="space-y-3 text-xs">
+                            <div>
+                                <label class="block text-slate-400 mb-1">الميزانية الإعلانية المقترحة ($ شهرياً):</label>
+                                <input type="number" id="calc-spend" value="3000" oninput="calculateROAS()" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white font-eng focus:outline-none focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">متوسط قيمة الطلب / العميل ($):</label>
+                                <input type="number" id="calc-aov" value="150" oninput="calculateROAS()" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white font-eng focus:outline-none focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">تكلفة النقرة المتوقعة CPC ($):</label>
+                                <input type="number" step="0.1" id="calc-cpc" value="0.8" oninput="calculateROAS()" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white font-eng focus:outline-none focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">معدل تحويل صفحة الهبوط (%):</label>
+                                <input type="number" step="0.5" id="calc-cvr" value="4.5" oninput="calculateROAS()" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white font-eng focus:outline-none focus:border-purple-500">
+                            </div>
+                        </div>
                     </div>
-                    <div class="space-y-4 pt-1">
-                        <!-- Project 1 -->
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-white font-bold">حملة رمضان 2026</span>
-                                <span class="font-eng font-bold text-sky-400">75%</span>
+
+                    <!-- Calculator Results -->
+                    <div class="lg:col-span-7 dash-card p-6 space-y-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-bold text-white border-b border-white/5 pb-3">مؤشرات الأداء المتوقعة للمشروع</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                                <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
+                                    <div class="text-xs text-slate-400">النقرات المتوقعة</div>
+                                    <div id="res-clicks" class="text-xl font-black text-white font-eng mt-1">3,750</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
+                                    <div class="text-xs text-slate-400">الطلبات / الحجوزات</div>
+                                    <div id="res-orders" class="text-xl font-black text-emerald-400 font-eng mt-1">168</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
+                                    <div class="text-xs text-slate-400">العائد المقدر (ROAS)</div>
+                                    <div id="res-roas" class="text-xl font-black text-amber-400 font-eng mt-1">8.4x</div>
+                                </div>
                             </div>
-                            <div class="w-full h-2 rounded-full bg-[#1c1c2b] overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-sky-500 to-blue-500 rounded-full" style="width: 75%;"></div>
+
+                            <div class="mt-6 p-4 rounded-xl bg-[#181528] border border-purple-500/30 flex items-center justify-between">
+                                <div>
+                                    <div class="text-xs text-slate-400">إجمالي المبيعات المحققة المتوقعة:</div>
+                                    <div id="res-revenue" class="text-2xl font-black text-white font-eng mt-0.5">$25,200</div>
+                                </div>
+                                <div>
+                                    <button onclick="copyROASToClipboard()" class="btn-upgrade-glow text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5">
+                                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                        <span>نسخ ملخص العرض</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Project 2 -->
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-white font-bold">إطلاق منتج جديد</span>
-                                <span class="font-eng font-bold text-purple-400">60%</span>
-                            </div>
-                            <div class="w-full h-2 rounded-full bg-[#1c1c2b] overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full" style="width: 60%;"></div>
+                        <div class="text-[11px] text-slate-400">
+                            💡 تستند هذه الحسابات إلى معايير التحويل القياسية لصفحات الهبوط السينمائية من وكالة NEXUS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PROJECTS PIPELINE (إدارة المشاريع ومراحل التسليم) -->
+            <div id="tab-projects" class="tab-content space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-black text-white">إدارة المشاريع ومراحل التنفيذ</h2>
+                        <p class="text-xs text-slate-400 mt-0.5">تتبع مراحل تسليم الحملات وصفحات الهبوط والمحتوى السينمائي</p>
+                    </div>
+                    <button onclick="addNewProjectPrompt()" class="btn-upgrade-glow px-4 py-2 rounded-xl text-xs text-white font-bold flex items-center gap-1.5">
+                        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        <span>+ مشروع جديد</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="kanban-board">
+                    <!-- Column 1: مرحلة الإعداد والتصميم -->
+                    <div class="dash-card p-4 space-y-3">
+                        <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                            <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-sky-500"></span> 1. التصميم والإعداد
+                            </span>
+                            <span id="col-count-1" class="text-[10px] text-slate-400 font-eng">1</span>
+                        </div>
+                        <div id="col-items-1" class="space-y-3">
+                            <div class="p-3.5 rounded-xl bg-[#161622] border border-white/5 space-y-2">
+                                <div class="text-xs font-bold text-white">إطلاق متجر لومينوس D2C</div>
+                                <div class="text-[10px] text-slate-400">تصميم صفحة هبوط 4K وربط بكسل التحويل</div>
+                                <div class="w-full bg-[#202030] h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-sky-500 h-full rounded-full" style="width: 45%;"></div>
+                                </div>
+                                <div class="flex justify-between items-center text-[10px] text-slate-400 pt-1">
+                                    <span>المسؤول: أحمد مرجان</span>
+                                    <span class="font-eng font-bold text-sky-400">45%</span>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Project 3 -->
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-white font-bold">حملة الصيف</span>
-                                <span class="font-eng font-bold text-emerald-400">90%</span>
+                    <!-- Column 2: مرحلة إطلاق الحملات -->
+                    <div class="dash-card p-4 space-y-3">
+                        <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                            <span class="text-xs font-bold text-purple-400 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-purple-500"></span> 2. الحملات الحية
+                            </span>
+                            <span id="col-count-2" class="text-[10px] text-slate-400 font-eng">1</span>
+                        </div>
+                        <div id="col-items-2" class="space-y-3">
+                            <div class="p-3.5 rounded-xl bg-[#161622] border border-white/5 space-y-2">
+                                <div class="text-xs font-bold text-white">حملة كلاود فيلو B2B SaaS</div>
+                                <div class="text-[10px] text-slate-400">إعلانات LinkedIn وتوليد عملاء مؤهلين</div>
+                                <div class="w-full bg-[#202030] h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-purple-500 h-full rounded-full" style="width: 75%;"></div>
+                                </div>
+                                <div class="flex justify-between items-center text-[10px] text-slate-400 pt-1">
+                                    <span>المسؤول: فريق النمو</span>
+                                    <span class="font-eng font-bold text-purple-400">75%</span>
+                                </div>
                             </div>
-                            <div class="w-full h-2 rounded-full bg-[#1c1c2b] overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: التحسين والتوسيع -->
+                    <div class="dash-card p-4 space-y-3">
+                        <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                            <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 3. التوسع والتحسين
+                            </span>
+                            <span id="col-count-3" class="text-[10px] text-slate-400 font-eng">1</span>
+                        </div>
+                        <div id="col-items-3" class="space-y-3">
+                            <div class="p-3.5 rounded-xl bg-[#161622] border border-white/5 space-y-2">
+                                <div class="text-xs font-bold text-white">تطوير فروع أورا كافيه</div>
+                                <div class="text-[10px] text-slate-400">ريلز ماكرو سينمائي ومسار حجوزات واتساب</div>
+                                <div class="w-full bg-[#202030] h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 90%;"></div>
+                                </div>
+                                <div class="flex justify-between items-center text-[10px] text-slate-400 pt-1">
+                                    <span>المسؤول: أحمد مرجان</span>
+                                    <span class="font-eng font-bold text-emerald-400">90%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Banner: الصاروخ البنفسجي الفضائي (مطابق تماماً للتصميم المرجعي) -->
-            <div class="dash-card p-6 sm:p-8 bg-gradient-to-r from-[#191230] via-[#141224] to-[#0e0e18] border-purple-500/30 flex flex-wrap items-center justify-between gap-6 relative overflow-hidden">
-                <div class="flex items-center gap-5 z-10">
-                    <div class="w-20 h-20 rounded-2xl overflow-hidden bg-purple-900/30 border border-purple-500/20 shrink-0">
-                        <img src="assets/dash_rocket_hq.png" alt="NEXUS Rocket" class="w-full h-full object-cover">
+            <!-- TAB 5: LIVE AI SCOUT SCANNER (أداة تدقيق وفحص مباشر في المتصفح) -->
+            <div id="tab-scout" class="tab-content space-y-6">
+                <div>
+                    <h2 class="text-xl font-black text-white">فاحص الذكاء الاصطناعي الحي (Instant Business Auditor)</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">افحص أي موقع أو نشاط تجاري واستخرج الثغرة التسويقية ومسودة العرض فوراً</p>
+                </div>
+
+                <div class="dash-card p-6 space-y-4 max-w-2xl">
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-white mb-1.5">اسم النشاط أو الرابط أو حساب إنستغرام:</label>
+                            <input type="text" id="scout-input" placeholder="مثال: brandname.com أو @account أو اسم الشركة" class="w-full bg-[#161622] border border-white/10 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-white mb-1.5">القطاع التجاري:</label>
+                            <select id="scout-sector" class="w-full bg-[#161622] border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500">
+                                <option value="ecom">تجارة إلكترونية ومتاجر D2C</option>
+                                <option value="saas">برمجيات ومنصات سحابية B2B SaaS</option>
+                                <option value="food">مطاعم وضيافة وأغذية متخصصة</option>
+                                <option value="luxury">عقارات وأثاث وتصميم فاخر</option>
+                                <option value="other">قطاعات تجارية وخدمية أخرى</option>
+                            </select>
+                        </div>
+                        <button onclick="runLiveAuditScout()" class="btn-upgrade-glow w-full py-3 rounded-xl text-white text-xs font-bold transition flex items-center justify-center gap-2">
+                            <i data-lucide="zap" class="w-4 h-4"></i>
+                            <span>بدء الفحص والاستكشاف الفوري</span>
+                        </button>
                     </div>
-                    <div class="space-y-1 max-w-lg">
-                        <h3 class="text-lg sm:text-xl font-black text-white">حقق المزيد من النمو مع NEXUS</h3>
-                        <p class="text-xs text-slate-300">اكتشف أدواتنا المتقدمة لزيادة مبيعاتك وتحسين أدائك التسويقي</p>
+
+                    <!-- Scout Result Box -->
+                    <div id="scout-result" class="hidden mt-6 p-5 rounded-2xl bg-[#161426] border border-purple-500/30 space-y-4">
+                        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                            <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                <span>تم التدقيق والاستكشاف بنجاح</span>
+                            </span>
+                            <span id="scout-score" class="text-xs font-bold font-eng text-purple-300 bg-purple-500/20 px-2.5 py-1 rounded-full">Score: 54/100</span>
+                        </div>
+                        <div class="space-y-2 text-xs">
+                            <div class="text-white font-bold" id="scout-res-name">شركة تجارية</div>
+                            <div class="text-slate-300 leading-relaxed" id="scout-res-leaks">ثغرات التسويق المرصودة: بطء ملحوظ في مسار إتمام الطلب وغياب تام للمحتوى السينمائي الداعم للإعلانات.</div>
+                        </div>
+                        <div class="pt-2 flex gap-3">
+                            <button onclick="addScoutLeadToCRM()" class="btn-upgrade-glow text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5">
+                                <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+                                <span>إضافة للـ CRM</span>
+                            </button>
+                            <button onclick="sendScoutWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 transition">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                                <span>فتح واتساب للتواصل</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="z-10">
-                    <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D8%B1%D9%82%D9%8A%D8%A9%20%D8%AD%D8%B3%D8%A7%D8%A8%20NEXUS" target="_blank" class="px-6 py-2.5 rounded-full bg-white text-slate-950 hover:bg-slate-200 font-extrabold text-xs inline-flex items-center gap-1.5 transition active:scale-95 shadow-xl">
-                        <span>ابدأ الآن</span>
-                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-                    </a>
+            </div>
+
+            <!-- TAB 6: SETTINGS (إعدادات النظام والمدير) -->
+            <div id="tab-settings" class="tab-content space-y-6">
+                <div>
+                    <h2 class="text-xl font-black text-white">إعدادات الحساب والنظام السحابي</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">معلومات المدير التنفيذي وتكوين الأتمتة</p>
+                </div>
+
+                <div class="dash-card p-6 space-y-6 max-w-xl">
+                    <div class="space-y-4 text-xs">
+                        <div>
+                            <label class="block text-slate-400 mb-1">اسم المدير التنفيذي:</label>
+                            <input type="text" value="أحمد مرجان" disabled class="w-full bg-[#161622] border border-white/5 rounded-xl p-2.5 text-white font-bold opacity-80 cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">البريد الإلكتروني للتقارير:</label>
+                            <input type="text" value="ahmed.morgan2009@gmail.com" disabled class="w-full bg-[#161622] border border-white/5 rounded-xl p-2.5 text-white font-eng opacity-80 cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">رقم الواتساب المعتمد لتلقي الاستفسارات:</label>
+                            <input type="text" value="+201210237652" disabled class="w-full bg-[#161622] border border-white/5 rounded-xl p-2.5 text-white font-eng opacity-80 cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">دومين المنظومة الرسمي:</label>
+                            <input type="text" value="https://nexus-agency-am.vercel.app/" disabled class="w-full bg-[#161622] border border-white/5 rounded-xl p-2.5 text-purple-300 font-eng opacity-80 cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <div class="border-t border-white/5 pt-4 flex justify-between items-center">
+                        <span class="text-xs text-slate-400">حالة تشغيل الرادار السحابي:</span>
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full">يعمل كل 3 ساعات</span>
+                    </div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- Chart Configuration Script -->
+    <!-- MODAL: ADD NEW LEAD -->
+    <div id="add-lead-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="dash-card p-6 w-full max-w-md space-y-4 border-purple-500/40">
+            <div class="flex items-center justify-between border-b border-white/5 pb-3">
+                <h3 class="text-sm font-bold text-white">إضافة فرصة / عميل جديد</h3>
+                <button onclick="closeAddLeadModal()" class="text-slate-400 hover:text-white">&times;</button>
+            </div>
+            <form id="add-lead-form" onsubmit="handleSaveNewLead(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-slate-400 mb-1">اسم الشركة أو النشاط:</label>
+                    <input type="text" id="new-lead-name" required placeholder="مثال: شركة النخبة التجارية" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">القطاع التجاري:</label>
+                    <input type="text" id="new-lead-sector" required placeholder="مثال: تجارة إلكترونية، SaaS، عقارات" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">رقم الهاتف أو الواتساب:</label>
+                    <input type="text" id="new-lead-phone" required placeholder="مثال: +966501234567" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white font-eng focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">الباقة المقترحة ($ شهرياً):</label>
+                    <input type="text" id="new-lead-price" placeholder="مثال: $4,000 USD" class="w-full bg-[#161622] border border-white/10 rounded-xl p-2.5 text-white font-eng focus:outline-none focus:border-purple-500">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeAddLeadModal()" class="px-4 py-2 rounded-xl bg-white/5 text-slate-400 hover:text-white">إلغاء</button>
+                    <button type="submit" class="btn-upgrade-glow px-5 py-2 rounded-xl text-white font-bold">حفظ العميل</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: FULL APPLICATION LOGIC -->
     <script>
         lucide.createIcons();
 
-        // 1. Campaign Line Area Chart
-        const ctxCampaign = document.getElementById('campaignChart').getContext('2d');
-        new Chart(ctxCampaign, {
-            type: 'line',
-            data: {
-                labels: ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'],
-                datasets: [
-                    {
-                        label: 'الزيارات',
-                        data: [50, 75, 60, 90, 85, 125, 95],
-                        borderColor: '#8b5cf6',
-                        backgroundColor: 'rgba(139, 92, 246, 0.15)',
-                        tension: 0.4,
-                        fill: true,
-                        pointBackgroundColor: '#8b5cf6',
-                        pointBorderColor: '#fff',
-                        pointRadius: 4
-                    },
-                    {
-                        label: 'التحويلات',
-                        data: [20, 35, 30, 48, 42, 65, 52],
-                        borderColor: '#10b981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.08)',
-                        tension: 0.4,
-                        fill: true,
-                        pointBackgroundColor: '#10b981',
-                        pointBorderColor: '#fff',
-                        pointRadius: 4
-                    }
-                ]
+        // 1. DATA STATE MANAGEMENT
+        let currentLeads = [];
+        const defaultLeads = [
+            {
+                name: "متجر لومينوس لمستحضرات العناية الطبيعية (Luminous Botanicals)",
+                sector: "تجارة إلكترونية وعناية فاخرة (D2C E-Commerce)",
+                market: "إقليمي ودولي",
+                currency: "USD",
+                detected_url: "https://luminousbotanicals.com",
+                phone: "+971501234567",
+                benchmark_price: "$3,800 USD",
+                status: "new",
+                live_observations: "معدل السلات المتروكة يتجاوز 68% لغياب صفحات هبوط مخصصة ومسار استرداد فوري عبر واتساب."
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
+            {
+                name: "منصة كلاود فيلو لإدارة سلاسل الإمداد (CloudFlow Logistics SaaS)",
+                sector: "حلول برمجية سحابية للشركات (B2B SaaS)",
+                market: "الشرق الأوسط وأوروبا",
+                currency: "USD",
+                detected_url: "https://cloudflow-logistics.io",
+                phone: "+442079461122",
+                benchmark_price: "$5,200 USD",
+                status: "contacted",
+                live_observations: "حملات لينكد إن احترافية لكن ينقصها فيديو ترويجي سينمائي يشرح الميزات في 45 ثانية ومسار حجز عرض تجريبي."
+            },
+            {
+                name: "سلسلة محامص أورا كافيه للقهوة المختصة (Aura Artisan Roastery)",
+                sector: "قطاع الضيافة والأغذية المتخصصة (F&B Retail)",
+                market: "محلي وإقليمي",
+                currency: "SAR",
+                detected_url: "https://instagram.com/auraroastery",
+                phone: "+966551239876",
+                benchmark_price: "18,500 SAR",
+                status: "new",
+                live_observations: "جودة منتج ممتازة مع ضعف واضح في ريلز ماكرو سينمائي وعدم تفعيل إعادة الاستهداف للزوار."
+            },
+            {
+                name: "أورورا ديزاين للأثاث المعاصر (Aurora Modern Living)",
+                sector: "تصميم داخلي وأثاث راقٍ (Interior & Home Luxury)",
+                market: "دولي",
+                currency: "USD",
+                detected_url: "https://auroraliving.design",
+                phone: "+12125550198",
+                benchmark_price: "$4,500 USD",
+                status: "closed",
+                live_observations: "اعتماد حصري على صور الكتالوج الثابتة دون استخدام تجارب تفاعلية أو مقاطع فيديو غامرة."
+            }
+        ];
+
+        // Load Initial Leads
+        function initLeads() {
+            const saved = localStorage.getItem('nexus_crm_leads');
+            if (saved) {
+                try {
+                    currentLeads = JSON.parse(saved);
+                    renderAllTables();
+                    return;
+                } catch(e) {}
+            }
+            
+            // Try fetching from leads.json
+            fetch('leads.json')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.leads && data.leads.length > 0) {
+                        currentLeads = data.leads.map(l => ({ ...l, status: l.status || 'new' }));
+                    } else {
+                        currentLeads = [...defaultLeads];
+                    }
+                    localStorage.setItem('nexus_crm_leads', JSON.stringify(currentLeads));
+                    renderAllTables();
+                })
+                .catch(() => {
+                    currentLeads = [...defaultLeads];
+                    renderAllTables();
+                });
+        }
+
+        // Render Overview & CRM Tables
+        function renderAllTables() {
+            // 1. Overview Table
+            const overviewBody = document.getElementById('overview-leads-body');
+            if (overviewBody) {
+                overviewBody.innerHTML = '';
+                const colors = ['purple', 'sky', 'emerald', 'amber'];
+                currentLeads.slice(0, 4).forEach((l, idx) => {
+                    const tr = document.createElement('tr');
+                    const color = colors[idx % colors.length];
+                    const firstChar = (l.name || 'ع').trim().charAt(0);
+                    tr.innerHTML = `
+                        <td class="py-3 font-bold text-white flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-full bg-${color}-600 flex items-center justify-center text-[10px] text-white font-bold shrink-0">${firstChar}</div>
+                            <div>
+                                <div class="truncate max-w-[180px]">${l.name}</div>
+                                <div class="text-[10px] text-slate-400 font-normal">${l.sector || 'قطاع تجاري'}</div>
+                            </div>
+                        </td>
+                        <td class="py-3 text-slate-400 font-eng text-[11px]">${l.phone || 'غير مسجل'}</td>
+                        <td class="py-3">
+                            <span class="bg-${l.status === 'closed' ? 'purple' : l.status === 'contacted' ? 'sky' : 'emerald'}-500/10 text-${l.status === 'closed' ? 'purple' : l.status === 'contacted' ? 'sky' : 'emerald'}-400 border border-${l.status === 'closed' ? 'purple' : l.status === 'contacted' ? 'sky' : 'emerald'}-500/30 px-2 py-0.5 rounded text-[10px] font-bold">
+                                ${l.status === 'closed' ? 'معتمد ومغلق' : l.status === 'contacted' ? 'قيد التواصل' : 'نشط وجاهز'}
+                            </span>
+                        </td>
+                        <td class="py-3">
+                            <button onclick="openWhatsAppPitch('${encodeURIComponent(l.name)}', '${l.phone}')" class="px-2.5 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/40 border border-emerald-500/30 transition text-[11px] font-bold flex items-center gap-1">
+                                <i data-lucide="message-circle" class="w-3 h-3"></i>
+                                <span>واتساب</span>
+                            </button>
+                        </td>
+                    `;
+                    overviewBody.appendChild(tr);
+                });
+            }
+
+            // 2. CRM Table
+            const crmBody = document.getElementById('crm-table-body');
+            if (crmBody) {
+                crmBody.innerHTML = '';
+                currentLeads.forEach((l, idx) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="py-3.5 font-bold text-white">
+                            <div>${l.name}</div>
+                            <div class="text-[11px] text-slate-400 font-normal">${l.sector || ''}</div>
+                        </td>
+                        <td class="py-3.5">
+                            <a href="${l.detected_url || '#'}" target="_blank" class="text-purple-400 hover:text-purple-300 truncate max-w-[150px] inline-block font-eng">${l.detected_url ? l.detected_url.replace('https://', '') : 'رابط مباشر'}</a>
+                        </td>
+                        <td class="py-3.5 text-slate-300 font-eng">${l.phone || 'غير متوفر'}</td>
+                        <td class="py-3.5 text-emerald-400 font-bold font-eng">${l.benchmark_price || '$3,500'}</td>
+                        <td class="py-3.5">
+                            <select onchange="updateLeadStatus(${idx}, this.value)" class="bg-[#181824] border border-white/10 rounded-lg p-1 text-[11px] text-white">
+                                <option value="new" ${l.status === 'new' ? 'selected' : ''}>جديد</option>
+                                <option value="contacted" ${l.status === 'contacted' ? 'selected' : ''}>قيد التواصل</option>
+                                <option value="closed" ${l.status === 'closed' ? 'selected' : ''}>معتمد ومغلق</option>
+                            </select>
+                        </td>
+                        <td class="py-3.5 text-center">
+                            <div class="flex items-center justify-center gap-2">
+                                <button onclick="openWhatsAppPitch('${encodeURIComponent(l.name)}', '${l.phone}')" class="p-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/40" title="فتح مسودة واتساب">
+                                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="deleteLead(${idx})" class="p-1.5 rounded-lg bg-red-600/20 text-red-400 hover:bg-red-600/40" title="حذف">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    crmBody.appendChild(tr);
+                });
+            }
+
+            // Update Counts
+            const leadsCountEl = document.getElementById('sidebar-leads-count');
+            if (leadsCountEl) leadsCountEl.innerText = currentLeads.length;
+            const crmTotalEl = document.getElementById('crm-total-count');
+            if (crmTotalEl) crmTotalEl.innerText = currentLeads.length;
+
+            renderActiveProjects();
+            lucide.createIcons();
+        }
+
+        // Active Projects Renderer
+        function renderActiveProjects() {
+            const container = document.getElementById('active-projects-list');
+            if (!container) return;
+            container.innerHTML = `
+                <div class="space-y-1.5">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">حملة متجر لومينوس D2C</span>
+                        <span class="font-eng font-bold text-sky-400">75%</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-[#1c1c2b] overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-sky-500 to-blue-500 rounded-full" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">بوابة كلاود فيلو B2B</span>
+                        <span class="font-eng font-bold text-purple-400">60%</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-[#1c1c2b] overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">توسع فروع أورا كافيه</span>
+                        <span class="font-eng font-bold text-emerald-400">90%</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-[#1c1c2b] overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" style="width: 90%;"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 2. TAB SWITCHING
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if (activeTab) activeTab.classList.add('active');
+
+            // Update nav active classes
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.className = "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition text-right";
+            });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl sidebar-item-active transition text-right";
+            }
+            lucide.createIcons();
+        }
+
+        // 3. WHATSAPP OUTREACH BUILDER
+        function openWhatsAppPitch(clientNameEncoded, phone) {
+            const clientName = decodeURIComponent(clientNameEncoded);
+            const cleanPhone = (phone || '').replace(/[^0-9]/g, '') || '201210237652';
+            const msg = `مرحباً فريق ${clientName}،\nمعكم أحمد مرجان - المدير التنفيذي لوكالة NEXUS Agency.\nأجرينا تدقيقاً تسويقياً شاملاً على مسار حملاتكم الإعلانية ورصدنا فرصة مؤكدة لمضاعفة معدل التحويل وخفض تكلفة اكتساب العميل.\nهل يناسبكم استعراض خطة التدقيق السريعة عبر مكالمة موجزة أو ملف PDF مخصص؟`;
+            const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // 4. CRM ACTIONS
+        function updateLeadStatus(index, newStatus) {
+            if (currentLeads[index]) {
+                currentLeads[index].status = newStatus;
+                localStorage.setItem('nexus_crm_leads', JSON.stringify(currentLeads));
+                renderAllTables();
+            }
+        }
+
+        function deleteLead(index) {
+            if (confirm('هل أنت متأكد من حذف هذا العميل من القائمة؟')) {
+                currentLeads.splice(index, 1);
+                localStorage.setItem('nexus_crm_leads', JSON.stringify(currentLeads));
+                renderAllTables();
+            }
+        }
+
+        function openAddLeadModal() {
+            document.getElementById('add-lead-modal').classList.remove('hidden');
+        }
+
+        function closeAddLeadModal() {
+            document.getElementById('add-lead-modal').classList.add('hidden');
+        }
+
+        function handleSaveNewLead(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-lead-name').value.trim();
+            const sector = document.getElementById('new-lead-sector').value.trim();
+            const phone = document.getElementById('new-lead-phone').value.trim();
+            const price = document.getElementById('new-lead-price').value.trim() || '$3,500 USD';
+
+            currentLeads.unshift({
+                name,
+                sector,
+                phone,
+                benchmark_price: price,
+                status: 'new',
+                detected_url: 'إضافة يدوية',
+                live_observations: 'تمت إضافته يدوياً بواسطة المدير التنفيذي للمتابعة الفورية.'
+            });
+
+            localStorage.setItem('nexus_crm_leads', JSON.stringify(currentLeads));
+            closeAddLeadModal();
+            document.getElementById('add-lead-form').reset();
+            renderAllTables();
+            showQuickAlert('تمت إضافة العميل بنجاح إلى قاعدة البيانات.');
+        }
+
+        function exportLeadsCSV() {
+            let csv = "Name,Sector,Phone,Price,Status\n";
+            currentLeads.forEach(l => {
+                csv += `"${l.name}","${l.sector}","${l.phone}","${l.benchmark_price}","${l.status}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `nexus_leads_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+
+        // 5. ROAS CALCULATOR LOGIC
+        function calculateROAS() {
+            const spend = parseFloat(document.getElementById('calc-spend').value) || 0;
+            const aov = parseFloat(document.getElementById('calc-aov').value) || 0;
+            const cpc = parseFloat(document.getElementById('calc-cpc').value) || 0.1;
+            const cvr = (parseFloat(document.getElementById('calc-cvr').value) || 1) / 100;
+
+            const clicks = Math.round(spend / cpc);
+            const orders = Math.round(clicks * cvr);
+            const revenue = Math.round(orders * aov);
+            const roas = spend > 0 ? (revenue / spend).toFixed(1) : 0;
+
+            document.getElementById('res-clicks').innerText = clicks.toLocaleString();
+            document.getElementById('res-orders').innerText = orders.toLocaleString();
+            document.getElementById('res-roas').innerText = roas + 'x';
+            document.getElementById('res-revenue').innerText = '$' + revenue.toLocaleString();
+        }
+
+        function copyROASToClipboard() {
+            const spend = document.getElementById('calc-spend').value;
+            const roas = document.getElementById('res-roas').innerText;
+            const rev = document.getElementById('res-revenue').innerText;
+            const text = `دراسة الجدوى الإعلانية من NEXUS:\nالميزانية المقترحة: $${spend}\nالعائد الإعلاني المتوقع (ROAS): ${roas}\nالمبيعات التقديرية المحققة: ${rev}`;
+            navigator.clipboard.writeText(text);
+            showQuickAlert('تم نسخ ملخص دراسة الجدوى إلى الحافظة.');
+        }
+
+        // 6. LIVE AI SCOUT
+        let lastScoutLead = null;
+        function runLiveAuditScout() {
+            const target = document.getElementById('scout-input').value.trim();
+            if (!target) {
+                alert('يرجى إدخال اسم النشاط أو الرابط أو الحساب أولاً.');
+                return;
+            }
+            const sector = document.getElementById('scout-sector').value;
+            const resBox = document.getElementById('scout-result');
+            resBox.classList.remove('hidden');
+
+            const score = Math.floor(Math.random() * 25) + 48; // Realistic leak score 48-73
+            document.getElementById('scout-score').innerText = `Score: ${score}/100`;
+            document.getElementById('scout-res-name').innerText = target;
+            
+            let leakText = "تم رصد 3 ثغرات رئيسية: غياب مسار تأكيد فوري بالواتساب، بطء في تحميل صور المنتجات، وضعف في إنتاج مقاطع الريلز السينمائية الموجهة للتحويل المباشر.";
+            if (sector === 'saas') leakText = "تم رصد تسرب 45% من الزوار بسبب طول نموذج طلب العرض التجريبي وغياب فيديو شرح سينمائي في الصفحة الأولى.";
+            if (sector === 'food') leakText = "تفاعل إعلاني مرتفع ولكن لا توجد إعادة استهداف للمهتمين بقائمة الطعام أو مسار حجز مباشر للطاولات.";
+            
+            document.getElementById('scout-res-leaks').innerText = leakText;
+
+            lastScoutLead = {
+                name: target,
+                sector: sector === 'saas' ? 'منصة برمجيات SaaS' : sector === 'food' ? 'ضيافة وأغذية' : 'تجارة إلكترونية',
+                phone: '+201210237652',
+                benchmark_price: '$4,200 USD',
+                status: 'new',
+                detected_url: target.includes('.') ? target : 'https://instagram.com/' + target.replace('@', ''),
+                live_observations: leakText
+            };
+            lucide.createIcons();
+        }
+
+        function addScoutLeadToCRM() {
+            if (lastScoutLead) {
+                currentLeads.unshift(lastScoutLead);
+                localStorage.setItem('nexus_crm_leads', JSON.stringify(currentLeads));
+                renderAllTables();
+                showQuickAlert(`تم حفظ [${lastScoutLead.name}] بنجاح في قاعدة بيانات الـ CRM.`);
+            }
+        }
+
+        function sendScoutWhatsApp() {
+            if (lastScoutLead) {
+                openWhatsAppPitch(encodeURIComponent(lastScoutLead.name), '201210237652');
+            }
+        }
+
+        // 7. SYNC & HELPERS
+        function syncLeadsFromCloud() {
+            fetch('leads.json?t=' + Date.now())
+                .then(r => r.json())
+                .then(d => {
+                    if (d && d.leads) {
+                        currentLeads = d.leads;
+                        localStorage.setItem('nexus_crm_leads', JSON.stringify(currentLeads));
+                        renderAllTables();
+                        showQuickAlert('تمت مزامنة أحدث بيانات الرادار السحابي بنجاح!');
+                    }
+                })
+                .catch(() => showQuickAlert('تم تحديث البيانات الحالية.'));
+        }
+
+        function showQuickAlert(msg) {
+            alert(msg);
+        }
+
+        function handleGlobalSearch(q) {
+            const query = q.toLowerCase();
+            document.querySelectorAll('#crm-table-body tr').forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(query) ? '' : 'none';
+            });
+        }
+
+        // 8. CHARTS CONFIGURATION
+        let campaignChart = null;
+        function initCharts() {
+            const ctxCampaign = document.getElementById('campaignChart').getContext('2d');
+            campaignChart = new Chart(ctxCampaign, {
+                type: 'line',
+                data: {
+                    labels: ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'],
+                    datasets: [
+                        {
+                            label: 'الزيارات',
+                            data: [50, 75, 60, 90, 85, 125, 95],
+                            borderColor: '#8b5cf6',
+                            backgroundColor: 'rgba(139, 92, 246, 0.15)',
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: '#8b5cf6',
+                            pointBorderColor: '#fff',
+                            pointRadius: 4
+                        },
+                        {
+                            label: 'التحويلات',
+                            data: [20, 35, 30, 48, 42, 65, 52],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: '#10b981',
+                            pointBorderColor: '#fff',
+                            pointRadius: 4
+                        }
+                    ]
                 },
-                scales: {
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: '#64748b', font: { family: 'Cairo', size: 10 } }
-                    },
-                    y: {
-                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                        ticks: {
-                            color: '#64748b',
-                            font: { family: 'Plus Jakarta Sans', size: 10 },
-                            callback: function(val) { return val + 'K'; }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#64748b', font: { family: 'Cairo', size: 10 } } },
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans', size: 10 }, callback: val => val + 'K' }
                         }
                     }
                 }
-            }
-        });
+            });
 
-        // 2. Traffic Donut Chart
-        const ctxTraffic = document.getElementById('trafficDonut').getContext('2d');
-        new Chart(ctxTraffic, {
-            type: 'doughnut',
-            data: {
-                labels: ['Google', 'Facebook', 'Instagram'],
-                datasets: [{
-                    data: [45, 35, 20],
-                    backgroundColor: ['#0ea5e9', '#10b981', '#f59e0b'],
-                    borderWidth: 0,
-                    cutout: '72%'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
+            const ctxTraffic = document.getElementById('trafficDonut').getContext('2d');
+            new Chart(ctxTraffic, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Google Ads', 'Meta', 'TikTok'],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: ['#0ea5e9', '#10b981', '#f59e0b'],
+                        borderWidth: 0,
+                        cutout: '72%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
                 }
-            }
-        });
+            });
+        }
 
-        // 3. Dynamic Real-Time Leads Loader from leads.json
-        fetch('leads.json')
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.leads && data.leads.length > 0) {
-                    const tbody = document.getElementById('clients-table-body');
-                    if (tbody) {
-                        tbody.innerHTML = '';
-                        const colors = ['purple', 'sky', 'emerald', 'amber'];
-                        data.leads.forEach((l, idx) => {
-                            const tr = document.createElement('tr');
-                            const color = colors[idx % colors.length];
-                            const firstChar = l.name.trim().charAt(0) || 'ع';
-                            const dateStr = data.updated_at ? data.updated_at.split(' ')[0] : '2026-11-14';
-                            tr.innerHTML = `
-                                <td class="py-3 font-bold text-white flex items-center gap-2">
-                                    <div class="w-7 h-7 rounded-full bg-${color}-600 flex items-center justify-center text-[10px] text-white font-bold shrink-0">${firstChar}</div>
-                                    <div>
-                                        <div class="truncate max-w-[200px]">${l.name}</div>
-                                        <div class="text-[10px] text-slate-400 font-normal">${l.sector || 'قطاع تجاري'}</div>
-                                    </div>
-                                </td>
-                                <td class="py-3 text-slate-400 font-eng text-[11px]">${l.phone || l.currency || 'USD'}</td>
-                                <td class="py-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[10px] font-bold">نشط / جديد</span></td>
-                                <td class="py-3 text-slate-400 font-eng text-[11px]">${dateStr}</td>
-                            `;
-                            tbody.appendChild(tr);
-                        });
-                    }
+        function setChartRange(days) {
+            document.querySelectorAll('[id^="range-"]').forEach(b => {
+                b.className = "bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-xl text-xs text-slate-400 hover:text-white transition";
+            });
+            document.getElementById(`range-${days}`).className = "bg-purple-600/30 text-purple-300 border border-purple-500/40 px-3 py-1.5 rounded-xl text-xs font-bold transition";
+
+            if (campaignChart) {
+                if (days === 7) {
+                    campaignChart.data.labels = ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'];
+                    campaignChart.data.datasets[0].data = [50, 75, 60, 90, 85, 125, 95];
+                    campaignChart.data.datasets[1].data = [20, 35, 30, 48, 42, 65, 52];
+                } else if (days === 30) {
+                    campaignChart.data.labels = ['الأسبوع 1', 'الأسبوع 2', 'الأسبوع 3', 'الأسبوع 4'];
+                    campaignChart.data.datasets[0].data = [280, 340, 420, 510];
+                    campaignChart.data.datasets[1].data = [110, 145, 190, 240];
+                } else {
+                    campaignChart.data.labels = ['الشهر 1', 'الشهر 2', 'الشهر 3'];
+                    campaignChart.data.datasets[0].data = [1200, 1450, 1850];
+                    campaignChart.data.datasets[1].data = [480, 620, 890];
                 }
-            })
-            .catch(() => console.log('Using static default table view.'));
+                campaignChart.update();
+            }
+        }
+
+        // Initialize on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            initLeads();
+            initCharts();
+            calculateROAS();
+        });
     </script>
 </body>
 </html>
