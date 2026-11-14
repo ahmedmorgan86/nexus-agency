@@ -1,8 +1,18 @@
 {
-  "updated_at": "2026-11-14 11:17 PM (بتوقيت القاهرة/الرياض)",
+  "updated_at": "2026-11-14 11:29 PM (بتوقيت القاهرة/الرياض)",
   "cycle": "دورة النبض الليلي والرصد المستمر (Night Radar & Pipeline Staging)",
   "total_active": 4,
   "leads": [
+    {
+      "name": "متجر لومينوس لمستحضرات العناية الطبيعية (Luminous Botanicals)",
+      "sector": "تجارة إلكترونية وعناية فاخرة (D2C E-Commerce)",
+      "market": "إقليمي ودولي",
+      "currency": "USD",
+      "detected_url": "https://luminousbotanicals.com",
+      "phone": "+971501234567",
+      "benchmark_price": "$3,800 USD",
+      "live_observations": "إنفاق إعلاني مكثف على تيك توك وإنستغرام ولكن معدل السلات المتروكة يتجاوز 68% لغياب صفحات هبوط مخصصة ومسار استرداد فوري عبر واتساب."
+    },
     {
       "name": "منصة كلاود فيلو لإدارة سلاسل الإمداد (CloudFlow Logistics SaaS)",
       "sector": "حلول برمجية سحابية للشركات (B2B SaaS)",
@@ -14,14 +24,14 @@
       "live_observations": "حملات لينكد إن احترافية لكن ينقصها فيديو ترويجي سينمائي يشرح الميزات في 45 ثانية ومسار حجز عرض تجريبي بضغطة زر."
     },
     {
-      "name": "فينتك باي للمدفوعات الرقمية (FintechPay Gateway)",
-      "sector": "تكنولوجيا مالية وحلول دفع (Fintech Solutions)",
-      "market": "الشرق الأوسط وأفريقيا",
-      "currency": "USD",
-      "detected_url": "https://fintechpay.co",
-      "phone": "+201023456789",
-      "benchmark_price": "$5,000 USD",
-      "live_observations": "غياب دراسات الحالة المرئية لقصص نجاح العملاء مما يؤخر اتخاذ قرار الشراء لدى المتاجر الإلكترونية الكبرى."
+      "name": "سلسلة محامص أورا كافيه للقهوة المختصة (Aura Artisan Roastery)",
+      "sector": "قطاع الضيافة والأغذية المتخصصة (F&B Retail)",
+      "market": "محلي وإقليمي",
+      "currency": "SAR",
+      "detected_url": "https://instagram.com/auraroastery",
+      "phone": "+966551239876",
+      "benchmark_price": "18,500 SAR",
+      "live_observations": "جودة منتج ممتازة مع ضعف واضح في ريلز ماكرو سينمائي وعدم تفعيل إعادة الاستهداف للزوار الذين تفاعلوا مع الفروع."
     },
     {
       "name": "أورورا ديزاين للأثاث المعاصر (Aurora Modern Living)",
@@ -32,16 +42,6 @@
       "phone": "+12125550198",
       "benchmark_price": "$4,500 USD",
       "live_observations": "اعتماد حصري على صور الكتالوج الثابتة دون استخدام تجارب تفاعلية أو مقاطع فيديو غامرة تستعرض الخامات وتناسق المساحات."
-    },
-    {
-      "name": "إليكسير لمستحضرات العطور الفاخرة (Elixir Haute Parfumerie)",
-      "sector": "عطور ومنتجات النخبة (Luxury Fragrances)",
-      "market": "الخليج وفرنسا",
-      "currency": "SAR",
-      "detected_url": "https://instagram.com/elixirparfums",
-      "phone": "+966509876543",
-      "benchmark_price": "22,000 SAR",
-      "live_observations": "تغليف استثنائي ولكن المحتوى الإعلاني الحالي لا يعكس الفخامة السينمائية المطلوبة لإقناع شريحة كبار الشخصيات."
     }
   ]
 }
