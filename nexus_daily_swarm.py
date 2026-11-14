@@ -62,7 +62,7 @@ def fetch_live_market_data():
             "region": "الخليج · الرياض (شارع التخصصي)",
             "currency": "SAR",
             "detected_url": "https://instagram.com/labellaksa",
-            "phone": "+966920013699",
+            "phone": "+966534992109",
             "benchmark_price": "24,000 SAR",
             "live_observations": "نشاط إعلاني ضخم في الرياض ولكن غياب تام لمسارات الحجز الفورية بالواتساب وضعف جودة تصوير الإضاءة السينمائية لنتائج العمليات في ريلز وتيك توك."
         },
