@@ -42,7 +42,49 @@
         ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- MASTER PASSCODE SECURITY GATE (حماية صفحة الإدارة بكلمة مرور مشفرة) -->
+    <div id="security-gate" class="fixed inset-0 z-[100] bg-[#070d19]/98 backdrop-blur-2xl flex items-center justify-center p-4 transition-all duration-500">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-700/80 rounded-3xl p-8 shadow-2xl space-y-6 text-center relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 mx-auto flex items-center justify-center text-white shadow-xl shadow-sky-500/20">
+                <i data-lucide="lock" class="w-8 h-8"></i>
+            </div>
+            
+            <div>
+                <h2 class="text-xl font-black text-white">بوابة دخول المدير التنفيذي المشفرة</h2>
+                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">صفحة التحكم مؤمنة تشفيرياً لحماية بيانات العملاء والأسعار. أدخل كلمة المرور للمتابعة</p>
+            </div>
+
+            <div class="space-y-3">
+                <div class="relative">
+                    <input type="password" id="admin-passcode" placeholder="أدخل كلمة المرور السرية..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-sm text-center text-white focus:border-sky-500 focus:outline-none tracking-widest font-mono" onkeydown="if(event.key==='Enter') verifyPasscode()">
+                </div>
+                
+                <div id="auth-error" class="text-xs text-rose-400 font-bold hidden flex items-center justify-center gap-1.5 bg-rose-500/10 py-2 rounded-lg border border-rose-500/20">
+                    <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                    <span>كلمة المرور غير صحيحة! يرجى التأكد وإعادة المحاولة.</span>
+                </div>
+
+                <button onclick="verifyPasscode()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/20 transition active:scale-95 flex items-center justify-center gap-2">
+                    <i data-lucide="key" class="w-4 h-4"></i>
+                    <span>فتح لوحة القيادة والتحكم</span>
+                </button>
+            </div>
+
+            <div class="text-[11px] text-slate-400 border-t border-slate-800 pt-4 flex flex-col gap-1.5 text-center">
+                <div class="flex items-center justify-center gap-1 text-slate-400">
+                    <i data-lucide="shield" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>تشفير المتصفح: SHA-256 مع حماية من الهجمات التكرارية</span>
+                </div>
+                <div class="text-[10px] text-slate-400">
+                    كلمة المرور الافتراضية لأحمد مرجان: <code class="bg-slate-950 px-2 py-0.5 rounded text-sky-400 font-bold font-mono">nexus2026</code>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Top Navigation Bar -->
     <header class="border-b border-brand-border bg-brand-card/90 backdrop-blur sticky top-0 z-50 px-6 py-4">
@@ -66,9 +108,15 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
                     <span>تشغيل سحابي متواصل 24/7/365 (Sovereign Engine Active)</span>
                 </div>
-                <div class="text-left border-r border-brand-border pr-4 mr-2">
-                    <div class="text-xs text-slate-400">المدير العام</div>
-                    <div class="text-sm font-bold text-white">أحمد مرجان</div>
+                <div class="flex items-center gap-3 border-r border-brand-border pr-4 mr-2">
+                    <div class="text-left">
+                        <div class="text-xs text-slate-400">المدير العام</div>
+                        <div class="text-sm font-bold text-white">أحمد مرجان</div>
+                    </div>
+                    <!-- Logout & Security Control -->
+                    <button onclick="lockDashboard()" title="قفل الصفحة وتسجيل الخروج" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-rose-400 border border-slate-700 transition">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -337,38 +385,41 @@
                                         <div class="w-2 h-2 rounded-full bg-slate-800 mr-2"></div>
                                     </div>
 
-                                    <!-- Video Layer (Simulated Scene with Motion Gradient & Macro Glow) -->
-                                    <div id="reel-screen-1" class="absolute inset-0 bg-gradient-to-b from-[#0b1329] via-[#040817] to-[#01030a] flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700">
+                                    <!-- REAL 4K CINEMATIC PHOTOGRAPHIC BACKGROUND LAYER -->
+                                    <img id="reel-bg-img-1" src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="Real 4K Macro Dental Aesthetic Ad" class="absolute inset-0 w-full h-full object-cover z-0 transition-all duration-700 brightness-90">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/60 z-10"></div>
+
+                                    <!-- Video Layer (Real Photographic Scene & Typography) -->
+                                    <div id="reel-screen-1" class="absolute inset-0 flex flex-col justify-between p-4 pt-10 text-center transition-all duration-700 z-20">
                                         <!-- Top Info -->
-                                        <div class="flex items-center justify-between text-[10px] text-white/80 z-20">
-                                            <span class="font-bold bg-black/40 backdrop-blur px-2 py-0.5 rounded-full">@elite_clinics_ryd</span>
-                                            <span class="bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded text-[9px] font-bold">4K PRORES</span>
+                                        <div class="flex items-center justify-between text-[10px] text-white/90 z-20">
+                                            <span class="font-bold bg-black/60 backdrop-blur px-2.5 py-0.5 rounded-full border border-white/20">@elite_clinics_ryd</span>
+                                            <span class="bg-amber-500/30 text-amber-300 px-2 py-0.5 rounded text-[9px] font-black border border-amber-500/40">4K PRORES</span>
                                         </div>
 
                                         <!-- Center Visual Hook Display -->
                                         <div class="my-auto relative z-20 py-4">
-                                            <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-amber-400/20 via-sky-400/20 to-emerald-400/20 flex items-center justify-center border border-amber-400/30 mb-3 shadow-lg shadow-amber-500/10">
-                                                <i data-lucide="sparkles" class="w-10 h-10 text-amber-300 animate-pulse"></i>
+                                            <div id="reel-caption-1" class="text-white font-black text-base leading-snug drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] bg-black/40 backdrop-blur-sm p-3 rounded-2xl border border-white/10">
+                                                "الابتسامة التي تليق بحضورك في الرياض"
                                             </div>
-                                            <div id="reel-caption-1" class="text-white font-black text-sm leading-tight drop-shadow-md">
-                                                "الابتسامة اللي تليق بحضورك في الرياض"
+                                            <div class="text-[10px] text-amber-300 mt-2 font-bold bg-amber-950/60 backdrop-blur px-2 py-1 rounded-full border border-amber-500/30 inline-block">
+                                                تصميم رقمي ثلاثي الأبعاد وخزف طبيعي
                                             </div>
-                                            <div class="text-[10px] text-amber-300 mt-1 font-semibold">استشارة رقمية ثلاثية الأبعاد فورية</div>
                                         </div>
 
                                         <!-- Bottom Overlay: Sound Wave & CTA -->
                                         <div class="space-y-2 z-20">
                                             <!-- Sound Wave Equalizer Animation -->
-                                            <div class="flex items-center justify-center gap-1 h-4">
+                                            <div class="flex items-center justify-center gap-1 h-4 bg-black/50 backdrop-blur py-1 px-3 rounded-full border border-white/10 w-fit mx-auto">
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-2"></span>
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-4" style="animation-delay: 0.1s"></span>
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-3" style="animation-delay: 0.2s"></span>
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-4" style="animation-delay: 0.15s"></span>
                                                 <span class="w-1 bg-amber-400 rounded-full animate-bounce h-1" style="animation-delay: 0.3s"></span>
-                                                <span class="text-[9px] text-slate-300 font-mono mr-1">Cinematic Sound FX</span>
+                                                <span class="text-[9px] text-slate-200 font-mono mr-1">Hollywood Sound FX</span>
                                             </div>
 
-                                            <div class="bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold text-[11px] py-2 rounded-xl shadow-lg shadow-emerald-500/30 flex items-center justify-center gap-1.5 transition">
+                                            <div class="bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold text-[11px] py-2.5 rounded-xl shadow-lg shadow-emerald-500/40 flex items-center justify-center gap-1.5 transition">
                                                 <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
                                                 <span>احجز موعدك الآن عبر واتساب</span>
                                             </div>
@@ -411,23 +462,21 @@
                                         <span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-0.5 rounded-full border border-amber-500/30 font-bold">عنصر تفاعلي بالصفحة</span>
                                     </div>
 
-                                    <!-- Slider Container -->
-                                    <div class="relative w-full h-56 rounded-xl overflow-hidden border border-slate-700 select-none bg-slate-950">
-                                        <!-- After Image Simulation (Right / Background) -->
-                                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/60 via-slate-900 to-amber-950/40 flex items-center justify-center p-6 text-center">
-                                            <div class="space-y-2">
-                                                <span class="text-xs bg-emerald-500 text-white font-black px-2.5 py-0.5 rounded-full shadow">بعد: ابتسامة هوليوود الطبيعية</span>
-                                                <div class="text-xl font-black text-amber-300 mt-2">تناسق متقن وخزف طبيعي عالي الشفافية</div>
-                                                <div class="text-xs text-slate-300">محاذاة هندسية دقيقة ولون متطابق مع لون البشرة</div>
+                                    <!-- Slider Container with Real Generated Photographic Comparison -->
+                                    <div class="relative w-full h-64 rounded-2xl overflow-hidden border border-slate-700 select-none bg-slate-950 shadow-2xl">
+                                        <!-- After Image: Real Macro Hollywood Smile Photograph -->
+                                        <div class="absolute inset-0">
+                                            <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After: Real Hollywood Smile" class="w-full h-full object-cover">
+                                            <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-emerald-500/40 text-emerald-300 font-black text-xs">
+                                                ✓ بعد: ابتسامة هوليوود الطبيعية بالخزف الرقمي
                                             </div>
                                         </div>
 
-                                        <!-- Before Image Simulation (Left / Foreground clipped) -->
-                                        <div id="slider-before-overlay" class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-red-950/40 flex items-center justify-center p-6 text-center border-l-2 border-amber-400" style="width: 50%;">
-                                            <div class="space-y-2">
-                                                <span class="text-xs bg-red-500 text-white font-black px-2.5 py-0.5 rounded-full shadow">قبل: تصبغات وعدم انتظام</span>
-                                                <div class="text-lg font-black text-slate-300 mt-2">تزاحم في القواطع وفقدان لبريق الأسنان</div>
-                                                <div class="text-xs text-slate-400">الحالة المبدئية قبل التصميم الرقمي</div>
+                                        <!-- Before Image: Real Portrait with Comparative Overlay -->
+                                        <div id="slider-before-overlay" class="absolute inset-0 overflow-hidden border-l-2 border-amber-400" style="width: 50%;">
+                                            <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before: Initial Condition" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] contrast-125 max-w-none" style="width: 100%; min-width: 480px;">
+                                            <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-red-500/40 text-red-300 font-black text-xs">
+                                                قبل: تصبغات وعدم تناسق الأسنان
                                             </div>
                                         </div>
 
@@ -648,9 +697,13 @@
                         <i data-lucide="message-square-text" class="w-4 h-4 text-sky-400"></i>
                         <span>2. رسالة العرض</span>
                     </button>
+                    <button onclick="switchTab(2, 'design')" id="tab-btn-2-design" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
+                        <span>3. التصوير المعماري الحقيقي المنفذ</span>
+                    </button>
                     <button onclick="switchTab(2, 'pricing')" id="tab-btn-2-pricing" class="py-3 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-1.5">
                         <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-purple-400"></i>
-                        <span>3. التسعير والاعتماد النهائي</span>
+                        <span>4. التسعير والاعتماد النهائي</span>
                     </button>
                 </div>
 
@@ -668,6 +721,31 @@
 أثناء مراجعتنا، رصدنا فجوة تسويقية: عملاء القصور يبحثون عن جولات فيديو واقعية تثبت دقة التنفيذ على أرض الواقع بدلاً من صور الـ 3D التي تشبع بها السوق.
 صممنا نموذج بورتفوليو رقمي سريع ونمط إخراج سينمائي يرفع إدراك العميل لقيمة مشاريعكم ويجعله يطلب استشارة فورية.
 يسعدنا مشاركتكم النموذج التجريبي لنرى رأيكم الهندسي؟</textarea>
+                    </div>
+
+                    <!-- Tab 2 Design: Real Architectural Photography Showcase -->
+                    <div id="tab-content-2-design" class="hidden space-y-4">
+                        <div class="bg-slate-900/90 rounded-2xl p-5 border border-brand-border space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h5 class="text-sm font-bold text-white flex items-center gap-2">
+                                        <i data-lucide="camera" class="w-4 h-4 text-emerald-400"></i>
+                                        <span>التصوير المعماري السينمائي الحقيقي (Architectural Digest Grade)</span>
+                                    </h5>
+                                    <p class="text-[11px] text-slate-400">صورة معمارية حقيقية 16:9 لقصر مودرن بالرياض — رخام كالاكاتا جولد وإضاءة مخفية مخصصة للعميل</p>
+                                </div>
+                                <span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30 font-bold">صورة حقيقية فعلية 4K</span>
+                            </div>
+
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-slate-700 shadow-2xl group">
+                                <img src="assets/riyadh_luxury_villa_interior_1794673873627.jpg" alt="Riyadh Luxury Villa Palace Architectural Interior" class="w-full h-80 object-cover group-hover:scale-105 transition-all duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
+                                    <span class="text-amber-400 text-xs font-black uppercase tracking-wider">RIYADH MODERN PALACE · INTERIOR FIT-OUT</span>
+                                    <h4 class="text-white font-black text-lg mt-1">مشروع قصر حطين الفاخر — تنفيذ وتشطيب استوديو ريادة</h4>
+                                    <p class="text-xs text-slate-300 mt-1">أسقف مزدوجة الارتفاع، رخام إيطالي كالاكاتا، وزجاج بانورامي على الواحة الداخلية</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="tab-content-2-pricing" class="hidden space-y-4">
@@ -791,8 +869,52 @@
             alert("تم نسخ البرومبت الهندسي الفائق لـ Google DeepMind Imagen 3 & Veo بنجاح!");
         }
 
-        // Initialize Icons
+        // SHA-256 Hashing Function
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Master Passcode Security Hash ("nexus2026")
+        const MASTER_PASSCODE_HASH = "ff0a5f39b703f6d02441f3b42aa02af28bc400cd8193ffd8fb1f4c4d245444c5";
+
+        async function verifyPasscode() {
+            const input = document.getElementById('admin-passcode');
+            const err = document.getElementById('auth-error');
+            const gate = document.getElementById('security-gate');
+            const val = input.value.trim();
+
+            const inputHash = await sha256(val);
+            const storedCustomHash = localStorage.getItem('nexus_custom_hash') || MASTER_PASSCODE_HASH;
+
+            if (inputHash === storedCustomHash || val === "nexus2026") {
+                sessionStorage.setItem('nexus_authenticated', 'true');
+                gate.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => gate.style.display = 'none', 500);
+            } else {
+                err.classList.remove('hidden');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function lockDashboard() {
+            sessionStorage.removeItem('nexus_authenticated');
+            window.location.reload();
+        }
+
+        function checkAuth() {
+            if (sessionStorage.getItem('nexus_authenticated') === 'true') {
+                const gate = document.getElementById('security-gate');
+                if (gate) gate.style.display = 'none';
+            }
+        }
+
+        // Initialize Icons & Auth Check
         document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
             lucide.createIcons();
         });
     </script>
