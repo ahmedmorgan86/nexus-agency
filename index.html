@@ -3,13 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS — Global Growth & Creative Studio</title>
+    <title>وكالة نكسوس للتسويق والإنتاج الرقمي | NEXUS Agency</title>
+    <meta name="description" content="وكالة نكسوس تقدم خدمات متكاملة في صناعة المحتوى المرئي، إدارة الحملات الإعلانية الممولة، وتطوير صفحات الهبوط لزيادة المبيعات وتحقيق أعلى عائد استثماري.">
+    <link rel="canonical" href="https://nexus-agency-six.vercel.app/">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexus-agency-six.vercel.app/">
+    <meta property="og:title" content="وكالة نكسوس للتسويق والإنتاج الرقمي | NEXUS Agency">
+    <meta property="og:description" content="حلول تسويقية متكاملة لصناعة المحتوى المرئي وإدارة الحملات الإعلانية الموجهة لتحقيق نتائج قابلة للقياس.">
+    <meta property="og:locale" content="ar_AR">
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="وكالة نكسوس للتسويق والإنتاج الرقمي">
+    <meta name="twitter:description" content="حلول تسويقية متكاملة لصناعة المحتوى المرئي وإدارة الحملات الإعلانية الموجهة.">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "NEXUS Agency",
+      "url": "https://nexus-agency-six.vercel.app/",
+      "description": "وكالة تسويق رقمي متخصصة في صناعة المحتوى المرئي وإدارة الحملات الإعلانية الممولة.",
+      "telephone": "+201210237652",
+      "founder": {
+        "@type": "Person",
+        "name": "أحمد مرجان"
+      }
+    }
+    </script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Cairo -->
+    <!-- Google Fonts: Cairo & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -27,11 +58,10 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #0c0d12; color: #ededef; overflow-x: hidden; }
         .font-eng { font-family: 'Inter', sans-serif; }
-        .clean-border { border: 1px solid rgba(255, 255, 255, 0.08); }
         .clean-card {
             background-color: #13151c;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: border-color 0.25s ease, transform 0.25s ease;
         }
         .clean-card:hover {
             border-color: rgba(255, 255, 255, 0.2);
@@ -44,11 +74,11 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#0c0d12] text-[#ededef] antialiased selection:bg-white selection:text-black">
 
-    <!-- Top Floating Navbar -->
-    <header class="sticky top-0 z-50 bg-[#0c0d12]/90 backdrop-blur-md border-b border-white/5 px-6 lg:px-16 py-4">
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-50 bg-[#0c0d12]/95 backdrop-blur-md border-b border-white/5 px-6 lg:px-16 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Brand -->
-            <a href="index.html" class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-2.5">
                 <span class="font-eng text-xl font-extrabold tracking-wider text-white">NEXUS</span>
                 <span class="text-[10px] text-zinc-400 font-eng uppercase border border-zinc-700/60 px-2 py-0.5 rounded">Agency</span>
             </a>
@@ -56,19 +86,16 @@
             <!-- Navigation Links -->
             <nav class="hidden md:flex items-center gap-8 text-xs font-semibold text-zinc-400">
                 <a href="#services" class="hover:text-white transition">الخدمات</a>
-                <a href="#features" class="hover:text-white transition">مميزات العمل</a>
-                <a href="#demo" class="hover:text-white transition">الأدوات التفاعلية</a>
+                <a href="#packages" class="hover:text-white transition">الباقات ونطاق العمل</a>
+                <a href="#features" class="hover:text-white transition">منهجية العمل</a>
+                <a href="#demo" class="hover:text-white transition">نموذج العرض التوضيحي</a>
             </nav>
 
-            <!-- Director Login & CTA -->
+            <!-- Contact -->
             <div class="flex items-center gap-3">
-                <a href="dashboard.html" class="text-xs text-zinc-400 hover:text-white transition flex items-center gap-1.5 border border-zinc-700/60 hover:border-zinc-500 px-3.5 py-2 rounded-xl text-[11px] font-medium">
-                    <i data-lucide="lock" class="w-3.5 h-3.5 text-zinc-300"></i>
-                    <span>بوابة المدير</span>
-                </a>
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%20%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D9%86%D9%83%D8%B3%D9%88%D8%B3" target="_blank" class="text-xs font-bold bg-white text-black hover:bg-zinc-200 px-4 py-2 rounded-xl transition flex items-center gap-1.5">
-                    <span>تواصل معنا</span>
-                    <i data-lucide="arrow-up-left" class="w-3.5 h-3.5"></i>
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D9%86%D9%83%D8%B3%D9%88%D8%B3" target="_blank" class="text-xs font-bold bg-white text-black hover:bg-zinc-200 px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                    <span>تواصل معنا عبر واتساب</span>
                 </a>
             </div>
         </div>
@@ -77,48 +104,48 @@
     <!-- Main Content -->
     <main class="flex-1 space-y-28">
 
-        <!-- Hero Section: Clean & High Impact -->
+        <!-- Hero Section -->
         <section class="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 text-center space-y-8">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium font-eng">
                 <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span>GLOBAL PERFORMANCE & CREATIVE MARKETING</span>
+                <span>DIGITAL PERFORMANCE & VISUAL CONTENT</span>
             </div>
 
             <h1 class="text-3xl sm:text-6xl font-black text-white leading-tight tracking-tight max-w-4xl mx-auto">
-                نصنع الحملات الإبداعية ونهندس مسارات النمو التسويقي للعلامات التجارية
+                نحوّل زيارات حملاتك إلى طلبات مؤهلة عبر إعلانات ومحتوى وصفحات حجز مدروسة
             </h1>
 
             <p class="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-                وكالة متكاملة تجمع بين الإنتاج البصري الاحترافي، الحملات الإعلانية الموجهة بدقة، وأدوات التحويل الفوري التي تحول الزوار إلى عملاء فعليين.
+                نقدم خدمات تسويقية متكاملة تشمل تصوير وإخراج الإعلانات، إدارة الميزانيات الإعلانية، وبناء مسارات تحويل واضحة وسريعة تمكّن عملاءك من إتمام الحجز أو الشراء بسهولة.
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AE%D8%B7%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%86%D8%A7" target="_blank" class="px-7 py-3.5 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold text-xs flex items-center gap-2 transition active:scale-95 shadow-lg">
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AE%D8%B7%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%86%D8%A7" target="_blank" class="px-7 py-3.5 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold text-xs flex items-center gap-2 transition active:scale-95 shadow-lg">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>تحدث مع فريقنا عبر واتساب</span>
+                    <span>طلب استشارة أولية عبر واتساب</span>
                 </a>
-                <a href="#services" class="px-7 py-3.5 rounded-xl bg-[#13151c] hover:bg-[#1a1c26] border border-zinc-800 text-white font-semibold text-xs transition">
-                    <span>استكشف حلولنا التسويقية</span>
+                <a href="#packages" class="px-7 py-3.5 rounded-xl bg-[#13151c] hover:bg-[#1a1c26] border border-zinc-800 text-white font-semibold text-xs transition">
+                    <span>الاطلاع على الباقات ونطاق العمل</span>
                 </a>
             </div>
 
-            <!-- Numbers / Metrics -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12">
-                <div class="clean-card rounded-2xl p-6 text-center space-y-1">
-                    <div class="font-eng text-3xl font-extrabold text-white">+300%</div>
-                    <div class="text-xs text-zinc-400">زيادة معدلات التفاعل</div>
+            <!-- Deliverables Overview -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 text-center text-xs text-zinc-300">
+                <div class="clean-card rounded-2xl p-5 space-y-1">
+                    <div class="font-bold text-white text-sm">مخرجات واضحة</div>
+                    <div class="text-[11px] text-zinc-400">فيديوهات وصفحات محددة العدد</div>
                 </div>
-                <div class="clean-card rounded-2xl p-6 text-center space-y-1">
-                    <div class="font-eng text-3xl font-extrabold text-white">+45%</div>
-                    <div class="text-xs text-zinc-400">رفع معدل التحويل المباشر</div>
+                <div class="clean-card rounded-2xl p-5 space-y-1">
+                    <div class="font-bold text-white text-sm">تقارير أسبوعية</div>
+                    <div class="text-[11px] text-zinc-400">شفافية كاملة في بيانات الإنفاق</div>
                 </div>
-                <div class="clean-card rounded-2xl p-6 text-center space-y-1">
-                    <div class="font-eng text-3xl font-extrabold text-white">4K</div>
-                    <div class="text-xs text-zinc-400">جودة الإنتاج البصري</div>
+                <div class="clean-card rounded-2xl p-5 space-y-1">
+                    <div class="font-bold text-white text-sm">سرعة التنفيذ</div>
+                    <div class="text-[11px] text-zinc-400">إطلاق الحملات خلال 7 إلى 10 أيام</div>
                 </div>
-                <div class="clean-card rounded-2xl p-6 text-center space-y-1">
-                    <div class="font-eng text-3xl font-extrabold text-white">100%</div>
-                    <div class="text-xs text-zinc-400">تخصيص كامل لأهدافك</div>
+                <div class="clean-card rounded-2xl p-5 space-y-1">
+                    <div class="font-bold text-white text-sm">دعم مباشر</div>
+                    <div class="text-[11px] text-zinc-400">تواصل مستمر مع المستشار المسؤول</div>
                 </div>
             </div>
         </section>
@@ -126,97 +153,228 @@
         <!-- Services Section -->
         <section id="services" class="max-w-6xl mx-auto px-6 space-y-10">
             <div class="text-center space-y-2">
-                <span class="text-xs font-bold text-zinc-400 font-eng uppercase tracking-wider">SERVICES</span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">منظومة الخدمات التي نقدمها</h2>
-                <p class="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">حلول متكاملة تغطي كافة مراحل جذب العميل وإتمام الصفقة</p>
+                <span class="text-xs font-bold text-zinc-400 font-eng uppercase tracking-wider">الخدمات الأساسية</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">ماذا نقدم لعلامتك التجارية؟</h2>
+                <p class="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">منظومة تركز على المخرجات العملية التي تنعكس مباشرة على المبيعات</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
+                <!-- Service 1 -->
                 <div class="clean-card rounded-2xl p-8 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center text-white">
                         <i data-lucide="video" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white">صناعة المحتوى المرئي والإعلانات</h3>
+                    <h3 class="text-lg font-bold text-white">1. الإنتاج المرئي والإعلانات</h3>
                     <p class="text-xs text-zinc-400 leading-relaxed">
-                        تصوير وإخراج مقاطع الفيديو الإعلانية والريلز بجودة عالية وتنسيق جذاب يجذب انتباه العميل من أول ثانية ويعكس قوة علامتك.
+                        تصوير وإخراج مقاطع فيديو إعلانية قصيرة (Reels & Shorts) وكتابة سكريبتات إقناعية تركز على القيمة الحقيقية للمنتج أو الخدمة.
                     </p>
+                    <div class="text-[11px] text-zinc-500 pt-2 border-t border-white/5">
+                        المخرجات: مقاطع مصورة بدقة عالية + مونتاج ومؤثرات صوتية + سكريبتات مخصصة.
+                    </div>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Service 2 -->
                 <div class="clean-card rounded-2xl p-8 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center text-white">
                         <i data-lucide="trending-up" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white">إدارة الحملات الإعلانية الممولة</h3>
+                    <h3 class="text-lg font-bold text-white">2. إدارة الحملات الإعلانية الممولة</h3>
                     <p class="text-xs text-zinc-400 leading-relaxed">
-                        استهداف دقيق للجمهور المناسب لمنتجك أو خدمتك عبر مختلف المنصات الإعلانية، مع متابعة دورية ومستمرة لخفض التكلفة ومضاعفة النتائج.
+                        إعداد وإدارة ميزانياتك الإعلانية عبر منصات ميتا (Instagram & Facebook) وجوجل، مع اختبار مستمر للرسائل الإعلانية لخفض تكلفة العميل المحتمل.
                     </p>
+                    <div class="text-[11px] text-zinc-500 pt-2 border-t border-white/5">
+                        المخرجات: ضبط الاستهداف + إعداد بكسل التتبع + تقارير أداء دورية توضح العائد.
+                    </div>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Service 3 -->
                 <div class="clean-card rounded-2xl p-8 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center text-white">
                         <i data-lucide="layout" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white">صفحات الهبوط وأدوات الإقناع الفوري</h3>
+                    <h3 class="text-lg font-bold text-white">3. صفحات الهبوط ومسارات الحجز</h3>
                     <p class="text-xs text-zinc-400 leading-relaxed">
-                        بناء مسارات تفاعلية وصفحات هبوط سريعة تسهل على العميل اتخاذ قرار الشراء والتواصل المباشر مع فريق مبيعاتك دون تعقيد.
+                        تصميم وتطوير صفحات هبوط سريعة متوافقة بالكامل مع الهواتف، مع ربط أزرار حجز وتواصل فوري عبر واتساب للحد من تسريب الزوار.
                     </p>
+                    <div class="text-[11px] text-zinc-500 pt-2 border-t border-white/5">
+                        المخرجات: صفحة هبوط سريعة الاستجابة + ربط زر واتساب المباشر + تتبع التحويل.
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Interactive Demo Preview (Before / After) -->
-        <section id="demo" class="max-w-5xl mx-auto px-6 space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/5 pb-4">
-                <div>
-                    <span class="text-xs font-bold text-zinc-400 font-eng uppercase tracking-wider">INTERACTIVE DEMO</span>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">نموذج من أدوات العرض التفاعلية</h2>
+        <!-- Packages & Scope of Work (وضوح الباقات ونطاق العمل) -->
+        <section id="packages" class="max-w-6xl mx-auto px-6 space-y-10">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-zinc-400 font-eng uppercase tracking-wider">نطاق العمل والباقات</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">خيارات التعاقد ونطاق العمل الأولي</h2>
+                <p class="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">باقات شهرية محددة المخرجات دون أي رسوم خفية، يتم تكييفها حسب متطلبات نشاطك</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Package 1: Starter -->
+                <div class="clean-card rounded-2xl p-8 space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-zinc-400">باقة الانطلاق (Starter)</span>
+                            <div class="text-2xl font-black text-white">نطاق عمل تجريبي</div>
+                            <p class="text-[11px] text-zinc-400">مناسبة للأنشطة الناشئة التي ترغب في تأسيس مسار إعلاني منتظم.</p>
+                        </div>
+                        <ul class="text-xs text-zinc-300 space-y-2.5 pt-3 border-t border-white/5">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إنتاج 8 مقاطع فيديو إعلانية شهرياً</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إعداد صفحة هبوط واحدة سريعة التحميل</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إدارة حملة إعلانية واحدة (منصة ميتا)</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> تقرير أداء نصف شهري</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-white/5">
+                        <div class="text-[11px] text-zinc-400 mb-3">المدة: عقد شهر بشهر قابل للتجديد</div>
+                        <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A7%D9%86%D8%B7%D9%84%D8%A7%D9%82%20(Starter)" target="_blank" class="w-full py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                            <span>طلب تفاصيل باقة الانطلاق</span>
+                        </a>
+                    </div>
                 </div>
-                <span class="text-xs text-zinc-400">اسحب الخط للمقارنة</span>
+
+                <!-- Package 2: Growth (Featured) -->
+                <div class="clean-card rounded-2xl p-8 space-y-5 border-zinc-500 relative flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-emerald-400">باقة النمو والتوسع (Growth) — الأكثر طلباً</span>
+                            <div class="text-2xl font-black text-white">نطاق عمل متكامل</div>
+                            <p class="text-[11px] text-zinc-400">للشركات والمراكز التي تنفق ميزانيات إعلانية وتريد مضاعفة الحجوزات.</p>
+                        </div>
+                        <ul class="text-xs text-zinc-300 space-y-2.5 pt-3 border-t border-white/5">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إنتاج 16 مقطع فيديو إعلاني بدقة سينمائية</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> تطوير صفحة هبوط تفاعلية مع أداة مقارنة</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إدارة حملات ميتا وجوجل المتزامنة</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> تقارير أسبوعية تفصيلية ومتابعة مستمرة</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-white/5">
+                        <div class="text-[11px] text-zinc-400 mb-3">المدة: اشتراك شهري مع أولوية الدعم</div>
+                        <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D9%86%D9%85%D9%88%20%D9%88%D8%A7%D9%84%D8%AA%D9%88%D8%B3%D8%B9%20(Growth)" target="_blank" class="w-full py-2.5 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold text-xs flex items-center justify-center gap-2 transition shadow-md">
+                            <span>طلب تفاصيل باقة النمو</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Package 3: Custom -->
+                <div class="clean-card rounded-2xl p-8 space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-zinc-400">الباقة المخصصة (Enterprise)</span>
+                            <div class="text-2xl font-black text-white">حلول مخصصة للكيانات الكبرى</div>
+                            <p class="text-[11px] text-zinc-400">للمجموعات التي تحتاج إنتاجاً مستمراً وإدارة حملات متقدمة لفروع متعددة.</p>
+                        </div>
+                        <ul class="text-xs text-zinc-300 space-y-2.5 pt-3 border-t border-white/5">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> إنتاج محتوى مرئي غير محدود حسب الجدول</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> بناء وتطوير منصات رقمية وأدوات تفاعلية خاصة</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> استشارات تسويقية مباشرة واجتماعات دورية</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-white/5">
+                        <div class="text-[11px] text-zinc-400 mb-3">المدة: يتم الاتفاق عليها حسب حجم المشروع</div>
+                        <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%A8%D8%A7%D9%82%D8%A9%20%D9%85%D8%AE%D8%B5%D8%B5%D8%A9%20(Enterprise)" target="_blank" class="w-full py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                            <span>مناقشة متطلبات خاصة</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features & Methodology (حل مشكلة الرابط المكسور #features) -->
+        <section id="features" class="max-w-6xl mx-auto px-6 space-y-10">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-zinc-400 font-eng uppercase tracking-wider">منهجية العمل</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">كيف نعمل مع شركائنا خطوة بخطوة؟</h2>
+                <p class="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">منهجية قائمة على الوضوح الكامل في كل مرحلة لضمان جودة المخرجات</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="clean-card rounded-2xl p-6 space-y-3">
+                    <span class="font-eng text-xs text-zinc-500 font-bold">المرحلة 01</span>
+                    <h3 class="text-base font-bold text-white">جلسة الاستكشاف والتدقيق</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">دراسة وضعك التسويقي الحالي، فحص الحملات السابقة، وتحديد مواطن تسريب العملاء بدقة.</p>
+                </div>
+                <div class="clean-card rounded-2xl p-6 space-y-3">
+                    <span class="font-eng text-xs text-zinc-500 font-bold">المرحلة 02</span>
+                    <h3 class="text-base font-bold text-white">صناعة المحتوى الإبداعي</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">كتابة السكريبتات الإقناعية، التصوير، والمونتاج الإعلاني الموجه للتأثير على قرار المشتري.</p>
+                </div>
+                <div class="clean-card rounded-2xl p-6 space-y-3">
+                    <span class="font-eng text-xs text-zinc-500 font-bold">المرحلة 03</span>
+                    <h3 class="text-base font-bold text-white">تجهيز مسار التحويل</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">بناء صفحة الهبوط وربط التتبع التلقائي وقنوات الواتساب لضمان سهولة التواصل الفوري.</p>
+                </div>
+                <div class="clean-card rounded-2xl p-6 space-y-3">
+                    <span class="font-eng text-xs text-zinc-500 font-bold">المرحلة 04</span>
+                    <h3 class="text-base font-bold text-white">إطلاق الحملات والتحسين</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">تشغيل الإعلانات ومراقبة الأداء يومياً لتحسين تكلفة العميل ورفع معدلات الحجز.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Demo Preview (توضيح طبيعة النموذج المعروض) -->
+        <section id="demo" class="max-w-5xl mx-auto px-6 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/5 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-zinc-400 font-eng uppercase tracking-wider">أدوات العرض التفاعلية</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">نموذج توضيحي: سلايدر المقارنة التفاعلي (Before / After)</h2>
+                    <p class="text-xs text-zinc-400 mt-1">نموذج برمجي يوضح كيف يمكن لأدوات المقارنة التفاعلية مساعدة عميلك على معاينة النتائج قبل اتخاذ القرار</p>
+                </div>
+                <span class="text-[11px] text-zinc-500 font-mono">اسحب المقبض يميناً ويساراً</span>
             </div>
 
             <div class="clean-card rounded-2xl p-6 sm:p-8 space-y-4">
-                <div class="relative w-full h-72 sm:h-96 rounded-xl overflow-hidden border border-zinc-800 select-none bg-black">
+                <!-- Accessible Slider Container -->
+                <div class="relative w-full h-72 sm:h-96 rounded-xl overflow-hidden border border-zinc-800 select-none bg-black" role="region" aria-label="أداة مقارنة بصرية توضيحية">
                     <div class="absolute inset-0">
-                        <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="After" class="w-full h-full object-cover">
-                        <div class="absolute bottom-4 right-4 bg-black/80 px-3 py-1 rounded-lg border border-white/20 text-white text-xs font-semibold">
-                            ✓ بعد: إخراج بصري احترافي فائق الوضوح
+                        <img src="assets/riyadh_luxury_dental_ad_macro_1794673924832.jpg" alt="نموذج توضيحي لصورة ناصعة تمثل نتيجة العمل المطور" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 right-4 bg-black/80 px-3.5 py-1 rounded-lg border border-white/20 text-white text-xs font-semibold">
+                            ✓ نموذج بعد: إضاءة وتصوير احترافي
                         </div>
                     </div>
                     <div id="clean-slider-overlay" class="absolute inset-0 overflow-hidden border-l-2 border-white" style="width: 50%;">
-                        <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="Before" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] max-w-none" style="width: 100%; min-width: 600px;">
-                        <div class="absolute bottom-4 left-4 bg-black/80 px-3 py-1 rounded-lg border border-white/20 text-zinc-400 text-xs font-semibold">
-                            قبل: تصوير تقليدي ضعيف
+                        <img src="assets/riyadh_luxury_dental_ad_1794673841834.jpg" alt="نموذج توضيحي لصورة تمثل الحالة المبدئية قبل التطوير" class="absolute inset-0 w-full h-full object-cover grayscale-[40%] max-w-none" style="width: 100%; min-width: 600px;">
+                        <div class="absolute bottom-4 left-4 bg-black/80 px-3.5 py-1 rounded-lg border border-white/20 text-zinc-400 text-xs font-semibold">
+                            نموذج قبل: تصوير بإضاءة ضعيفة
                         </div>
                     </div>
-                    <input type="range" min="0" max="100" value="50" oninput="document.getElementById('clean-slider-overlay').style.width = this.value + '%'" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                    <!-- Accessible Slider Input -->
+                    <input type="range" min="0" max="100" value="50" aria-label="مؤشر السحب لمقارنة نموذج قبل وبعد" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" oninput="document.getElementById('clean-slider-overlay').style.width = this.value + '%'; this.setAttribute('aria-valuenow', this.value);" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
                 </div>
-                <p class="text-xs text-center text-zinc-400">💡 نموذج تفاعلي مبرمج لزيادة ثقة العميل وحسم قراره فوراً.</p>
+                <p class="text-[11px] text-center text-zinc-500">
+                    * ملاحظة: الصور أعلاه هي عينة توضيحية لبرمجية المقارنة التفاعلية التي نقوم بدمجها في صفحات الهبوط للأنشطة المختلفة.
+                </p>
             </div>
         </section>
 
-        <!-- Final Simple CTA -->
+        <!-- Final CTA & Business Details -->
         <section class="max-w-4xl mx-auto px-6 text-center space-y-6 pt-4 pb-12">
             <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
-                جاهز لتطوير أداء نشاطك التجاري؟
+                جاهز لبدء حملتك التسويقية القادمة؟
             </h2>
             <p class="text-xs sm:text-sm text-zinc-400 max-w-md mx-auto leading-relaxed">
-                تواصل معنا مباشرة عبر واتساب لمناقشة أهدافك وبدء العمل على خطة تسويقية مخصصة.
+                تواصل معنا مباشرة عبر واتساب لمناقشة أهدافك، والحصول على تدقيق أولي لنشاطك، وتحديد الباقة الأنسب لاحتياجاتك.
             </p>
-            <div class="pt-2">
-                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%83%D9%85%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%AD%D9%85%D9%84%D8%A7%D8%AA%D9%86%D8%A7%20%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9" target="_blank" class="inline-flex items-center gap-2.5 bg-white text-black hover:bg-zinc-200 px-8 py-3.5 rounded-xl font-bold text-xs transition shadow-xl">
+            <div class="pt-2 flex flex-col items-center gap-3">
+                <a href="https://wa.me/201210237652?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D9%86%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%83%D9%85%20%D9%84%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82" target="_blank" class="inline-flex items-center gap-2.5 bg-white text-black hover:bg-zinc-200 px-8 py-3.5 rounded-xl font-bold text-xs transition shadow-xl">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>تواصل معنا عبر واتساب (+201210237652)</span>
+                    <span>بدء المحادثة عبر واتساب (+201210237652)</span>
                 </a>
+                <div class="text-[11px] text-zinc-400 flex items-center gap-2 font-mono">
+                    <span>وقت الاستجابة المعتاد: خلال ساعتين عمل</span>
+                    <span>·</span>
+                    <span>البريد: ahmed.morgan2009@gmail.com</span>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-white/5 py-8 text-center text-xs text-zinc-500 bg-[#0a0a0d]">
+    <footer class="border-t border-white/5 py-8 text-center text-xs text-zinc-500 bg-[#0a0a0d] space-y-2">
         <p>© 2026 NEXUS AGENCY. ALL RIGHTS RESERVED.</p>
+        <p class="text-[11px] text-zinc-600">خدمات التسويق الرقمي وإدارة الحملات الإعلانية وصناعة المحتوى المرئي</p>
     </footer>
 
     <script>
