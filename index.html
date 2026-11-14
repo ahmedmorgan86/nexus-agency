@@ -77,10 +77,7 @@
             <div class="text-[11px] text-slate-400 border-t border-slate-800 pt-4 flex flex-col gap-1.5 text-center">
                 <div class="flex items-center justify-center gap-1 text-slate-400">
                     <i data-lucide="shield" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>تشفير المتصفح: SHA-256 مع حماية من الهجمات التكرارية</span>
-                </div>
-                <div class="text-[10px] text-slate-400">
-                    كلمة المرور الافتراضية لأحمد مرجان: <code class="bg-slate-950 px-2 py-0.5 rounded text-sky-400 font-bold font-mono">nexus2026</code>
+                    <span>نظام حماية مشفر بتقنية SHA-256 مع حظر الدخول المتكرر</span>
                 </div>
             </div>
         </div>
@@ -1167,7 +1164,7 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // Master Passcode Security Hash ("nexus2026")
+        // Master Passcode Security Hash
         const MASTER_PASSCODE_HASH = "ff0a5f39b703f6d02441f3b42aa02af28bc400cd8193ffd8fb1f4c4d245444c5";
 
         async function verifyPasscode() {
@@ -1179,7 +1176,7 @@ Would you be open to reviewing a 2-minute interactive demo?</textarea>
             const inputHash = await sha256(val);
             const storedCustomHash = localStorage.getItem('nexus_custom_hash') || MASTER_PASSCODE_HASH;
 
-            if (inputHash === storedCustomHash || val === "nexus2026") {
+            if (inputHash === storedCustomHash) {
                 sessionStorage.setItem('nexus_authenticated', 'true');
                 gate.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => gate.style.display = 'none', 500);

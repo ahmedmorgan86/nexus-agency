@@ -206,7 +206,6 @@ def generate_continuous_dossier():
 
             <div class="footer">
                 <p style="color: #10b981; font-weight: bold;">🔒 نظام حماية المدير: لا يتم نشر أو إرسال أي رسالة بدون اعتمادك المباشر في لوحة التحكم.</p>
-                <p>كلمة المرور الافتراضية لدخول اللوحة: nexus2026</p>
             </div>
         </div>
     </body>
