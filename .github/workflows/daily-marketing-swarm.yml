@@ -1,14 +1,24 @@
-name: Daily Autonomous Marketing Swarm
+name: 24/7/365 Autonomous Agency Swarm
 
 on:
   schedule:
-    # Runs at 07:00 AM UTC every day, which corresponds to 09:00 AM Egypt Time (UTC+2)
-    - cron: '0 7 * * *'
-  workflow_dispatch: # Allows manual trigger anytime from GitHub dashboard
+    # Runs every 3 hours round-the-clock, 24 hours a day, 365 days a year
+    # (00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 UTC)
+    - cron: '0 */3 * * *'
+  workflow_dispatch: # Allows instant manual trigger anytime from GitHub dashboard
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: agency-swarm-24-7
+  cancel-in-progress: false
 
 jobs:
-  run-swarm:
+  run-swarm-continuous:
+    name: Execute Autonomous Swarm Cycle (24/7)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout Repository
@@ -19,12 +29,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run Multi-Agent Marketing Swarm
+      - name: Run Multi-Agent Swarm (24/7/365 Engine)
         env:
           DIRECTOR_EMAIL: ${{ secrets.DIRECTOR_EMAIL || 'ahmed.morgan86@gmail.com' }}
           SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
           SMTP_PORT: ${{ secrets.SMTP_PORT || '465' }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          CONTINUOUS_MODE: "1"
         run: |
           python nexus_daily_swarm.py
