@@ -103,10 +103,16 @@
             </div>
 
             <!-- Global Status & Action -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
+                <!-- Google API Key Button & Status -->
+                <button onclick="toggleApiKeyModal()" class="px-3 py-1.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-sky-400 text-xs font-bold flex items-center gap-1.5 transition">
+                    <span class="w-2 h-2 rounded-full bg-[#4285F4]"></span>
+                    <span id="nav-google-status">إعدادات Google API</span>
+                </button>
+
                 <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span>تشغيل سحابي متواصل 24/7/365 (Sovereign Engine Active)</span>
+                    <span>تشغيل سحابي متواصل 24/7/365</span>
                 </div>
                 <div class="flex items-center gap-3 border-r border-brand-border pr-4 mr-2">
                     <div class="text-left">
@@ -121,6 +127,43 @@
             </div>
         </div>
     </header>
+
+    <!-- GOOGLE API KEY MODAL (لربط مفتاح جوجل وتأكيد الجودة) -->
+    <div id="google-api-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-5 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1 bg-slate-950 px-2 py-1 rounded border border-slate-800">
+                        <span class="w-2 h-2 rounded-full bg-[#4285F4]"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#EA4335]"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#FBBC05]"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#34A853]"></span>
+                    </div>
+                    <h3 class="text-sm font-black text-white">إعدادات Google Gemini API</h3>
+                </div>
+                <button onclick="toggleApiKeyModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                أدخل مفتاح Google API الخاص بك لتشغيل الذكاء الاصطناعي في تحليل العيادات وصياغة الرسائل ومراقبة الجودة بدقة 100%.
+            </p>
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-sky-400">Google Gemini API Key:</label>
+                <input type="password" id="gemini-key-input" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:border-sky-500 focus:outline-none">
+            </div>
+            <div class="flex items-center justify-between gap-3 pt-2">
+                <button onclick="saveApiKey()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-xs shadow-lg shadow-sky-500/20 transition active:scale-95">
+                    حفظ وتفعيل المفتاح
+                </button>
+                <button onclick="toggleApiKeyModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">
+                    إلغاء
+                </button>
+            </div>
+            <div class="text-[11px] text-slate-400 bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                <div class="font-bold text-slate-300">💡 أين تضعه في GitHub للأوتوميشن السحابي؟</div>
+                <div>في المستودع: <strong>Settings > Secrets and variables > Actions</strong> باسم: <code class="text-sky-400 font-mono font-bold">GEMINI_API_KEY</code></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Workspace Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-6 space-y-8">
@@ -912,9 +955,41 @@
             }
         }
 
+        // Google API Modal Controls
+        function toggleApiKeyModal() {
+            const modal = document.getElementById('google-api-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            const saved = localStorage.getItem('nexus_gemini_api_key');
+            if (saved) document.getElementById('gemini-key-input').value = saved;
+        }
+
+        function saveApiKey() {
+            const key = document.getElementById('gemini-key-input').value.trim();
+            if (key) {
+                localStorage.setItem('nexus_gemini_api_key', key);
+                document.getElementById('nav-google-status').innerText = 'Google API: متصل 🟢';
+                alert('تم حفظ مفتاح Google API بنجاح! سيتم استخدامه في التحليلات الحية.');
+                toggleApiKeyModal();
+            } else {
+                localStorage.removeItem('nexus_gemini_api_key');
+                document.getElementById('nav-google-status').innerText = 'إعدادات Google API';
+                toggleApiKeyModal();
+            }
+        }
+
+        function checkApiKeyStatus() {
+            const saved = localStorage.getItem('nexus_gemini_api_key');
+            if (saved) {
+                const navStatus = document.getElementById('nav-google-status');
+                if (navStatus) navStatus.innerText = 'Google API: متصل 🟢';
+            }
+        }
+
         // Initialize Icons & Auth Check
         document.addEventListener('DOMContentLoaded', () => {
             checkAuth();
+            checkApiKeyStatus();
             lucide.createIcons();
         });
     </script>
