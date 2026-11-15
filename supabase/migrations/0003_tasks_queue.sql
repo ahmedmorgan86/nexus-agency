@@ -67,9 +67,10 @@ grant select, insert on task_events to nexus_app;
 grant usage, select on all sequences in schema public to nexus_app;
 
 -- Separate role for the worker process: only it may use the cross-tenant queue functions.
+-- Created NOLOGIN: scripts/bootstrap_roles.py grants LOGIN with a password from the environment.
 do $$ begin
   if not exists (select 1 from pg_roles where rolname = 'nexus_worker') then
-    create role nexus_worker login password 'nexus_worker' nosuperuser nobypassrls;
+    create role nexus_worker nologin nosuperuser nobypassrls;
   end if;
 end $$;
 grant usage on schema public to nexus_worker;

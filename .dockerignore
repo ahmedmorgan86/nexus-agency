@@ -1,0 +1,23 @@
+# Build context is the repository root. Never let secrets or local state into the image.
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+node_modules
+**/node_modules
+.next
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+.venv
+*.db
+*.sqlite
+*.sqlite3
+uploads
+leads.json
+*.log
+docs
+*.md
+apps/web

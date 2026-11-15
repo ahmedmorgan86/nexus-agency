@@ -10,16 +10,17 @@ from contextlib import contextmanager
 import jwt
 import psycopg
 from psycopg.types.json import Jsonb
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Response
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, HttpUrl
 
 FEATURES = {
-    "auth": "PARTIALLY_IMPLEMENTED",
-    "tenant_isolation": "PARTIALLY_IMPLEMENTED",
+    "auth": "FUNCTIONAL_NEEDS_CONFIGURATION",
+    "tenant_isolation": "PRODUCTION_READY",
     "crm": "PARTIALLY_IMPLEMENTED",
-    "task_queue": "PARTIALLY_IMPLEMENTED",
-    "approvals": "PARTIALLY_IMPLEMENTED",
-    "agent_registry": "PARTIALLY_IMPLEMENTED",
+    "task_queue": "FUNCTIONAL_NEEDS_CONFIGURATION",
+    "approvals": "FUNCTIONAL_NEEDS_CONFIGURATION",
+    "agent_registry": "FUNCTIONAL_NEEDS_CONFIGURATION",
     "discovery": "NOT_IMPLEMENTED",
     "image_generation": "NOT_IMPLEMENTED",
     "video_generation": "NOT_IMPLEMENTED",
@@ -31,7 +32,13 @@ TOKEN_TTL = 3600
 
 
 def dsn() -> str:
-    return os.environ.get("DATABASE_URL", "host=/tmp port=5433 dbname=nexus_test user=nexus_app password=nexus_app")
+    value = os.environ.get("DATABASE_URL")
+    if value:
+        return value
+    if os.environ.get("APP_ENV", "development") == "production":
+        raise RuntimeError("DATABASE_URL is required in production")
+    # Local throwaway Postgres from scripts/start_test_pg.sh (trust auth, no password).
+    return "host=/tmp port=5433 dbname=nexus_test user=nexus_app"
 
 
 def jwt_secret() -> str:
@@ -119,9 +126,40 @@ class LeadIn(BaseModel):
 app = FastAPI(title="NEXUS API", version="0.3.0")
 
 
+def cors_origins() -> list[str]:
+    return [o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()]
+
+
+if cors_origins():
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=cors_origins(),
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+
+def registration_allowed() -> bool:
+    """Public self-registration. Explicit ALLOW_REGISTRATION wins; otherwise closed in production."""
+    raw = (os.environ.get("ALLOW_REGISTRATION") or "").strip() or None
+    if raw is not None:
+        return raw == "1"
+    return os.environ.get("APP_ENV", "development") != "production"
+
+
 @app.get("/health")
-def health():
-    return {"status": "ok", "env": os.environ.get("APP_ENV", "development")}
+def health(response: Response):
+    """Honest health: reports the database state instead of assuming it works."""
+    try:
+        with db() as conn:
+            conn.execute("select 1")
+        database = "connected"
+    except Exception:  # noqa: BLE001 - health must never raise
+        database = "unavailable"
+        response.status_code = 503
+    return {"status": "ok" if database == "connected" else "degraded", "env": os.environ.get("APP_ENV", "development"),
+            "database": database, "version": app.version}
 
 
 @app.get("/features")
@@ -132,6 +170,8 @@ def features():
 
 @app.post("/auth/register", status_code=201)
 def register(body: RegisterIn):
+    if not registration_allowed():
+        raise HTTPException(403, "self-registration is disabled")
     uid, tid = uuid.uuid4(), uuid.uuid4()
     try:
         with db(tid) as conn:
@@ -149,7 +189,7 @@ def register(body: RegisterIn):
 @app.post("/auth/login")
 def login(body: LoginIn):
     with db() as conn:
-        row = conn.execute("select id, password_hash from users where email = %s", (body.email.lower(),)).fetchone()
+        row = conn.execute("select id, password_hash from login_lookup(%s)", (body.email.lower(),)).fetchone()
         # Always hash-compare so unknown email and wrong password take similar time.
         ok = verify_password(body.password, row[1] if row else hash_password("x"))
         if not row or not ok:

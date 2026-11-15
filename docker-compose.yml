@@ -1,8 +1,104 @@
+# Local / staging stack. Build context is the repository root (see services/api/Dockerfile).
+#
+#   docker compose up --build
+#
+# Values come from .env (gitignored) or the shell. Nothing here contains a secret.
+# The runtime roles are created NOLOGIN by the migrations; `migrate` grants them LOGIN with
+# the passwords from the environment, so `nexus_app` / `nexus_worker` stay NOSUPERUSER
+# NOBYPASSRLS and RLS is enforced by Postgres.
+name: nexus
+
 services:
   db:
     image: postgres:16
-    environment: { POSTGRES_USER: nexus, POSTGRES_PASSWORD: nexus, POSTGRES_DB: nexus }
-    ports: ["5432:5432"]
-    volumes: [pgdata:/var/lib/postgresql/data]
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: nexus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d nexus"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # One-shot: schema + role passwords. API and worker wait for it to finish.
+  migrate:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    restart: "no"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NEXUS_OWNER_DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/nexus
+      NEXUS_APP_PASSWORD: ${NEXUS_APP_PASSWORD:?set NEXUS_APP_PASSWORD in .env}
+      NEXUS_WORKER_PASSWORD: ${NEXUS_WORKER_PASSWORD:?set NEXUS_WORKER_PASSWORD in .env}
+    command: ["sh", "-c", "python scripts/apply_migrations.py && python scripts/bootstrap_roles.py"]
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      DATABASE_URL: postgresql://nexus_app:${NEXUS_APP_PASSWORD}@db:5432/nexus
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      NEXUS_SECURITY_SALT: ${NEXUS_SECURITY_SALT:-}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_TEXT_MODEL: ${GEMINI_TEXT_MODEL:-gemini-flash-latest}
+      GEMINI_IMAGE_MODEL: ${GEMINI_IMAGE_MODEL:-gemini-3.1-flash-image}
+      GEMINI_VIDEO_MODEL: ${GEMINI_VIDEO_MODEL:-}
+      IMAGE_PROVIDER_URL: ${IMAGE_PROVIDER_URL:-}
+      IMAGE_PROVIDER_API_KEY: ${IMAGE_PROVIDER_API_KEY:-}
+      VIDEO_PROVIDER_URL: ${VIDEO_PROVIDER_URL:-}
+      VIDEO_PROVIDER_API_KEY: ${VIDEO_PROVIDER_API_KEY:-}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - |
+          import sys, urllib.request
+          try:
+              sys.exit(0 if urllib.request.urlopen("http://127.0.0.1:8000/health", timeout=3).status == 200 else 1)
+          except Exception:
+              sys.exit(1)
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+  worker:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      # The worker reads approvals through the app role and claims tasks through the
+      # worker role, so both DSNs are required.
+      DATABASE_URL: postgresql://nexus_app:${NEXUS_APP_PASSWORD}@db:5432/nexus
+      WORKER_DATABASE_URL: postgresql://nexus_worker:${NEXUS_WORKER_PASSWORD}@db:5432/nexus
+      NEXUS_BACKOFF_BASE: ${NEXUS_BACKOFF_BASE:-5}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_TEXT_MODEL: ${GEMINI_TEXT_MODEL:-gemini-flash-latest}
+    command: ["python", "-m", "app.worker"]
+
 volumes:
   pgdata:

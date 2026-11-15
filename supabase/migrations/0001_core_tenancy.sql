@@ -44,9 +44,11 @@ create table audit_logs (
 );
 
 -- Unprivileged application role: not owner, no BYPASSRLS.
+-- Created NOLOGIN: no password ever lives in a migration. Run scripts/bootstrap_roles.py
+-- (reads NEXUS_APP_PASSWORD / NEXUS_WORKER_PASSWORD from the environment) to grant LOGIN.
 do $$ begin
   if not exists (select 1 from pg_roles where rolname = 'nexus_app') then
-    create role nexus_app login password 'nexus_app' nosuperuser nobypassrls;
+    create role nexus_app nologin nosuperuser nobypassrls;
   end if;
 end $$;
 

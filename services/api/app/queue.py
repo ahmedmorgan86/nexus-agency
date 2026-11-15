@@ -31,8 +31,12 @@ class UnknownOrNotRunnableAgent(Exception):
 
 
 def worker_dsn() -> str:
-    return os.environ.get("WORKER_DATABASE_URL",
-                          "host=/tmp port=5433 dbname=nexus_test user=nexus_worker password=nexus_worker")
+    value = os.environ.get("WORKER_DATABASE_URL")
+    if value:
+        return value
+    if os.environ.get("APP_ENV", "development") == "production":
+        raise RuntimeError("WORKER_DATABASE_URL is required in production")
+    return "host=/tmp port=5433 dbname=nexus_test user=nexus_worker"
 
 
 def backoff_base() -> int:

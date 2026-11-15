@@ -3,7 +3,7 @@ import uuid
 import jwt
 from fastapi.testclient import TestClient
 
-from app.server import app, jwt_secret, make_token
+from app.server import app, jwt_secret, make_token, registration_allowed
 
 client = TestClient(app)
 PW = "correct-horse-battery"
@@ -41,6 +41,21 @@ def test_duplicate_email_rejected():
 def test_weak_password_rejected():
     r = client.post("/auth/register", json={"email": "a@b.co", "password": "short", "tenant_name": "X"})
     assert r.status_code == 422
+
+
+def test_registration_can_be_closed(monkeypatch):
+    monkeypatch.setenv("ALLOW_REGISTRATION", "0")
+    r = client.post("/auth/register", json={"email": f"{uuid.uuid4().hex[:8]}@example.com",
+                                            "password": PW, "tenant_name": "Closed"})
+    assert r.status_code == 403
+
+
+def test_registration_defaults_closed_in_production(monkeypatch):
+    monkeypatch.delenv("ALLOW_REGISTRATION", raising=False)
+    monkeypatch.setenv("APP_ENV", "production")
+    assert registration_allowed() is False
+    monkeypatch.setenv("ALLOW_REGISTRATION", "1")
+    assert registration_allowed() is True
 
 
 def test_requires_token():

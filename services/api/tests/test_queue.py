@@ -1,3 +1,4 @@
+import os
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 
@@ -9,9 +10,12 @@ from app import queue
 from app.server import app, make_token
 
 client = TestClient(app)
-OWNER = "host=/tmp port=5433 dbname=nexus_test user=nexus_owner"
-APP = "host=/tmp port=5433 dbname=nexus_test user=nexus_app password=nexus_app"
+OWNER = os.environ.get("NEXUS_TEST_OWNER_URL", "host=/tmp port=5433 dbname=nexus_test user=nexus_owner")
 PW = "correct-horse-battery"
+
+
+def app_dsn() -> str:
+    return os.environ.get("DATABASE_URL", "host=/tmp port=5433 dbname=nexus_test user=nexus_app")
 
 
 @pytest.fixture(autouse=True)
@@ -220,7 +224,7 @@ def test_viewer_cannot_enqueue():
 
 
 def test_app_role_cannot_use_cross_tenant_queue_functions():
-    with psycopg.connect(APP, autocommit=True) as c:
+    with psycopg.connect(app_dsn(), autocommit=True) as c:
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
             c.execute("select * from claim_next_task()")
 

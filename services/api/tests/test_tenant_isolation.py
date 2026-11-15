@@ -1,16 +1,18 @@
-"""RLS tests. Require a running Postgres (scripts/start_test_pg.sh).
+"""RLS tests. Require a running Postgres (scripts/start_test_pg.sh or NEXUS_TEST_*_URL).
 Connects as the unprivileged nexus_app role, never as the owner."""
+import os
 import uuid
 
 import psycopg
 import pytest
 from psycopg import errors
 
-APP_DSN = "host=/tmp port=5433 dbname=nexus_test user=nexus_app password=nexus_app"
+LOCAL_APP_DSN = "host=/tmp port=5433 dbname=nexus_test user=nexus_app"
 
 
 def app_conn():
-    return psycopg.connect(APP_DSN, autocommit=True)
+    # conftest points DATABASE_URL at the disposable test database before tests run.
+    return psycopg.connect(os.environ.get("DATABASE_URL", LOCAL_APP_DSN), autocommit=True)
 
 
 def set_tenant(conn, tenant_id):

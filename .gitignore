@@ -1,4 +1,6 @@
 .env
+.env.*
+!.env.example
 node_modules
 .next
 __pycache__
@@ -9,3 +11,5 @@ __pycache__
 *.sqlite3
 leads.json
 *.log
+uploads/
+.pytest_cache/

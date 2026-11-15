@@ -167,12 +167,37 @@ def revoke_demo(token: str, user: User = Depends(get_current_user), db: Session 
 
 @app.get("/providers/status")
 def providers_status(user: User = Depends(get_current_user)):
+    """Honest provider inventory: derived from configuration only, never from a network probe."""
+    gemini = bool(os.environ.get("GEMINI_API_KEY"))
+    image_http = bool(os.environ.get("IMAGE_PROVIDER_URL") and os.environ.get("IMAGE_PROVIDER_API_KEY"))
+    video_http = bool(os.environ.get("VIDEO_PROVIDER_URL") and os.environ.get("VIDEO_PROVIDER_API_KEY"))
+    video_model = os.environ.get("GEMINI_VIDEO_MODEL", "")
+    image_ok = gemini or image_http
+    video_ok = video_http or bool(gemini and video_model)
     return {
         "image": {
-            "configured": bool(os.environ.get("IMAGE_PROVIDER_URL") and os.environ.get("IMAGE_PROVIDER_API_KEY")),
+            "configured": image_ok,
+            "status": "CONFIGURED" if image_ok else "NOT_CONFIGURED",
+            "generic_http": image_http,
+            "gemini": gemini,
+            "model": os.environ.get("GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image") if gemini else None,
         },
         "video": {
-            "configured": bool(os.environ.get("VIDEO_PROVIDER_URL") and os.environ.get("VIDEO_PROVIDER_API_KEY")),
+            "configured": video_ok,
+            "status": "CONFIGURED" if video_ok else "NOT_CONFIGURED",
+            "generic_http": video_http,
+            "gemini": bool(gemini and video_model),
+            "model": video_model or None,
+            "message": None if video_ok else "No video model enabled (set GEMINI_VIDEO_MODEL or VIDEO_PROVIDER_*)",
+        },
+        "discovery": {
+            "configured": gemini,
+            "status": "CONFIGURED" if gemini else "NOT_CONFIGURED",
+            "model": os.environ.get("GEMINI_TEXT_MODEL", "gemini-flash-latest"),
+        },
+        "email": {
+            "configured": bool(os.environ.get("SMTP_HOST") and os.environ.get("SMTP_USER")),
+            "status": "CONFIGURED" if os.environ.get("SMTP_HOST") else "NOT_CONFIGURED",
         },
     }
 
