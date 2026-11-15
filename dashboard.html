@@ -119,6 +119,10 @@
                 <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
                 <span>مزامنة البيانات الحية</span>
             </button>
+            <button onclick="checkBackendStatus()" class="w-full py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-[11px] font-bold transition active:scale-95 flex items-center justify-center gap-1.5">
+                <i data-lucide="server" class="w-3.5 h-3.5"></i>
+                <span>فحص حالة Backend</span>
+            </button>
         </div>
     </aside>
 
@@ -1136,25 +1140,12 @@
             const resBox = document.getElementById('scout-result');
             resBox.classList.remove('hidden');
 
-            const score = Math.floor(Math.random() * 25) + 48; // Realistic leak score 48-73
-            document.getElementById('scout-score').innerText = `Score: ${score}/100`;
+            document.getElementById('scout-score').innerText = 'Score: NOT_IMPLEMENTED';
             document.getElementById('scout-res-name').innerText = target;
-            
-            let leakText = "تم رصد 3 ثغرات رئيسية: غياب مسار تأكيد فوري بالواتساب، بطء في تحميل صور المنتجات، وضعف في إنتاج مقاطع الريلز السينمائية الموجهة للتحويل المباشر.";
-            if (sector === 'saas') leakText = "تم رصد تسرب 45% من الزوار بسبب طول نموذج طلب العرض التجريبي وغياب فيديو شرح سينمائي في الصفحة الأولى.";
-            if (sector === 'food') leakText = "تفاعل إعلاني مرتفع ولكن لا توجد إعادة استهداف للمهتمين بقائمة الطعام أو مسار حجز مباشر للطاولات.";
-            
-            document.getElementById('scout-res-leaks').innerText = leakText;
+            document.getElementById('scout-res-leaks').innerText = 'AUDIT_NOT_IMPLEMENTED: لا يوجد تدقيق فعلي مرتبط بـ Backend. لم يتم رصد أي ثغرات.';
 
-            lastScoutLead = {
-                name: target,
-                sector: sector === 'saas' ? 'منصة برمجيات SaaS' : sector === 'food' ? 'ضيافة وأغذية' : 'تجارة إلكترونية',
-                phone: '+201210237652',
-                benchmark_price: '$4,200 USD',
-                status: 'new',
-                detected_url: target.includes('.') ? target : 'https://instagram.com/' + target.replace('@', ''),
-                live_observations: leakText
-            };
+            // Do not create a lead from unverified scout input.
+            lastScoutLead = null;
             lucide.createIcons();
         }
 
@@ -1175,11 +1166,18 @@
 
         // 7. SYNC & HELPERS (Protected State Operations)
         function syncLeadsFromCloud() {
-            // Rotates and syncs with protected multi-tenant store
-            showQuickAlert('جاري مزامنة بيانات العمليات والـ CRM مع السحابة المشفرة...');
-            setTimeout(() => {
-                showQuickAlert('تمت مزامنة بيانات الرادار السحابي المشفرة بنجاح! جميع السجلات مؤمنة.');
-            }, 600);
+            // Honest status: no verified backend sync endpoint is configured yet.
+            showQuickAlert('SYNC_NOT_CONFIGURED: لم يتم ربط لوحة التحكم بخدمة Backend حقيقية بعد. لم تتم any مزامنة.');
+        }
+
+        async function checkBackendStatus() {
+            try {
+                const health = await nexusApi('/health');
+                const providers = await nexusApi('/providers/status');
+                showQuickAlert('Backend: ' + health.database + ' | Image: ' + (providers.image.configured ? 'configured' : 'NOT_CONFIGURED') + ' | Video: ' + (providers.video.configured ? 'configured' : 'NOT_CONFIGURED'));
+            } catch (e) {
+                showQuickAlert('BACKEND_NOT_CONFIGURED_OR_FAILED: ' + e.message);
+            }
         }
 
         function showQuickAlert(msg) {
@@ -1290,6 +1288,38 @@
             initCharts();
             calculateROAS();
         });
+    </script>
+    <script>
+        // Backend integration (honest: only active when configured)
+        const NEXUS_API_BASE = (localStorage.getItem('nexus_api_base') || '').replace(/\/$/, '');
+        async function nexusApi(path, options = {}) {
+            if (!NEXUS_API_BASE) throw new Error('BACKEND_NOT_CONFIGURED');
+            const token = sessionStorage.getItem('nexus_token') || '';
+            const headers = Object.assign({'Content-Type': 'application/json'}, token ? {Authorization: 'Bearer ' + token} : {}, options.headers || {});
+            const res = await fetch(NEXUS_API_BASE + path, Object.assign({}, options, {headers}));
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+        }
+        async function syncLeadsFromCloud() {
+            try {
+                const health = await nexusApi('/health');
+                const leads = await nexusApi('/leads');
+                currentLeads = leads.map(l => ({
+                    id: l.id,
+                    name: l.name,
+                    sector: l.sector || 'قطاع تجاري',
+                    phone: l.phone || 'غير متوفر',
+                    benchmark_price: '$3,500',
+                    status: l.crm_status === 'closed' ? 'closed' : l.crm_status === 'contacted' ? 'contacted' : 'new',
+                    detected_url: l.website || l.source_url || '#',
+                    source: 'backend'
+                }));
+                renderAllTables();
+                showQuickAlert('تمت المزامنة من Backend: ' + (health.database || 'connected') + ' | Leads: ' + leads.length);
+            } catch (e) {
+                showQuickAlert('SYNC_NOT_CONFIGURED_OR_FAILED: ' + e.message);
+            }
+        }
     </script>
 </body>
 </html>

@@ -49,7 +49,7 @@ class LeadScoringAgent:
             reasons.append("General optimization opportunities observed (+15/25).")
 
         # 3. Opportunity & Retainer Value (Max 25)
-        price_str = lead.get("benchmark_price", "$3,500")
+        price_str = lead.get("benchmark_price") or "$3,500"
         if any(k in price_str for k in ["$5,", "$6,", "28,000", "22,000"]):
             breakdown["opportunity_value"] = 24
             reasons.append("High-tier enterprise retainer value ($5,000+ / >20K SAR) (+24/25).")
@@ -58,8 +58,8 @@ class LeadScoringAgent:
             reasons.append("Healthy agency retainer value ($3,500 - $4,500) (+20/25).")
 
         # 4. Contactability & Channel Readiness (Max 25)
-        phone = lead.get("phone", "")
-        website = lead.get("website", "")
+        phone = lead.get("phone") or ""
+        website = lead.get("website") or ""
         if phone and website:
             breakdown["contactability"] = 24
             reasons.append("Direct executive WhatsApp/phone and live website verified (+24/25).")

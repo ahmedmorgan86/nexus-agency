@@ -15,11 +15,7 @@ def get_cairo_time() -> str:
     tz = timezone(timedelta(hours=2))
     return datetime.now(tz).strftime("%Y-%m-%d %I:%M:%S %p")
 
-def init_db(db_path: str = DB_FILE):
-    """
-    Initializes database tables with strict multi-tenant isolation and indexing.
-    """
-    conn = sqlite3.connect(db_path)
+def _create_schema(conn):
     cur = conn.cursor()
 
     # 1. Tenants Table
@@ -143,14 +139,40 @@ def init_db(db_path: str = DB_FILE):
         """, (get_cairo_time(),))
 
     conn.commit()
+
+def init_db(db_path: str = DB_FILE):
+    """
+    Initializes database tables with strict multi-tenant isolation and indexing.
+    """
+    if db_path == ":memory:":
+        # In-memory databases are handled by DatabaseManager persistent connections.
+        return
+    conn = sqlite3.connect(db_path)
+    _create_schema(conn)
     conn.close()
+
+class _NoCloseConnection:
+    def __init__(self, conn):
+        self._conn = conn
+    def close(self):
+        pass
+    def __getattr__(self, name):
+        return getattr(self._conn, name)
 
 class DatabaseManager:
     def __init__(self, db_path: str = DB_FILE):
         self.db_path = db_path
-        init_db(self.db_path)
+        self._persistent_conn = None
+        if db_path == ":memory:":
+            self._persistent_conn = sqlite3.connect(":memory:", check_same_thread=False)
+            _create_schema(self._persistent_conn)
+            self._persistent_conn.commit()
+        else:
+            init_db(db_path)
 
     def get_connection(self):
+        if self._persistent_conn is not None:
+            return _NoCloseConnection(self._persistent_conn)
         return sqlite3.connect(self.db_path)
 
     # TASK MANAGEMENT
@@ -203,17 +225,18 @@ class DatabaseManager:
         }
 
     # LEAD & CRM MANAGEMENT
-    def save_lead(self, lead: Dict[str, Any], tenant_id: str = "nexus_primary"):
+    def save_lead(self, lead: Dict[str, Any], tenant_id: Optional[str] = None):
         conn = self.get_connection()
         cur = conn.cursor()
         now = get_cairo_time()
+        resolved_tenant = tenant_id or lead.get("tenant_id") or "nexus_primary"
         cur.execute("""
         INSERT OR REPLACE INTO leads
         (id, tenant_id, name, sector, market, website, phone, benchmark_price, score, score_breakdown, crm_status, audit_notes, custom_pitch, created_at, updated_at)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             lead["id"],
-            tenant_id,
+            resolved_tenant,
             lead["name"],
             lead.get("sector", "تجارة وخدمات"),
             lead.get("market", "إقليمي"),
@@ -231,10 +254,11 @@ class DatabaseManager:
         conn.commit()
         conn.close()
 
-    def get_all_leads(self, tenant_id: str = "nexus_primary") -> List[Dict[str, Any]]:
+    def get_all_leads(self, tenant_id: Optional[str] = None) -> List[Dict[str, Any]]:
         conn = self.get_connection()
         cur = conn.cursor()
-        cur.execute("SELECT * FROM leads WHERE tenant_id = ? ORDER BY score DESC", (tenant_id,))
+        resolved_tenant = tenant_id or "nexus_primary"
+        cur.execute("SELECT * FROM leads WHERE tenant_id = ? ORDER BY score DESC", (resolved_tenant,))
         rows = cur.fetchall()
         conn.close()
         leads = []
@@ -259,25 +283,27 @@ class DatabaseManager:
         return leads
 
     # FINANCIAL AUDITING
-    def log_cost(self, agent_name: str, prompt_tokens: int, completion_tokens: int, task_id: Optional[str] = None, tenant_id: str = "nexus_primary"):
+    def log_cost(self, agent_name: str, prompt_tokens: int, completion_tokens: int, task_id: Optional[str] = None, tenant_id: Optional[str] = None):
         # Pricing model: $0.15 per 1M prompt tokens, $0.60 per 1M completion tokens (Gemini Flash standard)
         cost = (prompt_tokens / 1_000_000 * 0.15) + (completion_tokens / 1_000_000 * 0.60)
+        resolved_tenant = tenant_id or "nexus_primary"
         conn = self.get_connection()
         cur = conn.cursor()
         cur.execute("""
         INSERT INTO cost_logs (tenant_id, task_id, agent_name, prompt_tokens, completion_tokens, cost_usd, timestamp)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, (tenant_id, task_id, agent_name, prompt_tokens, completion_tokens, cost, get_cairo_time()))
+        """, (resolved_tenant, task_id, agent_name, prompt_tokens, completion_tokens, cost, get_cairo_time()))
         conn.commit()
         conn.close()
 
-    def get_financial_summary(self, tenant_id: str = "nexus_primary") -> Dict[str, Any]:
+    def get_financial_summary(self, tenant_id: Optional[str] = None) -> Dict[str, Any]:
+        resolved_tenant = tenant_id or "nexus_primary"
         conn = self.get_connection()
         cur = conn.cursor()
         cur.execute("""
         SELECT SUM(prompt_tokens), SUM(completion_tokens), SUM(cost_usd), COUNT(*)
         FROM cost_logs WHERE tenant_id = ?
-        """, (tenant_id,))
+        """, (resolved_tenant,))
         row = cur.fetchone()
         conn.close()
         return {

@@ -26,9 +26,9 @@ class SalesIntelligenceAgent:
         """
         Creates a structured, client-specific marketing growth blueprint and proposal.
         """
-        name = lead.get("name", "العميل المستهدف")
-        sector = lead.get("sector", "القطاع التجاري")
-        price = lead.get("benchmark_price", "$4,000 USD")
+        name = lead.get("name") or "العميل المستهدف"
+        sector = lead.get("sector") or "القطاع التجاري"
+        price = lead.get("benchmark_price") or "$4,000 USD"
         score = score_data.get("total_score", 85)
         findings = audit_data.get("findings", [])
 

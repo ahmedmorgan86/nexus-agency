@@ -55,7 +55,7 @@ class NexusCEOAgent:
 
         valid_transitions = {
             STATE_PENDING: [STATE_RUNNING, STATE_CANCELLED],
-            STATE_RUNNING: [STATE_REVIEW_REQUIRED, STATE_COMPLETED, STATE_FAILED, STATE_CANCELLED],
+            STATE_RUNNING: [STATE_REVIEW_REQUIRED, STATE_COMPLETED, STATE_FAILED, STATE_CANCELLED, STATE_PENDING],
             STATE_REVIEW_REQUIRED: [STATE_COMPLETED, STATE_CANCELLED],
             STATE_FAILED: [STATE_PENDING, STATE_CANCELLED],
             STATE_COMPLETED: [],
@@ -67,7 +67,7 @@ class NexusCEOAgent:
             raise ValueError(f"Illegal state transition from {current_state} to {new_state} for task {task_id}")
 
         task["state"] = new_state
-        if output_data:
+        if output_data is not None:
             task["output_data"] = output_data
         if cost_tokens:
             task["cost_tokens"] += cost_tokens
@@ -87,7 +87,7 @@ class NexusCEOAgent:
             tokens = result.get("tokens_used", 150)
             
             # Check if this task performs a high-risk operation requiring human signoff
-            action_type = task["input_data"].get("action_type", "")
+            action_type = (task.get("input_data") or {}).get("action_type", "")
             if not is_authorized_operation(action_type, requires_approval=True):
                 return self.transition_state(task_id, STATE_REVIEW_REQUIRED, output_data=result, cost_tokens=tokens)
             
@@ -104,7 +104,6 @@ class NexusCEOAgent:
             if task["retry_count"] <= 3:
                 # Retryable failure
                 self.db.save_task(task)
-                time.sleep(1)
                 return self.transition_state(task_id, STATE_PENDING)
             else:
                 return self.transition_state(task_id, STATE_FAILED, output_data={"error": str(e)})
@@ -121,7 +120,8 @@ class NexusCEOAgent:
         
         state_counts = {STATE_PENDING: 0, STATE_RUNNING: 0, STATE_REVIEW_REQUIRED: 0, STATE_COMPLETED: 0, STATE_FAILED: 0, STATE_CANCELLED: 0}
         for state, count in rows:
-            state_counts[state] = count
+            if state in state_counts:
+                state_counts[state] = count
             
         return {
             "orchestrator_status": "HEALTHY",

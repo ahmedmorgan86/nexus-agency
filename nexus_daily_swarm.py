@@ -112,9 +112,11 @@ def run_nexus_autonomous_cycle():
         qa_report=qa_check
     )
 
+    pdf_path = reporter.generate_pdf_report(cycle_op_id, f"NEXUS Autonomous Operating Report {cycle_op_id}\\nLeads: {len(qualified_leads)}\\nQA: {qa_check['qa_score']}")
     delivery = reporter.send_report(
         subject=f"NEXUS Autonomous Operating Report | {cycle_op_id} — {get_cairo_time()}",
-        html_body=report_html
+        html_body=report_html,
+        pdf_path=pdf_path
     )
 
     if delivery.get("delivered"):

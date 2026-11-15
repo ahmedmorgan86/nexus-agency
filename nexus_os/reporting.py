@@ -93,7 +93,34 @@ class ReportingEngine:
         """
         return html_body
 
-    def send_report(self, subject: str, html_body: str, recipient: Optional[str] = None) -> Dict[str, Any]:
+    def generate_pdf_report(self, op_id: str, summary_text: str, output_path: Optional[str] = None) -> Optional[str]:
+        """
+        Generates a real PDF report if reportlab is available. Returns file path or None.
+        """
+        try:
+            from reportlab.lib.pagesizes import letter
+            from reportlab.pdfgen import canvas
+        except Exception:
+            return None
+
+        if not output_path:
+            output_path = f"report_{op_id}.pdf"
+        try:
+            c = canvas.Canvas(output_path, pagesize=letter)
+            c.setFont("Helvetica", 11)
+            y = 750
+            for line in (summary_text or "").split("\\n"):
+                c.drawString(72, y, line[:100])
+                y -= 14
+                if y < 72:
+                    c.showPage()
+                    y = 750
+            c.save()
+            return output_path
+        except Exception:
+            return None
+
+    def send_report(self, subject: str, html_body: str, recipient: Optional[str] = None, pdf_path: Optional[str] = None) -> Dict[str, Any]:
         """
         Dispatches email via secure SMTP SSL with confirmed provider delivery tracking.
         """
@@ -112,6 +139,12 @@ class ReportingEngine:
         msg["To"] = target
 
         msg.attach(MIMEText(html_body, "html", "utf-8"))
+
+        if pdf_path and os.path.exists(pdf_path):
+            with open(pdf_path, "rb") as f:
+                part = MIMEApplication(f.read(), _subtype="pdf")
+                part.add_header("Content-Disposition", "attachment", filename=os.path.basename(pdf_path))
+                msg.attach(part)
 
         try:
             with smtplib.SMTP_SSL(self.smtp_host, self.smtp_port, timeout=15) as server:

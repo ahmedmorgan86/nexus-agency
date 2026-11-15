@@ -484,10 +484,10 @@
                 btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>تم التدقيق بنجاح</span>`;
                 document.getElementById('public-audit-results').classList.remove('hidden');
 
-                const score = Math.floor(Math.random() * 20) + 48;
-                document.getElementById('audit-score-badge').innerText = `Efficiency Score: ${score}/100`;
+                document.getElementById('audit-score-badge').innerText = 'Efficiency Score: NOT_IMPLEMENTED';
+                document.getElementById('public-audit-results').querySelector('p')?.remove();
 
-                const msg = `مرحباً أستاذ أحمد، قمت بفحص موقعي (${urlInput}) عبر أداة NEXUS وحصلت على نتيجة ${score}/100. أود مناقشة خطة سد الثغرات التسويقية ومضاعفة مبيعاتي.`;
+                const msg = `مرحباً أستاذ أحمد، أود مناقشة موقعي (${urlInput}) وخطة NEXUS. ملاحظة: التدقيق التلقائي غير مُفعّل حالياً.`;
                 document.getElementById('audit-wa-action').href = `https://wa.me/201210237652?text=${encodeURIComponent(msg)}`;
                 lucide.createIcons();
             }, 1200);

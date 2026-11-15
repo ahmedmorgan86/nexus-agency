@@ -8,10 +8,19 @@ import hashlib
 import hmac
 import os
 import html
+import secrets
+import warnings
 from typing import Optional
 
-# Internal Master Salt for PII hashing (if not set in env)
-SECRET_SALT = os.environ.get("NEXUS_SECURITY_SALT", "nexus_sovereign_salt_2026_secure")
+# Internal Master Salt for PII hashing. Must be provided via environment in production.
+SECRET_SALT = os.environ.get("NEXUS_SECURITY_SALT")
+if not SECRET_SALT:
+    SECRET_SALT = secrets.token_hex(32)
+    warnings.warn(
+        "NEXUS_SECURITY_SALT is not set; using an ephemeral random salt. "
+        "Set NEXUS_SECURITY_SALT in production for stable hashing.",
+        stacklevel=2,
+    )
 
 def mask_phone(phone: Optional[str]) -> str:
     """
@@ -51,11 +60,43 @@ def sanitize_input(text: Optional[str]) -> str:
         return ""
     return html.escape(str(text).strip())
 
-def hash_identifier(val: str) -> str:
+def hash_identifier(val) -> str:
     """
     Produces a non-reversible cryptographic HMAC token for deduplication without storing raw identifiers.
     """
-    return hmac.new(SECRET_SALT.encode('utf-8'), val.encode('utf-8'), hashlib.sha256).hexdigest()
+    return hmac.new(SECRET_SALT.encode('utf-8'), str(val).encode('utf-8'), hashlib.sha256).hexdigest()
+
+import ipaddress
+import socket
+
+def is_safe_url(url: str) -> bool:
+    """
+    Basic SSRF guard: allow only http/https URLs targeting public hosts.
+    """
+    if not url:
+        return False
+    from urllib.parse import urlparse
+    parsed = urlparse(url)
+    if parsed.scheme not in ("http", "https"):
+        return False
+    host = parsed.hostname
+    if not host:
+        return False
+    if host.lower() in ("localhost", "127.0.0.1", "0.0.0.0", "::1"):
+        return False
+    try:
+        infos = socket.getaddrinfo(host, None)
+    except Exception:
+        return False
+    for info in infos:
+        addr = info[4][0]
+        try:
+            ip = ipaddress.ip_address(addr)
+        except ValueError:
+            return False
+        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast:
+            return False
+    return True
 
 def check_tenant_access(requested_tenant_id: str, authenticated_tenant_id: str) -> bool:
     """

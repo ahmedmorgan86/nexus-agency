@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXUS Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#0b0b12; color:#f8fafc; padding:24px; }
+    .card { max-width:640px; margin:0 auto; background:#12121d; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; }
+    .muted { color:#94a3b8; font-size:12px; }
+    .error { color:#f87171; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>NEXUS Personalized Demo</h1>
+    <p class="muted">هذه صفحة مقترح (Concept/Proposal)، وليست عملاً منفذاً.</p>
+    <div id="content">جاري التحميل...</div>
+  </div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+    const apiBase = (localStorage.getItem('nexus_api_base') || params.get('api') || '').replace(/\/$/, '');
+    const content = document.getElementById('content');
+    if (!token || !apiBase) {
+      content.innerHTML = '<p class="error">DEMO_NOT_CONFIGURED: token أو API base مفقود.</p>';
+    } else {
+      fetch(apiBase + '/demo/' + encodeURIComponent(token))
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(d => {
+          content.innerHTML = `
+            <h2>${d.lead ? d.lead.name : 'Lead'}</h2>
+            <p class="muted">Sector: ${d.lead ? d.lead.sector : 'N/A'}</p>
+            <p class="muted">Website: ${d.lead ? (d.lead.website || 'N/A') : 'N/A'}</p>
+            <p class="muted">Expires: ${d.expires_at}</p>
+          `;
+        })
+        .catch(err => { content.innerHTML = '<p class="error">DEMO_INVALID_OR_EXPIRED: ' + err + '</p>'; });
+    }
+  </script>
+</body>
+</html>
